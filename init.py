@@ -5,22 +5,13 @@ import pins
 def setup():
     #set GPIO up
     gpio.setmode(gpio.BOARD)
+    #gpio.setwarnings(False)
     #Set up pins from a class
-    lmf = 19
-    lmb = 21
-    rmf = 26
-    rmb = 24
-    sonar = 8
-    trigL = 38
-    echoL = 36
-    trigR = 37
-    echoR = 35
-    irFL = 11
-    irFR = 7
-    irMID = 13
+    powerLed = 6
+    tempSensor = 8
     # Set there categories
-    inputs = [trigL,trigR,irFL,irFR,irMID]
-    outputs = [sonar,lmf,lmb,rmf,rmb,echoL,echoR]
+    inputs = [tempSensor]
+    outputs = [powerLed]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     thepins = pins.Pins(inputs, outputs)
     print('### ALL PINS IMPORTED AND SETUP SUCCESSFULLY ###')
