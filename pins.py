@@ -11,8 +11,8 @@ class Pins:
     
     def printPins(self):
         for pin in self.__inputs:
-            gpio.setup(pin, gpio.IN)
+            gpio.setup(str(pin), gpio.IN)
             print ('### Pin ' + str(pin) + ' is setup')
         for pin in self.__outputs:
-            gpio.setup(pin, gpio.OUT)
+            gpio.setup(str(pin), gpio.OUT)
             print ('### Pin ' + str(pin) + ' is setup')
