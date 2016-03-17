@@ -6,6 +6,7 @@ class Led:
         self.__powerLed = powerLed
         #self.powerLedOn()
         #self.powerLedOff()
+        self.powerLedTest()
         
     @property
     def powerLed(self):
@@ -18,9 +19,14 @@ class Led:
     # Need to write code to setup all the pins that have been passed in
     
     def powerLedOn(self):
-        gpio.input(powerLed, HIGH)
+        gpio.output(powerLed, HIGH)
         time.sleep(0.2)
     
     def powerLedOff(self):
-        gpio.input(powerLed, LOW)
+        gpio.output(powerLed, LOW)
         time.sleep(0.2)
+    
+    def powerLedTest(self):
+        gpio.output(powerLed, HIGH)
+        time.sleep(2)
+        gpio.output(powerLed, LOW)
