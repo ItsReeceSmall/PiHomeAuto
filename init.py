@@ -24,3 +24,5 @@ def setup():
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     thepins = pins.Pins(inputs, outputs)
     print('### ALL PINS IMPORTED AND SETUP SUCCESSFULLY ###')
+
+setup()
