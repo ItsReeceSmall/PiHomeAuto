@@ -1,6 +1,7 @@
 import RPi.GPIO as gpio
 import time, os, sys
 import pins
+import LedClass
 
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
@@ -14,3 +15,4 @@ def setup():
     print('### ALL PINS IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
+ledrun = LedClass.Led()
