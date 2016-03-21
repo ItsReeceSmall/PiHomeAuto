@@ -7,5 +7,5 @@ class Board:
         self.setup()
     
     def setup(self):
-        self.board.setwarnings(False)
-        self.board.setmode(self.board, self.board.BOARD)
+        self.board.GPIO.setwarnings(False)
+        self.board.GPIO.setmode(self.GPIO.board, self.board.GPIO.BOARD)
