@@ -8,8 +8,10 @@ def setup():
     #gpio.setwarnings(False)
     powerLed = 6
     tempSensor = 8
-    inputs = tempSensor   # Set there categories in arrays
-    outputs = powerLed
+    tempLed = 10
+    humidSensor = 11
+    inputs = [tempSensor,humidSensor]   # Set there categories in arrays
+    outputs = [powerLed,tempLed]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     thepins = pins.Pins(inputs, outputs)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
