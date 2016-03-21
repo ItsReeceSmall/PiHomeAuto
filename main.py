@@ -12,7 +12,7 @@ def setup():
     outputs = powerLed
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     thepins = pins.Pins(inputs, outputs)    #Set up pins from a class
-    print('### ALL PINS IMPORTED AND SETUP SUCCESSFULLY ###')
+    print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
 ledrun = LedClass.Led()
