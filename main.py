@@ -17,4 +17,4 @@ def setup():
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
-ledrun = LedClass.Led()
+ledrun = LedClass.Led(powerLed)
