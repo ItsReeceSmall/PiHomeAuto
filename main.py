@@ -6,7 +6,7 @@ import LedClass
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
     #gpio.setwarnings(False)
-    powerLed = 6
+    powerLed = 7
     tempSensor = 8
     tempLed = 10
     humidSensor = 12
