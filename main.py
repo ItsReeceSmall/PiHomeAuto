@@ -9,7 +9,7 @@ def setup():
     powerLed = 6
     tempSensor = 8
     tempLed = 10
-    humidSensor = 11
+    humidSensor = 12
     inputs = [tempSensor,humidSensor]   # Set there categories in arrays
     outputs = [powerLed,tempLed]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
