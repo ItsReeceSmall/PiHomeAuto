@@ -1,5 +1,6 @@
 import RPi.GPIO as gpio
 import time, os, sys
+import board
 
 class Pins:
     def __init__(self, inputs, outputs):
@@ -11,8 +12,8 @@ class Pins:
     
     def printPins(self):
         for pin in self.__inputs:
-            gpio.setup(pin, gpio.IN)
+            self.board.setup(pin, self.board.IN)
             print ('### Pin ' + str(pin) + ' is setup')
         for pin in self.__outputs:
-            gpio.setup(pin, gpio.OUT)
+            self.board.setup(pin, self.board.OUT)
             print ('### Pin ' + str(pin) + ' is setup')
