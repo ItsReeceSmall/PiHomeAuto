@@ -8,12 +8,12 @@ class LCD1602:
 
 
         # Define GPIO to LCD mapping
-        self.LCD_RS = 7
-        self.LCD_E  = 8
-        self.LCD_D4 = 25
-        self.LCD_D5 = 24
-        self.LCD_D6 = 23
-        self.LCD_D7 = 18
+        self.LCD_RS = 26
+        self.LCD_E  = 24
+        self.LCD_D4 = 22 #Pins for the variable resistor build
+        self.LCD_D5 = 18
+        self.LCD_D6 = 16
+        self.LCD_D7 = 12
 
         # Define some device constants
         self.LCD_WIDTH = 16    # Maximum characters per line
