@@ -17,7 +17,7 @@ humidSensor = 37
 #deSensor =
 pirSensor = 32
 
-allPins = [powerLed,tempSensor,tempLed,humidSensor]
+allPins = [powerLed,tempSensor,tempLed,humidSensor,pirSensor]
 
 #tc = tempClass
 #lc = LedClass
@@ -26,7 +26,7 @@ allPins = [powerLed,tempSensor,tempLed,humidSensor]
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
     #gpio.setwarnings(False)
-    inputs = [tempSensor,humidSensor]   # Set there categories in arrays
+    inputs = [tempSensor,humidSensor,pirSensor]   # Set there categories in arrays
     outputs = [powerLed,tempLed]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     thepins = pins.Pins(inputs, outputs)    #Set up pins from a class
