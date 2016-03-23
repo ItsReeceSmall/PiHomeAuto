@@ -22,5 +22,5 @@ def setup():
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
-tempClass.temp(tempSensor)
+tempClass.read_temp_c()
 #ledrun = LedClass.Led(powerLed)
