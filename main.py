@@ -2,9 +2,10 @@ import RPi.GPIO as gpio
 import time, os, sys
 # FILES IMPORT BELOW
 import pins
-import LedClass as lcd
+import LedClass as lc
 import tempClass as tc
 from lcd1602 import LCD1602
+import LCD1602 as lcd
 
 #Pins
 powerLed = 11
