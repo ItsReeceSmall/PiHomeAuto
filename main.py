@@ -10,7 +10,7 @@ from lcd1602 import LCD1602
 powerLed = 11
 tempSensor = 7
 tempLed = 10
-humidSensor = 12
+humidSensor = 37
 
 allPins = [powerLed,tempSensor,tempLed,humidSensor]
 
