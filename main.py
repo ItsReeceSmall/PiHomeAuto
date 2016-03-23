@@ -13,6 +13,9 @@ powerLed = 11
 tempSensor = 7
 tempLed = 10
 humidSensor = 37
+#dtSensor = 
+#deSensor =
+pirSensor = 32
 
 allPins = [powerLed,tempSensor,tempLed,humidSensor]
 
