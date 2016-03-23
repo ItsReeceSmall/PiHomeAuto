@@ -16,6 +16,7 @@ allPins = [powerLed,tempSensor,tempLed,humidSensor]
 
 tc = tempClass
 lc = LedClass
+lcd = lcd1602
 
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
