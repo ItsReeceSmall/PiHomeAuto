@@ -2,7 +2,7 @@ import RPi.GPIO as gpio
 import time, os, sys
 import pins
 import LedClass
-import TempClass
+import tempClass
 
 #Pins
 powerLed = 11
@@ -22,5 +22,5 @@ def setup():
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
-TempClass.temp(tempSensor)
+tempClass.temp(tempSensor)
 #ledrun = LedClass.Led(powerLed)
