@@ -1,8 +1,10 @@
 import RPi.GPIO as gpio
 import time, os, sys
+# FILES IMPORT BELOW
 import pins
 import LedClass
 import tempClass
+import lcd1602
 
 #Pins
 powerLed = 11
@@ -11,7 +13,10 @@ tempLed = 10
 humidSensor = 12
 
 allPins = [powerLed,tempSensor,tempLed,humidSensor]
-    
+
+tc = tempClass
+lc = LedClass
+
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
     #gpio.setwarnings(False)
@@ -22,5 +27,5 @@ def setup():
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
-tempClass.read_temp_c()
+tc.read_temp_c()
 #ledrun = LedClass.Led(powerLed)
