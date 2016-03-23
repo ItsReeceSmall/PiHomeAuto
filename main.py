@@ -28,5 +28,7 @@ def setup():
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
-tc.read_temp_c()
+lcd.lcd_string('Temperature C', lcd.LCD_LINE_1)
+lcd.lcd_string('Temperature F', lcd.LCD_LINE_2)
+time.sleep(3)
 #ledrun = LedClass.Led(powerLed)
