@@ -4,8 +4,9 @@ import time, os, sys
 import pins
 import LedClass as lc
 import tempClass as tc
+import distClass as dc
+import pirClass as pir
 from lcd1602 import LCD1602
-import LCD1602 as lcd
 
 #Pins
 powerLed = 11
