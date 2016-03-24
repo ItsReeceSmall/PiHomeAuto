@@ -1,11 +1,10 @@
 import sys, os, time
-import RPi.GPIO
+import RPi.GPIO as gpio
 
 class Board:
     def __init__(self):
-        self.board = RPi.GPIO
-        self.setup()
+        self.board = gpio
     
     def setup(self):
-        self.board.GPIO.setwarnings(False)
-        self.board.GPIO.setmode(self.GPIO.board, self.board.GPIO.BOARD)
+        self.board.setwarnings(False)
+        self.board.setmode(self.board.BOARD)
