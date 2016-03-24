@@ -20,14 +20,10 @@ class Temp:
     def F(self):
         return self.read_temp()[1]
 
-    def read_temp_raw(self):
+    def read_temp(self):
         f = open(device_file, 'r')
         lines = f.readlines()
         f.close()
-        return lines
-
-    def read_temp(self):
-        lines = read_temp_raw()
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
             lines = read_temp_raw()
