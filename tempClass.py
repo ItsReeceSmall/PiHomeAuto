@@ -3,7 +3,7 @@ import glob
 import time
 
 class Temp:
-    def __init__():
+    def __init__(self):
         os.system('modprobe w1-gpio')
         os.system('modprobe w1-therm')
         base_dir = '/sys/bus/w1/devices/'
@@ -40,6 +40,6 @@ class Temp:
             temp_f = temp_c * 9.0 / 5.0 + 32.0
             return temp_f
     
-    def tempBoth():
+    def tempBoth(self):
         read_temp_c()
         read_temp_f()
