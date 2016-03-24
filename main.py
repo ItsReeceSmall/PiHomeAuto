@@ -1,11 +1,12 @@
 import RPi.GPIO as gpio
 import time, os, sys
 # FILES IMPORT BELOW
+from board import Board
 import pins
-import LedClass as lc
-import tempClass as tc
-import distClass as dc
-import pirClass as pir
+#from LedClass import led
+from tempClass import Temp
+from distClass import Dist
+from pirClass import Pir
 from lcd1602 import LCD1602
 
 #Pins
@@ -16,6 +17,8 @@ humidSensor = 37
 #dtSensor = 
 #deSensor =
 pirSensor = 32
+
+rpi = Board()
 
 allPins = [powerLed,tempSensor,tempLed,humidSensor,pirSensor]
 
