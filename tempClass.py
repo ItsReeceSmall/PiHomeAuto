@@ -39,4 +39,5 @@ class Temp:
             return temp_c, temp_f
     
 if __name__ == "__main__":
-    print read_temp()[0]
+    t = Temp()
+    print t.read_temp()[0]
