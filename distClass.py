@@ -1,4 +1,4 @@
-import RPi.GPIO as gpio
+import RPi.GPIO as GPIO
 import time, os, sys
 
 GPIO.setmode(GPIO.BOARD)
