@@ -40,4 +40,4 @@ class Temp:
     
 if __name__ == "__main__":
     t = Temp()
-    print t.read_temp()[0]
+    print (t.read_temp()[0])
