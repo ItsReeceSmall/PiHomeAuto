@@ -38,5 +38,5 @@ class Temp:
             temp_f = temp_c * 9.0 / 5.0 + 32.0
             return temp_c, temp_f
     
-if __name__ == __main__():
-    print (read_temp(self)[0])
+if __name__ == __main__:
+    print read_temp(self)[0]
