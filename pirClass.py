@@ -1,22 +1,19 @@
 import RPi.GPIO as gpio
 import time, os, sys
 
-GPIO.setmode(GPIO.BOARD)
-PIR_PIN = 32
-GPIO.setup(PIR_PIN, GPIO.IN)
-
-def MOTION(PIR_PIN):
-    print ('Motion Detected!')
-
-print ('PIR Module Test (CTRL+C to exit)')
-time.sleep(2)
-print ('Ready')
-
-try:
-    GPIO.add_event_detect(PIR_PIN, GPIO.RISING, callback=MOTION)
-    while 1:
-        time.sleep(100)
-except KeyboardInterrupt:
-    print (' Quit')
-    GPIO.cleanup()
+class Pir:
+    def __init__(self, pirSensor):
+        self.__pirSensor = pirSensor
+        self.pirMethod()
+    
+    def pirMethod(self):
+        pirState = gpio.input(self.__pirSensor)
+        if pirState == 1:
+            pirVal = 'on'
+        elif pirState == 0:
+            pirVal = 'off'
+        else:
+            print('Error PIR not functioning, aborting...')
+            gpio.cleanup()
+            sys.exit()
 
