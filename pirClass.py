@@ -17,3 +17,5 @@ class Pir:
             gpio.cleanup()
             sys.exit()
 
+if __name__ == "__main__":
+    p = Pir()
