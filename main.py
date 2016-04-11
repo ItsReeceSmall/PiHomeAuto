@@ -43,7 +43,7 @@ def getTemp():
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' C & ' + ft + ' F') # creates compiled string of temperature values
     lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
-    lcd.lcd_string(msg, lcd.LCD_LINE_2)
+    lcd.lcd_string(temp, lcd.LCD_LINE_2)
     return temp
     
 setup()
