@@ -39,11 +39,12 @@ def setup():
 
 setup()
 
-lcd.lcd_string('Temperature is', lcd.LCD_LINE_1)
-lcd.lcd_string('Cool as fuck ', lcd.LCD_LINE_2)
-c, f = t.read_temp()
-temp = str(int(c))
-msg = (temp + ' C')
-print (msg)
+c, f = t.read_temp() #Get temp values
+ct = str(int(c))
+ft = str(int(f))
+msg = (ct + ' C // ' + ft + ' F')
+
+lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
+lcd.lcd_string(msg, lcd.LCD_LINE_2)
 time.sleep(3)
 #ledrun = LedClass.Led(powerLed)
