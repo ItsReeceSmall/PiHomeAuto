@@ -11,16 +11,8 @@ device_file = device_folder + '/w1_slave'
 class Temp:
     def __init__(self):
         pass
-    
-    @property
-    def C(self):
-        return self.read_temp()[0]
-    
-    @property
-    def F(self):
-        return self.read_temp()[1]
 
-    def read_temp(self):
+    def read_temp():
         f = open(device_file, 'r')
         lines = f.readlines()
         f.close()
