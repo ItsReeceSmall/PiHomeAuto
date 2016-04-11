@@ -56,4 +56,17 @@ def getPir():
     return value
 
 setup()
-getTemp()
+try:
+    while:
+        getTemp()
+        time.sleep(1)
+        getDist()
+except KeyboardInterrupt:
+    print('Error exiting')
+    lcd.lcd_string('     Ending', lcd.LCD_LINE_1)
+    lcd.lcd_string('     Program', lcd.LCD_LINE_2)
+    time.sleep(2)
+    lcd.lcd_clear()
+    lcd.cleanup()
+    sys.exit()
+    
