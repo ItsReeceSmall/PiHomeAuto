@@ -28,11 +28,9 @@ pirSensor = 32
 lcd = LCD1602()
 rpi = Board()
 
-#allPins = [powerLed,tempSensor,tempLed,humidSensor,pirSensor]
-
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
-    #gpio.setwarnings(False)
+    gpio.setwarnings(False)
     inputs = [tempSensor,humidSensor,pirSensor]   # Set there categories in arrays
     outputs = [powerLed,tempLed]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
@@ -41,9 +39,11 @@ def setup():
 
 setup()
 
-lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
-lcd.lcd_string('C ', lcd.LCD_LINE_2)
-print (t.C())
-print (t.read_temp()[1])
+lcd.lcd_string('Temperature is', lcd.LCD_LINE_1)
+lcd.lcd_string('Cool as fuck ', lcd.LCD_LINE_2)
+c, f = t.read_temp()
+temp = str(int(c))
+msg = (temp + ' C')
+print (msg)
 time.sleep(3)
 #ledrun = LedClass.Led(powerLed)
