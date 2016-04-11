@@ -5,7 +5,7 @@ from board import Board
 import pins
 #from LedClass import led as l
 from tempClass import Temp as t
-#from distClass import Dist as d
+from distClass import Dist as d
 from pirClass import Pir as p
 from lcd1602 import LCD1602
 
@@ -21,8 +21,8 @@ powerLed = 11
 tempSensor = 7
 tempLed = 10
 humidSensor = 37
-#dtSensor = 
-#deSensor =
+dtSensor = 36
+deSensor = 38
 pirSensor = 32
 
 lcd = LCD1602()
@@ -31,8 +31,8 @@ rpi = Board()
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
     gpio.setwarnings(False)
-    inputs = [tempSensor,humidSensor,pirSensor]   # Set there categories in arrays
-    outputs = [powerLed,tempLed]
+    inputs = [tempSensor,humidSensor,pirSensor,deSensor]   # Set there categories in arrays
+    outputs = [powerLed,tempLed,dtSensor]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
@@ -46,10 +46,14 @@ def getTemp():
     lcd.lcd_string(temp, lcd.LCD_LINE_2)
     return temp
     
+def getDist(dtSensor, deSensor):
+    d(dtSensor, deSensor)
+    dval = d.distValue
+    lcd.lcd_string('Distance', lcd.LCD_LINE_1)
+    lcd.lcd_string(dval + 'cm', lcd.LCD_LINE_2)
+    return dval
+def getPir():
+    return value
+
 setup()
 getTemp()
-time.sleep(2)
-lcd.lcd_string('swap', lcd.LCD_LINE_1)
-lcd.lcd_string('close', lcd.LCD_LINE_2)
-time.sleep(3)
-#ledrun = LedClass.Led(powerLed)
