@@ -1,6 +1,8 @@
 import RPi.GPIO as gpio
 import time, os, sys
 
+####    PIR PHYSICALLY NOT WORKING ####
+
 class Pir:
     def __init__(self, pirSensor):
         self.pirSensor = pirSensor
