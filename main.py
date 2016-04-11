@@ -6,7 +6,7 @@ import pins
 #from LedClass import led as l
 from tempClass import Temp as t
 #from distClass import Dist as d
-#from pirClass import Pir as p
+from pirClass import Pir as p
 from lcd1602 import LCD1602
 
 #Temp sense setup
@@ -40,10 +40,7 @@ def setup():
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
-#c = tc.read_temp_c
-#print (c)
-pResult = p(pirSensor)
-print (pResult)
+
 lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
 lcd.lcd_string('C ', lcd.LCD_LINE_2)
 print (t.read_temp()[0])
