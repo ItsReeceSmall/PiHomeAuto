@@ -18,4 +18,4 @@ class Pir:
             sys.exit()
 
 if __name__ == "__main__":
-    p = Pir()
+    p = Pir(pirSensor)
