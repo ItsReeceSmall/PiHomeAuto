@@ -7,7 +7,7 @@ class Dist:
       self.deSensor = deSensor
       self.distCheck()
   
-  def distCheck():
+  def distCheck(self):
       gpio.setup(self.dtSensor,gpio.OUT)
       gpio.setup(self.deSensor,gpio.IN)
       gpio.output(self.dtSensor, False)
