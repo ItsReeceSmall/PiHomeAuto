@@ -5,6 +5,7 @@ class Dist:
   def __init__(self, dtSensor, deSensor):
       self.dtSensor = dtSensor
       self.deSensor = deSensor
+      self.distValue = 0
       self.distCheck()
   
   def distCheck(self):
@@ -22,11 +23,12 @@ class Dist:
       pulse_duration = pulse_end - pulse_start
       distance = pulse_duration * 17150
       distance = round(distance, 2)
-      dist = str(distance)
-      return dist
+      self.distValue = str(distance)
+      return self.distValue
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
     dtSensor = 36
     deSensor = 38
-    Dist(dtSensor, deSensor)
+    d = Dist(dtSensor, deSensor)
+    print (d.distValue)
