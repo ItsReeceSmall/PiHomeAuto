@@ -3,11 +3,11 @@ import time, os, sys
 # FILES IMPORT BELOW
 from board import Board
 import pins
-#from LedClass import led
+#from LedClass import led as l
 from tempClass import Temp as t
-#from distClass import Dist
-from pirClass import Pir
-from lcd1602 import LCD1602
+#from distClass import Dist as d
+from pirClass import Pir as p
+from lcd1602 import LCD1602 as lcd
 
 #Pins
 powerLed = 11
@@ -21,10 +21,6 @@ pirSensor = 32
 rpi = Board()
 
 allPins = [powerLed,tempSensor,tempLed,humidSensor,pirSensor]
-
-#tc = tempClass
-#lc = LedClass
-lcd = LCD1602()
 
 def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
@@ -42,6 +38,7 @@ p = Pir(pirSensor)
 print (p)
 lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
 lcd.lcd_string('C ', lcd.LCD_LINE_2)
-
+print (t.read_temp()[0])
+print (t.read_temp()[1])
 time.sleep(3)
 #ledrun = LedClass.Led(powerLed)
