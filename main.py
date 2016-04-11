@@ -5,7 +5,7 @@ from board import Board
 import pins
 #from LedClass import led
 from tempClass import Temp
-from distClass import Dist
+#from distClass import Dist
 from pirClass import Pir
 from lcd1602 import LCD1602
 
@@ -38,6 +38,8 @@ def setup():
 setup()
 #c = tc.read_temp_c
 #print (c)
+p = Pir(pirSensor)
+print (p)
 lcd.lcd_string('Temperature C', lcd.LCD_LINE_1)
 lcd.lcd_string('Temperature F', lcd.LCD_LINE_2)
 time.sleep(3)
