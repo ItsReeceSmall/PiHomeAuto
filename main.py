@@ -34,8 +34,8 @@ def setup():
 setup()
 #c = tc.read_temp_c
 #print (c)
-p = Pir(pirSensor)
-print (p)
+pResult = p.pirMethod()
+print (pResult)
 lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
 lcd.lcd_string('C ', lcd.LCD_LINE_2)
 print (t.read_temp()[0])
