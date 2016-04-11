@@ -29,5 +29,4 @@ if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
     dtSensor = 36
     deSensor = 38
-    d = Dist()
-    d(dtSensor, deSensor)
+    Dist(dtSensor, deSensor)
