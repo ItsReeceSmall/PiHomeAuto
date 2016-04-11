@@ -4,7 +4,7 @@ import time, os, sys
 from board import Board
 import pins
 #from LedClass import led
-from tempClass import Temp
+from tempClass import Temp as t
 #from distClass import Dist
 from pirClass import Pir
 from lcd1602 import LCD1602
@@ -41,6 +41,7 @@ setup()
 p = Pir(pirSensor)
 print (p)
 lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
-lcd.lcd_string('C ' + Temp.self.read_temp()[0], lcd.LCD_LINE_2)
+lcd.lcd_string('C ', lcd.LCD_LINE_2)
+
 time.sleep(3)
 #ledrun = LedClass.Led(powerLed)
