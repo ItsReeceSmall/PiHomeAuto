@@ -20,7 +20,7 @@ class Pir:
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
-    pirSensor = 11
+    pirSensor = 32
     gpio.setup(pirSensor, gpio.IN)
     #p = Pir()
     for i in range(500):
