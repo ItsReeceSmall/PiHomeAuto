@@ -7,7 +7,7 @@ import pins
 from tempClass import Temp as t
 #from distClass import Dist as d
 from pirClass import Pir as p
-from lcd1602 import LCD1602 as lcd
+from lcd1602 import LCD1602
 
 #Pins
 powerLed = 11
@@ -18,6 +18,7 @@ humidSensor = 37
 #deSensor =
 pirSensor = 32
 
+lcd = LCD1602()
 rpi = Board()
 
 allPins = [powerLed,tempSensor,tempLed,humidSensor,pirSensor]
