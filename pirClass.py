@@ -3,11 +3,11 @@ import time, os, sys
 
 class Pir:
     def __init__(self, pirSensor):
-        self.__pirSensor = pirSensor
+        self.pirSensor = pirSensor
         self.pirMethod()
     
     def pirMethod(self):
-        pirState = gpio.input(self.__pirSensor)
+        pirState = gpio.input(self.pirSensor)
         if pirState == 1:
             pirVal = 'on'
         elif pirState == 0:
@@ -18,4 +18,4 @@ class Pir:
             sys.exit()
 
 if __name__ == "__main__":
-    p = Pir(pirSensor)
+    p = Pir()
