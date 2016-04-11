@@ -1,5 +1,5 @@
 import RPi.GPIO as gpio
-import time, os, sys
+import time, os, sys, glob
 # FILES IMPORT BELOW
 from board import Board
 import pins
