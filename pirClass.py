@@ -10,13 +10,18 @@ class Pir:
     def pirMethod(self):
         self.pirState = gpio.input(self.pirSensor)
         if self.pirState == 1:
-            pirVal = 'on'
+            self.pirState = 'on'
         elif self.pirState == 0:
-            pirVal = 'off'
+            self.pirState = 'off'
         else:
             print('Error PIR not functioning, aborting...')
             gpio.cleanup()
             sys.exit()
 
 if __name__ == "__main__":
-    p = Pir(pirSensor)
+    pirSensor = 32
+    p = Pir()
+    for i in range(5):
+        pirState = gpio.input(pirSensor)
+        print pirState
+        time.sleep(0.7)
