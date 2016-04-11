@@ -47,11 +47,11 @@ def getTemp():
     return temp
     
 def getDist(dtSensor, deSensor):
-    d(dtSensor, deSensor)
-    dval = d.distValue
+    dval = d(dtSensor, deSensor)
+    value = dval.distValue
     lcd.lcd_string('Distance', lcd.LCD_LINE_1)
-    lcd.lcd_string(dval + 'cm', lcd.LCD_LINE_2)
-    return dval
+    lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
+    return value
 def getPir():
     return value
 
