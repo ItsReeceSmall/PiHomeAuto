@@ -19,6 +19,7 @@ class Pir:
             sys.exit()
 
 if __name__ == "__main__":
+    gpio.setmode(gpio.BOARD)
     pirSensor = 32
     #p = Pir()
     for i in range(5):
