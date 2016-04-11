@@ -57,7 +57,7 @@ def getPir():
 
 setup()
 try:
-    while:
+    while True:
         getTemp()
         time.sleep(1)
         getDist()
