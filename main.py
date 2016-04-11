@@ -43,7 +43,7 @@ setup()
 
 lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
 lcd.lcd_string('C ', lcd.LCD_LINE_2)
-print (t.read_temp()[0])
+print (t.C())
 print (t.read_temp()[1])
 time.sleep(3)
 #ledrun = LedClass.Led(powerLed)
