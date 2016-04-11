@@ -6,7 +6,7 @@ import pins
 #from LedClass import led as l
 from tempClass import Temp as t
 #from distClass import Dist as d
-from pirClass import Pir as p
+#from pirClass import Pir as p
 from lcd1602 import LCD1602
 
 #Temp sense setup
@@ -36,7 +36,7 @@ def setup():
     inputs = [tempSensor,humidSensor,pirSensor]   # Set there categories in arrays
     outputs = [powerLed,tempLed]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
-    thepins = pins.Pins(inputs, outputs)    #Set up pins from a class
+    pins.Pins(inputs, outputs)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 setup()
