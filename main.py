@@ -60,7 +60,7 @@ try:
     while True:
         getTemp()
         time.sleep(1)
-        getDist()
+        getDist(dtSensor, deSensor)
 except KeyboardInterrupt:
     print('Error exiting')
     lcd.lcd_string('     Ending', lcd.LCD_LINE_1)
