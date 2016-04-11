@@ -31,6 +31,6 @@ distance = pulse_duration * 17150
 
 distance = round(distance, 2)
 
-print ("Distance: "+ distance + " cm")
+print ("Distance: "  + str(distance) + " cm")
 
 GPIO.cleanup()
