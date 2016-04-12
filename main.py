@@ -42,6 +42,7 @@ def getTemp():
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' C & ' + ft + ' F') # creates compiled string of temperature values
+    print ('The temperature is: ' + temp)
     lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
     lcd.lcd_string(temp, lcd.LCD_LINE_2)
     return temp
@@ -53,6 +54,7 @@ def getDist(dtSensor, deSensor):
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
 def getPir():
+    pirVal = p(pirSensor)
     return value
 
 setup()
@@ -64,8 +66,8 @@ try:
         time.sleep(10)
 except KeyboardInterrupt:
     print('Error exiting')
-    lcd.lcd_string('     Ending', lcd.LCD_LINE_1)
-    lcd.lcd_string('     Program', lcd.LCD_LINE_2)
+    lcd.lcd_string('Ending     Program', lcd.LCD_LINE_1)
+    lcd.lcd_string('Shutting    Down', lcd.LCD_LINE_2)
     time.sleep(2)
     lcd.lcd_clear()
     lcd.cleanup()
