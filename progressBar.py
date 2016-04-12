@@ -18,7 +18,7 @@ class Bar:
         string = '/'
         for i in range(1, 102):
             val = (val + 1)
-            if val >= low and val =< high:
+            if val >= low and val <= high:
                 lcd.lcd_string(string, lcd.LCD_LINE_1)
             else:
                 string = (string + '/')
