@@ -9,7 +9,7 @@ class Bar:
         self.barMethod()
     
     def barMethod(self):
-        val = 1
+        val = -1
         for i in range(1, 101):
             val = (val + 1)
             print (str(val))
