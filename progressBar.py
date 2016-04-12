@@ -34,7 +34,7 @@ class Bar:
                 low = la[state]         # resets the values of low and high to there new vaues
                 high = ha[state]
             lcd.lcd_string('PROGRESS    ' + str(val) + '%', lcd.LCD_LINE_2)
-            time.sleep(0.03)
+            time.sleep(0.01)
         for i in range(1, 4):
             lcd.lcd_string('Process Complete', lcd.LCD_LINE_1)
             lcd.lcd_string('Opening Program.', lcd.LCD_LINE_2)
