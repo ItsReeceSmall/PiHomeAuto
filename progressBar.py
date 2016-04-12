@@ -12,7 +12,7 @@ class Bar:
         val = -1
         for i in range(1, 102):
             val = (val + 1)
-            lcd.lcd_string('Progress    ' + val + '%', lcd.LCD_LINE_2)
+            lcd.lcd_string('Progress    ' + str(val) + '%', lcd.LCD_LINE_2)
             time.sleep(0.1)
             
 
