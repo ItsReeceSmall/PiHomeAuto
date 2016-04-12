@@ -9,23 +9,20 @@ class Bar:
         self.barMethod()
     
     def barMethod(self):
+        la = [6.25, 12.5, 18.75, 25, 31.25, 37.5, 43.75, 50, 56.25, 62.5, 68.75, 75, 81.25, 87.5, 93.75, 100]
+        ha = [12.5, 18.75, 25, 31.25, 37.5, 43.75, 50, 56.25, 62.5, 68.75, 75, 81.25, 87.5, 93.75, 100, 106.25]
         val = -1
-        #mult = 0
+        state = 1
+        low = la[state]
+        high = ha[state]
+        string = '/'
         for i in range(1, 102):
             val = (val + 1)
-            #mult = (mult + 0.0618811881188119)
-            if val > 6.25:
-                lcd.lcd_string('█', lcd.LCD_LINE_1)
-                if val > 12.5:
-                    lcd.lcd_string('██', lcd.LCD_LINE_1)
-                    if val > 18.75:
-                        lcd.lcd_string('███', lcd.LCD_LINE_1)
-                        if val >= 25:
-                            lcd.lcd_string('████', lcd.LCD_LINE_1)
-                            if val > 31.25:
-                                lcd.lcd_string('█████', lcd.LCD_LINE_1)
-                                if val > 37.5:
-                                    lcd.lcd_string('██████', lcd.LCD_LINE_1)
+            if val > low && val < high:
+                lcd.lcd_string(string, lcd.LCD_LINE_1)
+            else:
+                string = (string + '/')
+                (state = state + 1)
             lcd.lcd_string('PROGRESS    ' + str(val) + '%', lcd.LCD_LINE_2)
             time.sleep(0.06)
             
