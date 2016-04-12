@@ -1,7 +1,9 @@
 import os
 import glob
 import time
+from lcd1602 import LCD1602
 
+lcd = LCD1602()
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 base_dir = '/sys/bus/w1/devices/'
@@ -13,6 +15,8 @@ class Temp:
         pass
 
     def read_temp():
+        lcd.lcd_string('Reading', lcd.LCD_LINE_1)
+        lcd.lcd_string('     Temperature', lcd.LCD_LINE_2)
         f = open(device_file, 'r')
         lines = f.readlines()
         f.close()
