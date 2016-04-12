@@ -27,7 +27,7 @@ class Bar:
             if val >= low and val <= high:
                 lcd.lcd_string(string, lcd.LCD_LINE_1)
             else:
-                #string = (string + '/')
+                string = (string + '/')
                 state = (state + 1)
                 low = la[state]
                 high = ha[state]
