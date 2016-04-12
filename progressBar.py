@@ -16,8 +16,11 @@ class Bar:
         low = la[state]
         high = ha[state]
         string = '/'
+        debug = 1
+        print('### DEBUG ###')
         for i in range(1, 102):
-            print('### DEBUG ###')
+            print('### RUN ' + debug + ' ###')
+            debug = (debug + 1)
             print ('Low = ' + str(low) + ' / High = ' + str(high))
             print ('State = ' +   str(state) + ' / String = "' + string + '"')
             val = (val + 1)
