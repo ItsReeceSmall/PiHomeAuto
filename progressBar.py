@@ -17,11 +17,14 @@ class Bar:
         high = ha[state]
         string = '/'
         for i in range(1, 102):
+            print('### DEBUG ###')
+            print ('Low = ' + str(low) + ' / High = ' + str(high))
+            print ('State = ' +   str(state) + ' / String = "' + string + '"')
             val = (val + 1)
             if val >= low and val <= high:
                 lcd.lcd_string(string, lcd.LCD_LINE_1)
             else:
-                string = (string + '/')
+                #string = (string + '/')
                 state = (state + 1)
             lcd.lcd_string('PROGRESS    ' + str(val) + '%', lcd.LCD_LINE_2)
             time.sleep(0.06)
