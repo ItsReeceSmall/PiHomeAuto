@@ -36,8 +36,9 @@ class Bar:
         for i in range(1, 4):
             lcd.lcd_string('Process Complete', lcd.LCD_LINE_1)
             lcd.lcd_string('Opening Program.', lcd.LCD_LINE_2)
-            time.sleep(0.8)
+            time.sleep(1)
             lcd.lcd_clear()
+            time.sleep(1)
             
 
 if __name__ == "__main__":
