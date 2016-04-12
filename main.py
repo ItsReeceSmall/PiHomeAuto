@@ -66,7 +66,7 @@ try:
         time.sleep(10)
 except KeyboardInterrupt:
     print('Error exiting')
-    lcd.lcd_string('Ending     Program', lcd.LCD_LINE_1)
+    lcd.lcd_string('Ending   Program', lcd.LCD_LINE_1)
     lcd.lcd_string('Shutting    Down', lcd.LCD_LINE_2)
     time.sleep(2)
     lcd.lcd_clear()
