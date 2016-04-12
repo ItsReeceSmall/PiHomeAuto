@@ -22,14 +22,12 @@ class Dist:
       print ('DEBUG: time.sleep(0.00001)')
       gpio.output(self.dtSensor, False)
       print ('DEBUG: gpio.output(self.dtSensor, False)')
+      print ('DEBUG: while gpio.input(self.deSensor)==0:')
       while gpio.input(self.deSensor)==0:
-          print ('DEBUG: while gpio.input(self.deSensor)==0:')
           pulse_start = time.time()
-          print ('DEBUG: pulse_start = time.time()')
+      print ('DEBUG: while gpio.input(self.deSensor)==1:')
       while gpio.input(self.deSensor)==1:
-          print ('DEBUG: while gpio.input(self.deSensor)==1:')
           pulse_end = time.time()
-          print ('DEBUG: pulse_end = time.time()')
       pulse_duration = pulse_end - pulse_start
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
       distance = pulse_duration * 17150
