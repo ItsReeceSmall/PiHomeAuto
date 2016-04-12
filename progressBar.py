@@ -19,7 +19,7 @@ class Bar:
         debug = 1
         print('### DEBUG ###')
         for i in range(1, 102):
-            print('### RUN ' + debug + ' ###')
+            print('### RUN ' + str(debug) + ' ###')
             debug = (debug + 1)
             print ('Low = ' + str(low) + ' / High = ' + str(high))
             print ('State = ' +   str(state) + ' / String = "' + string + '"')
