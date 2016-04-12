@@ -32,4 +32,6 @@ class Temp:
     
 if __name__ == "__main__":
     t = Temp()
-    print (t.read_temp()[0])
+    c, f = t.read_temp()
+    val = str(int(c))
+    print val
