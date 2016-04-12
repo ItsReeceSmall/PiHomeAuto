@@ -10,7 +10,7 @@ class Bar:
     
     def barMethod(self):
         val = -1
-        for i in range(1, 101):
+        for i in range(1, 102):
             val = (val + 1)
             print (str(val))
             time.sleep(0.1)
