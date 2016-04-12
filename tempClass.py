@@ -34,4 +34,4 @@ if __name__ == "__main__":
     t = Temp()
     c, f = t.read_temp()
     val = str(int(c))
-    print val
+    print (val)
