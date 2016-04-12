@@ -10,18 +10,12 @@ class Dist:
   
   def distCheck(self):
       gpio.setup(self.dtSensor,gpio.OUT)
-      print ('DEBUG: gpio.setup(self.dtSensor,gpio.OUT)')
       gpio.setup(self.deSensor,gpio.IN)
-      print ('DEBUG: gpio.setup(self.deSensor,gpio.IN)')
       gpio.output(self.dtSensor, False)
-      print ('DEBUG: gpio.output(self.dtSensor, False)')
       time.sleep(1)
       gpio.output(self.dtSensor, True)
-      print ('DEBUG: gpio.output(self.dtSensor, True)')
       time.sleep(0.00001)
-      print ('DEBUG: time.sleep(0.00001)')
       gpio.output(self.dtSensor, False)
-      print ('DEBUG: gpio.output(self.dtSensor, False)')
       print ('DEBUG: while gpio.input(self.deSensor)==0:')
       while gpio.input(self.deSensor)==0:
           pulse_start = time.time()
