@@ -33,6 +33,11 @@ class Bar:
                 high = ha[state]
             lcd.lcd_string('PROGRESS    ' + str(val) + '%', lcd.LCD_LINE_2)
             time.sleep(0.06)
+        for i in range(1, 4):
+            lcd.lcd_string('Process Complete', lcd.LCD_LINE_1)
+            lcd.lcd_string('Opening Program.', lcd.LCD_LINE_2)
+            time.sleep(0.8)
+            lcd.lcd_clear()
             
 
 if __name__ == "__main__":
