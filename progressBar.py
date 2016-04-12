@@ -22,7 +22,7 @@ class Bar:
                 lcd.lcd_string(string, lcd.LCD_LINE_1)
             else:
                 string = (string + '/')
-                (state = state + 1)
+                state = (state + 1)
             lcd.lcd_string('PROGRESS    ' + str(val) + '%', lcd.LCD_LINE_2)
             time.sleep(0.06)
             
