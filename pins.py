@@ -15,11 +15,11 @@ class Pins:
     def printPins(self):
         for pin in self.__inputs:
             gpio.setup(pin, gpio.IN)
-            lcd.lcd_string('Pin ' + pin + ' setup', lcd.LCD_LINE_1)
             print ('### Pin ' + str(pin) + ' is setup')
+            lcd.lcd_string('Pin ' + pin + ' setup', lcd.LCD_LINE_1)
             time.sleep(0.15)
         for pin in self.__outputs:
             gpio.setup(pin, gpio.OUT)
-            lcd.lcd_string('Pin ' + pin + ' setup', lcd.LCD_LINE_1)
             print ('### Pin ' + str(pin) + ' is setup')
+            lcd.lcd_string('Pin ' + pin + ' setup', lcd.LCD_LINE_1)
             time.sleep(0.15)
