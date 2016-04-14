@@ -1,11 +1,12 @@
-import RPi.GPIO as gpio
+from board import Board
 import time, os, sys
 from lcd1602 import LCD1602
 
 lcd = LCD1602()
 
 class Pins:
-    def __init__(self, inputs, outputs):
+    def __init__(self, inputs, outputs, board):
+        self.board = board
         self.__inputs = inputs
         self.__outputs = outputs
         self.printPins()
@@ -14,12 +15,12 @@ class Pins:
     
     def printPins(self):
         for pin in self.__inputs:
-            gpio.setup(pin, gpio.IN)
+            self.board.setup(pin, self.board.IN)
             print ('### Pin ' + str(pin) + ' is setup')
             lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
             time.sleep(0.15)
         for pin in self.__outputs:
-            gpio.setup(pin, gpio.OUT)
+            self.board.setup(pin, self.board.OUT)
             print ('### Pin ' + str(pin) + ' is setup')
             lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
             time.sleep(0.15)

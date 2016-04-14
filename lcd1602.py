@@ -1,11 +1,10 @@
 #import
-import RPi.GPIO as GPIO
+from board import Board
 import time
 
 class LCD1602:
 
-    def __init__(self):
-
+    def __init__(self, board):
 
         # Define GPIO to LCD mapping
         self.LCD_RS = 26
@@ -26,6 +25,7 @@ class LCD1602:
         # Timing constants
         self.E_PULSE = 0.0005
         self.E_DELAY = 0.0005
+        self.board = board
 
         try:
             self.setup()
@@ -34,14 +34,13 @@ class LCD1602:
         finally:
             pass
 
-
     def cleanup(self):
         self.lcd_byte(0x01, self.LCD_CMD)
         self.lcd_string("Goodbye!",self.LCD_LINE_1)
         time.sleep(3)
         self.lcd_string("",self.LCD_LINE_1)
         self.lcd_string("",self.LCD_LINE_2)
-        GPIO.cleanup()
+        self.board.cleanup()
 
     def lcd_init(self):
       # Initialise display
@@ -64,38 +63,38 @@ class LCD1602:
       # mode = True  for character
       #        False for command
 
-      GPIO.output(self.LCD_RS, mode) # RS
+      self.board.output(self.LCD_RS, mode) # RS
 
       # High bits
-      GPIO.output(self.LCD_D4, False)
-      GPIO.output(self.LCD_D5, False)
-      GPIO.output(self.LCD_D6, False)
-      GPIO.output(self.LCD_D7, False)
+      self.board.output(self.LCD_D4, False)
+      self.board.output(self.LCD_D5, False)
+      self.board.output(self.LCD_D6, False)
+      self.board.output(self.LCD_D7, False)
       if bits&0x10==0x10:
-        GPIO.output(self.LCD_D4, True)
+          self.board.output(self.LCD_D4, True)
       if bits&0x20==0x20:
-        GPIO.output(self.LCD_D5, True)
+          self.board.output(self.LCD_D5, True)
       if bits&0x40==0x40:
-        GPIO.output(self.LCD_D6, True)
+          self.board.output(self.LCD_D6, True)
       if bits&0x80==0x80:
-        GPIO.output(self.LCD_D7, True)
+          self.board.output(self.LCD_D7, True)
 
       # Toggle 'Enable' pin
       self.lcd_toggle_enable()
 
       # Low bits
-      GPIO.output(self.LCD_D4, False)
-      GPIO.output(self.LCD_D5, False)
-      GPIO.output(self.LCD_D6, False)
-      GPIO.output(self.LCD_D7, False)
+      self.board.output(self.LCD_D4, False)
+      self.board.output(self.LCD_D5, False)
+      self.board.output(self.LCD_D6, False)
+      self.board.output(self.LCD_D7, False)
       if bits&0x01==0x01:
-        GPIO.output(self.LCD_D4, True)
+          self.board.output(self.LCD_D4, True)
       if bits&0x02==0x02:
-        GPIO.output(self.LCD_D5, True)
+          self.board.output(self.LCD_D5, True)
       if bits&0x04==0x04:
-        GPIO.output(self.LCD_D6, True)
+          self.board.output(self.LCD_D6, True)
       if bits&0x08==0x08:
-        GPIO.output(self.LCD_D7, True)
+          self.board.output(self.LCD_D7, True)
 
       # Toggle 'Enable' pin
       self.lcd_toggle_enable()
@@ -103,9 +102,9 @@ class LCD1602:
     def lcd_toggle_enable(self):
       # Toggle enable
       time.sleep(self.E_DELAY)
-      GPIO.output(self.LCD_E, True)
+      self.board.output(self.LCD_E, True)
       time.sleep(self.E_PULSE)
-      GPIO.output(self.LCD_E, False)
+      self.board.output(self.LCD_E, False)
       time.sleep(self.E_DELAY)
 
     def lcd_string(self, message,line):
@@ -120,14 +119,14 @@ class LCD1602:
 
     def setup(self):
       # Main program block
-      GPIO.setwarnings(False)
-      GPIO.setmode(GPIO.BOARD)       # Use BOARD GPIO numbers
-      GPIO.setup(self.LCD_E, GPIO.OUT)  # E
-      GPIO.setup(self.LCD_RS, GPIO.OUT) # RS
-      GPIO.setup(self.LCD_D4, GPIO.OUT) # DB4
-      GPIO.setup(self.LCD_D5, GPIO.OUT) # DB5
-      GPIO.setup(self.LCD_D6, GPIO.OUT) # DB6
-      GPIO.setup(self.LCD_D7, GPIO.OUT) # DB7
+      #self.board.setwarnings(False)
+      #self.board.setmode(self.board.BOARD)       # Use BOARD GPIO numbers
+      self.board.setup(self.LCD_E, self.board.OUT)  # E
+      self.board.setup(self.LCD_RS, self.board.OUT) # RS
+      self.board.setup(self.LCD_D4, self.board.OUT) # DB4
+      self.board.setup(self.LCD_D5, self.board.OUT) # DB5
+      self.board.setup(self.LCD_D6, self.board.OUT) # DB6
+      self.board.setup(self.LCD_D7, self.board.OUT) # DB7
 
       # Initialise display
       self.lcd_init()

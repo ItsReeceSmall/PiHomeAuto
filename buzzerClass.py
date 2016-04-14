@@ -5,7 +5,8 @@ from lcd1602 import LCD1602
 lcd = LCD1602()
 
 class Buzz:
-    def __init__(self, buzzSensor):
+    def __init__(self, buzzSensor, board):
+        self.board = board
         self.buzzSensor = buzzSensor
         self.buzzMethod()
 

@@ -1,23 +1,23 @@
 import RPi.GPIO as gpio
+from board import Board
 import time, os, sys
 
-####    PIR PHYSICALLY NOT WORKING ####
-
 class Pir:
-    def __init__(self, pirSensor):
+    def __init__(self, pirSensor, board):
+        self.board = board
         self.pirSensor = pirSensor
         self.pirState = 0
         self.pirMethod()
     
     def pirMethod(self):
-        self.pirState = gpio.input(self.pirSensor)
+        self.pirState = self.board.input(self.pirSensor)
         if self.pirState == 1:
             self.pirState = 1
         elif self.pirState == 0:
             self.pirState = 0
         else:
             print('Error PIR not functioning, aborting...')
-            gpio.cleanup()
+            self.board.cleanup()
             sys.exit()
 
 if __name__ == "__main__":

@@ -4,20 +4,14 @@ import time, os, sys, glob
 from board import Board
 import pins
 #from LedClass import led as l
-#from tempClass import Temp as t
-#from distClass import Dist as d
-#from pirClass import Pir as p
-#from buzzerClass import Buzz as b
-#from lcd1602 import LCD1602
+from tempClass import Temp as t
+from distClass import Dist as d
+from pirClass import Pir as p
+from buzzerClass import Buzz as b
+from lcd1602 import LCD1602
 
-'''
-def tempSet():
-    os.system('modprobe w1-gpio')
-    os.system('modprobe w1-therm')
-    base_dir = '/sys/bus/w1/devices/'
-    device_folder = glob.glob(base_dir + '28*')[0]
-    device_file = device_folder + '/w1_slave'
-'''
+board = Board().board
+
 #Pins
 powerLed = 11
 tempSensor = 7
@@ -28,8 +22,14 @@ deSensor = 38
 pirSensor = 32
 buzzSensor = 35
 
-#lcd = LCD1602()
-board = Board().board
+lcd = LCD1602()
+
+def tempSet():
+    os.system('modprobe w1-gpio')
+    os.system('modprobe w1-therm')
+    base_dir = '/sys/bus/w1/devices/'
+    device_folder = glob.glob(base_dir + '28*')[0]
+    device_file = device_folder + '/w1_slave'
 
 def setup():
     board.setmode(board.BOARD)    #set GPIO up
@@ -37,7 +37,7 @@ def setup():
     inputs = [tempSensor,pirSensor,deSensor]   # Set there categories in arrays
     outputs = [powerLed,tempLed,dtSensor,buzzSensor]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
-    pins.Pins(inputs, outputs)    #Set up pins from a class
+    pins.Pins(inputs, outputs, board)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 def getTemp():
@@ -69,21 +69,21 @@ def getPir(buzzSensor, pirSensor):
     lcd.lcd_clear()
     return value
 
-#tempSet()
+tempSet()
 setup()
 try:
     while True:
-        #getPir(pirSensor, buzzSensor)
-        #getTemp()
+        getPir(pirSensor, buzzSensor)
+        getTemp()
         time.sleep(2)
         #getDist(dtSensor, deSensor)
         #time.sleep(10)
 except KeyboardInterrupt:
     print('Error exiting')
-    #lcd.lcd_string('Ending   Program', lcd.LCD_LINE_1)
-    #lcd.lcd_string('Shutting    Down', lcd.LCD_LINE_2)
-    #time.sleep(2)
-    #lcd.lcd_clear()
-    #lcd.cleanup()
+    lcd.lcd_string('Ending   Program', lcd.LCD_LINE_1)
+    lcd.lcd_string('Shutting    Down', lcd.LCD_LINE_2)
+    time.sleep(2)
+    lcd.lcd_clear()
+    lcd.cleanup()
     sys.exit()
     

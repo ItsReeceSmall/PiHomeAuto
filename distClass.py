@@ -1,26 +1,28 @@
-import RPi.GPIO as gpio
+from board import Board
 import time, os, sys
+import RPi.GPIO as gpio
 
 class Dist:
-  def __init__(self, dtSensor, deSensor):
+  def __init__(self, dtSensor, deSensor, board):
+      self.board = board
       self.dtSensor = dtSensor
       self.deSensor = deSensor
       self.distValue = 0
       self.distCheck()
   
   def distCheck(self):
-      gpio.setup(self.dtSensor,gpio.OUT)
-      gpio.setup(self.deSensor,gpio.IN)
-      gpio.output(self.dtSensor, False)
+      self.board.setup(self.dtSensor,self.board.OUT)
+      self.board.setup(self.deSensor,self.board.IN)
+      self.board.output(self.dtSensor, False)
       time.sleep(1)
-      gpio.output(self.dtSensor, True)
+      self.board.output(self.dtSensor, True)
       time.sleep(0.00001)
-      gpio.output(self.dtSensor, False)
+      self.board.output(self.dtSensor, False)
       print ('DEBUG: while gpio.input(self.deSensor)==0:')
-      while gpio.input(self.deSensor)==0:
+      while self.board.input(self.deSensor)==0:
           pulse_start = time.time()
       print ('DEBUG: while gpio.input(self.deSensor)==1:')
-      while gpio.input(self.deSensor)==1:
+      while self.board.input(self.deSensor)==1:
           pulse_end = time.time()
       pulse_duration = pulse_end - pulse_start
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
