@@ -29,7 +29,7 @@ pirSensor = 32
 buzzSensor = 35
 
 #lcd = LCD1602()
-board = Board()
+board = Board().board
 
 def setup():
     board.setmode(board.BOARD)    #set GPIO up
