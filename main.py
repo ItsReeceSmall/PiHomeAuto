@@ -60,7 +60,8 @@ def getDist(dtSensor, deSensor):
 def getPir(buzzSensor, pirSensor):
     lcd.lcd_string('Checking', lcd.LCD_LINE_1)
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
-    value = p(pirSensor)
+    p(pirSensor)
+    value = p.pirState
     if value == 'on':
         b(buzzSensor)
     else:
