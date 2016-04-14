@@ -1,33 +1,35 @@
 import RPi.GPIO as gpio
 import time, sys, os
-import board
+from board import Board
 
 class Led:
-    def __init__(self, powerLed):
-        self.__powerLed = powerLed
-        #self.powerLedOn()
-        #self.powerLedOff()
-        self.powerLedTest()
-        
-    @property
-    def powerLed(self):
-        return self.__powerLed
+    def __init__(self, ledPin, board):
+        self.board = board
+        self.__ledPin = ledPin
     
-    @powerLed.setter
-    def powerLed(self, value):
-        self.__powerLed = value
+    def LedOn(self):
+        self.board.output(self.__ledPin, self.board.HIGH)
+        time.sleep(0.1)
     
-    # Need to write code to setup all the pins that have been passed in
+    def LedOff(self):
+        self.board.output(self.__ledPin, self.board.LOW)
+        time.sleep(0.1)
     
-    def powerLedOn(self):
-        gpio.output(self.__powerLed, gpio.HIGH)
-        time.sleep(0.2)
-    
-    def powerLedOff(self):
-        gpio.output(self.__powerLed, gpio.LOW)
-        time.sleep(0.2)
-    
-    def powerLedTest(self):
-        gpio.output(self.__powerLed, gpio.HIGH)
+    def LedTest(self):
+        self.board.output(self.__ledPin, self.board.HIGH)
         time.sleep(2)
-        gpio.output(self.__powerLed, gpio.LOW)
+        self.board.output(self.__ledPin, self.board.LOW)
+
+if __name__ == "__main__":
+    gpio.setmode(gpio.BOARD)
+    lights = [14, 12, 16]
+    for pin in lights:
+        gpio.setup(pin, gpio.OUT)
+        print (str(pin) + ' is set to out')
+        gpio.output(pin, gpio.HIGH)
+        time.sleep(0.2)
+    time.sleep(3)
+    for pin in lights:
+        gpio.output(pin, gpio.LOW)
+        time.sleep(0.2)
+    gpio.cleanup()

@@ -1,6 +1,9 @@
 from board import Board
 import time, os, sys
 import RPi.GPIO as gpio
+from board import Board
+
+board = Board().board
 
 class Dist:
   def __init__(self, dtSensor, deSensor, board):
@@ -24,7 +27,7 @@ class Dist:
       print ('DEBUG: while gpio.input(self.deSensor)==1:')
       while self.board.input(self.deSensor)==1:
           pulse_end = time.time()
-      pulse_duration = pulse_end - pulse_start
+      pulse_duration = (pulse_end - pulse_start)
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
       distance = pulse_duration * 17150
       distance = round(distance, 2)
@@ -35,5 +38,5 @@ if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
     dtSensor = 36
     deSensor = 38
-    d = Dist(dtSensor, deSensor)
+    d = Dist(dtSensor, deSensor, board)
     print (d.distValue)

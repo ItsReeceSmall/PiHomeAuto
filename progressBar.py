@@ -1,8 +1,10 @@
 import RPi.GPIO as gpio
 import time, os, sys, glob
 from lcd1602 import LCD1602
+from board import Board
 
-lcd = LCD1602()
+board = Board().board
+lcd = LCD1602(board)
 
 class Bar:
     def __init__(self):

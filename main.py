@@ -10,19 +10,17 @@ from pirClass import Pir as p
 from buzzerClass import Buzz as b
 from lcd1602 import LCD1602
 
-board = Board().board
-
 #Pins
 powerLed = 11
 tempSensor = 7
 tempLed = 10
-humidSensor = 37
 dtSensor = 36
 deSensor = 38
 pirSensor = 32
 buzzSensor = 35
 
-lcd = LCD1602()
+board = Board().board
+lcd = LCD1602(board)
 
 def tempSet():
     os.system('modprobe w1-gpio')
@@ -51,7 +49,7 @@ def getTemp():
     return temp
     
 def getDist(dtSensor, deSensor):
-    dval = d(dtSensor, deSensor)
+    dval = d(dtSensor, deSensor, board)
     value = dval.distValue
     lcd.lcd_string('Distance', lcd.LCD_LINE_1)
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
@@ -60,10 +58,10 @@ def getDist(dtSensor, deSensor):
 def getPir(buzzSensor, pirSensor):
     lcd.lcd_string('Checking', lcd.LCD_LINE_1)
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
-    p(pirSensor)
-    value = p.pirState
+    pval = p(pirSensor, board)
+    value = pval.pirState
     if value == 'on':
-        b(buzzSensor)
+        b(buzzSensor, board)
     else:
         pass
     lcd.lcd_clear()
@@ -73,10 +71,10 @@ tempSet()
 setup()
 try:
     while True:
-        getPir(pirSensor, buzzSensor)
-        getTemp()
+        pir = getPir(pirSensor, buzzSensor)
+        #temp = getTemp()
         time.sleep(2)
-        #getDist(dtSensor, deSensor)
+        #dist = getDist(dtSensor, deSensor)
         #time.sleep(10)
 except KeyboardInterrupt:
     print('Error exiting')

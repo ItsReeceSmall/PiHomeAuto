@@ -2,8 +2,11 @@ import os
 import glob
 import time
 from lcd1602 import LCD1602
+from board import Board
 
-lcd = LCD1602()
+board = Board().board
+
+lcd = LCD1602(board)
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 base_dir = '/sys/bus/w1/devices/'

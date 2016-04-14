@@ -1,8 +1,10 @@
 import RPi.GPIO as gpio
 import os, time, sys, glob
 from lcd1602 import LCD1602
+from board import Board
 
-lcd = LCD1602()
+board = Board().board
+lcd = LCD1602(board)
 
 class Buzz:
     def __init__(self, buzzSensor, board):
@@ -22,5 +24,5 @@ if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
     buzzSensor = 35
     gpio.setup(buzzSensor, gpio.OUT)
-    b = Buzz(buzzSensor)
+    b = Buzz(buzzSensor, board)
     #b.buzzMethod()
