@@ -12,9 +12,9 @@ class Pir:
     def pirMethod(self):
         self.pirState = gpio.input(self.pirSensor)
         if self.pirState == 1:
-            self.pirState = 'on'
+            self.pirState = 1
         elif self.pirState == 0:
-            self.pirState = 'off'
+            self.pirState = 0
         else:
             print('Error PIR not functioning, aborting...')
             gpio.cleanup()
