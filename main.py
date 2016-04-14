@@ -72,10 +72,10 @@ setup()
 try:
     while True:
         getPir(pirSensor, buzzSensor)
-        getTemp()
-        time.sleep(1)
-        getDist(dtSensor, deSensor)
-        time.sleep(10)
+        #getTemp()
+        time.sleep(2)
+        #getDist(dtSensor, deSensor)
+        #time.sleep(10)
 except KeyboardInterrupt:
     print('Error exiting')
     lcd.lcd_string('Ending   Program', lcd.LCD_LINE_1)

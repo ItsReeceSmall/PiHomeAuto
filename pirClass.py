@@ -26,6 +26,7 @@ if __name__ == "__main__":
     gpio.setup(pirSensor, gpio.IN)
     #p = Pir()
     for i in range(50):
-        pirState = Pir(pirSensor)
+        p = Pir(pirSensor)
+        pirState = p.pirMethod()
         print (pirState)
         time.sleep(0.1)
