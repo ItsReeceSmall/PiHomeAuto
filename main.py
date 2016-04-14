@@ -7,6 +7,8 @@ import pins
 from tempClass import Temp as t
 from distClass import Dist as d
 from pirClass import Pir as p
+from buzzerClass import Buzz as b
+
 from lcd1602 import LCD1602
 
 #Temp sense setup
@@ -24,6 +26,7 @@ humidSensor = 37
 dtSensor = 36
 deSensor = 38
 pirSensor = 32
+buzzSensor = 35
 
 lcd = LCD1602()
 rpi = Board()
@@ -32,7 +35,7 @@ def setup():
     gpio.setmode(gpio.BOARD)    #set GPIO up
     gpio.setwarnings(False)
     inputs = [tempSensor,humidSensor,pirSensor,deSensor]   # Set there categories in arrays
-    outputs = [powerLed,tempLed,dtSensor]
+    outputs = [powerLed,tempLed,dtSensor,buzzSensor]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
@@ -53,8 +56,16 @@ def getDist(dtSensor, deSensor):
     lcd.lcd_string('Distance', lcd.LCD_LINE_1)
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
+
 def getPir():
-    pirVal = p(pirSensor)
+    lcd.lcd_string('Checking', lcd.LCD_LINE_1)
+    lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
+    value = p(pirSensor)
+    if value == 'on':
+        b(buzzSensor)
+    else:
+        pass
+    lcd.lcd_clear()
     return value
 
 setup()
