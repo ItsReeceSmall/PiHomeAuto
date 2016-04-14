@@ -6,19 +6,18 @@ import pins
 #from LedClass import led as l
 from tempClass import Temp as t
 from distClass import Dist as d
-from pirClass import Pir
+from pirClass import Pir as p
 from buzzerClass import Buzz as b
-
-
 from lcd1602 import LCD1602
 
-#Temp sense setup
-os.system('modprobe w1-gpio')
-os.system('modprobe w1-therm')
-base_dir = '/sys/bus/w1/devices/'
-device_folder = glob.glob(base_dir + '28*')[0]
-device_file = device_folder + '/w1_slave'
-
+'''
+def tempSet():
+    os.system('modprobe w1-gpio')
+    os.system('modprobe w1-therm')
+    base_dir = '/sys/bus/w1/devices/'
+    device_folder = glob.glob(base_dir + '28*')[0]
+    device_file = device_folder + '/w1_slave'
+'''
 #Pins
 powerLed = 11
 tempSensor = 7
@@ -70,6 +69,7 @@ def getPir(buzzSensor, pirSensor):
     lcd.lcd_clear()
     return value
 
+#tempSet()
 setup()
 try:
     while True:
