@@ -11,7 +11,7 @@ class Buzz:
         
     def buzzMethod(self):
         lcd.lcd_string('Presence', lcd.LCD_LINE_1)
-        lcd.lcd_string('        Detected', lcd.LCD_LINE_1)
+        lcd.lcd_string('        Detected', lcd.LCD_LINE_2)
         gpio.output(buzzSensor, gpio.HIGH)
         time.sleep(0.5)
         gpio.output(buzzSensor, gpio.LOW)
