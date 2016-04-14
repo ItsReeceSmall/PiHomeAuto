@@ -6,7 +6,7 @@ import pins
 #from LedClass import led as l
 from tempClass import Temp as t
 from distClass import Dist as d
-from pirClass import Pir as p
+from pirClass import Pir
 from buzzerClass import Buzz as b
 
 from lcd1602 import LCD1602
