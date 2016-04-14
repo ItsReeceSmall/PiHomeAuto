@@ -4,11 +4,11 @@ import time, os, sys, glob
 from board import Board
 import pins
 #from LedClass import led as l
-from tempClass import Temp as t
-from distClass import Dist as d
-from pirClass import Pir as p
-from buzzerClass import Buzz as b
-from lcd1602 import LCD1602
+#from tempClass import Temp as t
+#from distClass import Dist as d
+#from pirClass import Pir as p
+#from buzzerClass import Buzz as b
+#from lcd1602 import LCD1602
 
 '''
 def tempSet():
