@@ -28,7 +28,7 @@ deSensor = 38
 pirSensor = 32
 buzzSensor = 35
 
-lcd = LCD1602()
+#lcd = LCD1602()
 board = Board()
 
 def setup():
@@ -80,10 +80,10 @@ try:
         #time.sleep(10)
 except KeyboardInterrupt:
     print('Error exiting')
-    lcd.lcd_string('Ending   Program', lcd.LCD_LINE_1)
-    lcd.lcd_string('Shutting    Down', lcd.LCD_LINE_2)
-    time.sleep(2)
-    lcd.lcd_clear()
-    lcd.cleanup()
+    #lcd.lcd_string('Ending   Program', lcd.LCD_LINE_1)
+    #lcd.lcd_string('Shutting    Down', lcd.LCD_LINE_2)
+    #time.sleep(2)
+    #lcd.lcd_clear()
+    #lcd.cleanup()
     sys.exit()
     
