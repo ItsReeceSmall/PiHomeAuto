@@ -57,7 +57,7 @@ def getDist(dtSensor, deSensor):
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
 
-def getPir():
+def getPir(buzzSensor, pirSensor):
     lcd.lcd_string('Checking', lcd.LCD_LINE_1)
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
     value = p(pirSensor)
@@ -71,6 +71,7 @@ def getPir():
 setup()
 try:
     while True:
+        getPir(pirSensor, buzzSensor)
         getTemp()
         time.sleep(1)
         getDist(dtSensor, deSensor)
