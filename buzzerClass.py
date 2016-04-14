@@ -12,10 +12,10 @@ class Buzz:
     def buzzMethod(self):
         lcd.lcd_string('Presence', lcd.LCD_LINE_1)
         lcd.lcd_string('Detected', lcd.LCD_LINE_2)
-        gpio.output(buzzSensor, gpio.HIGH)
+        gpio.output(buzzSensor, gpio.HIGH)  # Buzzer On
         time.sleep(2)
-        gpio.output(buzzSensor, gpio.LOW)
-        lcd.lcd_clear()
+        gpio.output(buzzSensor, gpio.LOW)   # Buzzer Off
+        lcd.lcd_clear()                     # Clear LCD
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
