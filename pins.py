@@ -2,7 +2,8 @@ from board import Board
 import time, os, sys
 from lcd1602 import LCD1602
 
-lcd = LCD1602()
+board = Board().board
+lcd = LCD1602(board)
 
 class Pins:
     def __init__(self, inputs, outputs, board):
