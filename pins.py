@@ -19,10 +19,10 @@ class Pins:
         for pin in self.__inputs:
             self.board.setup(pin, self.board.IN)
             print ('### Pin ' + str(pin) + ' is setup')
-            #lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
+            lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
             self.time.sleep(0.15)
         for pin in self.__outputs:
             self.board.setup(pin, self.board.OUT)
             print ('### Pin ' + str(pin) + ' is setup')
-            #lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
+            lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
             self.time.sleep(0.15)

@@ -32,8 +32,8 @@ def tempSet():
 def setup():
     board.setmode(board.BOARD)    #set GPIO up
     board.setwarnings(False)
-    inputs = [tempSensor,pirSensor,deSensor]   # Set there categories in arrays
-    outputs = [powerLed,tempLed,dtSensor,buzzSensor]
+    inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
+    outputs = [powerLed, tempLed, dtSensor, buzzSensor]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs, board, time)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
