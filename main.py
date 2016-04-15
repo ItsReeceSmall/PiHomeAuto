@@ -83,6 +83,7 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
 tempSet()
 setup()
 lightState = 'on'
+lcd.lcd_string('Temp Pir Dist', lcd.LCD_LINE_1)
 
 try:
     while True:
