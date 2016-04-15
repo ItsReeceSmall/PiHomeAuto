@@ -11,7 +11,7 @@ class Pir:
     
     def pirMethod(self):
         for i in range(1, 13):
-            time.sleep(0.4)
+            time.sleep(0.2)
             self.pirState = self.board.input(self.pirSensor)
             print (self.pirState)
             if self.pirState == 1:
