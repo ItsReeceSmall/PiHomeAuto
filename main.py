@@ -80,13 +80,15 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
         if board.input(lightButton) == False:
             board.output(fadeLed, board.LOW)
             lightState = 'off'
+            print (lightState)
             return lightState
         else:
             pass
     elif lightState == 'off':
-        if board.input(lightButton) == True:
+        if board.input(lightButton) == False:
             board.output(fadeLed, board.HIGH)
             lightState = 'on'
+            print(lightState)
             return lightState
         else:
             pass
@@ -100,6 +102,7 @@ lightState = 'on'
 try:
     while True:
         lightSwitch(fadeLed, lightButton, board, lightState)
+        time.sleep(0.1)
         #pir = getPir(pirSensor, buzzSensor, board)
         #temp = getTemp()
         #time.sleep(2)
