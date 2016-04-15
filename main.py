@@ -69,7 +69,6 @@ def getPir(buzzSensor, pirSensor, board):
     if value == 1:
         lcd.lcd_string('Presence', lcd.LCD_LINE_1)
         lcd.lcd_string('Detected', lcd.LCD_LINE_2)
-        print (buzzSensor)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.2)
         b(buzzSensor, board).buzzOff()

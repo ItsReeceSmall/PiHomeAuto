@@ -1,12 +1,12 @@
 import RPi.GPIO as gpio
 import time
 from board import Board
-board = Board().board
+#board = Board().board
 
 class Buzz:
     def __init__(self, buzzSensor, board):
         self.board = board
-        self.buzzSensor = 35
+        self.buzzSensor = buzzSensor
 
     def buzzOn(self):
         self.board.setup(self.buzzSensor, self.board.OUT)
