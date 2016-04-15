@@ -5,17 +5,14 @@ class Pir:
     def __init__(self, pirSensor, board):
         self.time = time
         self.board = board
-        self.pirSensor = 32
+        self.pirSensor = pirSensor
         self.pirState = 0
         self.pirMethod()
     
     def pirMethod(self):
         for i in range(1, 13):
             self.pirState = self.board.input(self.pirSensor)
-            value = self.board.input(self.pirSensor)
             time.sleep(0.3)
-            print (str(self.pirState) + ' self')
-            print (str(value) + ' value')
             if self.pirState == 1:
                 self.pirState = 1
                 return self.pirState
