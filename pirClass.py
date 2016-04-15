@@ -5,7 +5,7 @@ class Pir:
     def __init__(self, pirSensor, board):
         self.time = time
         self.board = board
-        self.pirSensor = pirSensor
+        self.pirSensor = 32
         self.pirState = 0
         self.pirMethod()
     
