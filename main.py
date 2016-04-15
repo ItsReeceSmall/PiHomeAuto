@@ -55,8 +55,6 @@ def getTemp():
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
     value = (str(dval.distValue) + 'cm')
-    lcd.lcd_string('Distance', lcd.LCD_LINE_1)
-    lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
 
 def getPir(buzzSensor, pirSensor, board):
@@ -70,7 +68,6 @@ def getPir(buzzSensor, pirSensor, board):
         b(buzzSensor, board).buzzOff()
     else:
         finValue = 'OFF'
-    lcd.lcd_clear()
     return finValue
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
