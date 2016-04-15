@@ -60,7 +60,7 @@ def getPir(buzzSensor, pirSensor):
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
     pval = p(pirSensor, board)
     value = pval.pirState
-    if value == 'on':
+    if value == '1':
         b(buzzSensor, board)
     else:
         pass
@@ -72,7 +72,7 @@ setup()
 try:
     while True:
         pir = getPir(pirSensor, buzzSensor)
-        #temp = getTemp()
+        temp = getTemp()
         time.sleep(2)
         #dist = getDist(dtSensor, deSensor)
         #time.sleep(10)
