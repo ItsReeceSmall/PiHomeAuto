@@ -9,12 +9,12 @@ class Buzz:
         self.buzzSensor = 32
 
     def buzzOn(self):
-        self.board.setup(self.buzzSensor, self.board.OUT)
+        #self.board.setup(self.buzzSensor, self.board.OUT)
         self.board.output(self.buzzSensor, self.board.HIGH)
         print ('buzzer on')# Buzzer On
 
     def buzzOff(self):
-        self.board.setup(self.buzzSensor, self.board.OUT)
+        #self.board.setup(self.buzzSensor, self.board.OUT)
         self.board.output(self.buzzSensor, self.board.LOW)
         print('buzzer off')  # Buzzer Off
 
