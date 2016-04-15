@@ -6,9 +6,10 @@
 #lcd = LCD1602(board)
 
 class Pins:
-    def __init__(self, inputs, outputs, board, time):
+    def __init__(self, inputs, outputs, buttons, board, time):
         self.board = board
         self.time = time
+        self.__buttons = buttons
         self.__inputs = inputs
         self.__outputs = outputs
         self.printPins()
@@ -25,4 +26,9 @@ class Pins:
             self.board.setup(pin, self.board.OUT)
             print ('### Pin ' + str(pin) + ' is setup as output')
             #lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
+            self.time.sleep(0.15)
+        for pin in self.__buttons:
+            self.board.setup(pin, self.board.IN, pull_up_down=self.board.PUD_UP)
+            print('### Button Pin ' + str(pin) + ' is setup as input')
+            # lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
             self.time.sleep(0.15)

@@ -1,4 +1,3 @@
-import RPi.GPIO as gpio
 import time, os, sys, glob
 # FILES IMPORT BELOW
 from board import Board
@@ -19,6 +18,9 @@ deSensor = 38
 pirSensor = 32
 buzzSensor = 35
 fadeLed = 37
+lightButton = 31
+nextButton = 33
+backButton = 40
 
 board = Board().board
 lcd = LCD1602(board)
@@ -35,8 +37,9 @@ def setup():
     board.setwarnings(False)
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
     outputs = [powerLed, tempLed, dtSensor, buzzSensor, fadeLed]
+    buttons = [lightButton, nextButton, backButton]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
-    pins.Pins(inputs, outputs, board, time)    #Set up pins from a class
+    pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
     board.output(fadeLed, board.HIGH)
 
@@ -57,26 +60,49 @@ def getDist(dtSensor, deSensor, board):
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
 
-def getPir(buzzSensor, pirSensor, board, lcd):
+def getPir(buzzSensor, pirSensor, board):
     lcd.lcd_string('Checking', lcd.LCD_LINE_1)
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
     pval = p(pirSensor, board)
     value = pval.pirState
     print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
-        b(buzzSensor, board, lcd).buzzMethod()
+        b(buzzSensor, board).buzzMethod()
+        lcd.lcd_string('Presence', lcd.LCD_LINE_1)
+        lcd.lcd_string('Detected', lcd.LCD_LINE_2)
     else:
         pass
     lcd.lcd_clear()
     return value
 
+def lightSwitch(fadeLed, lightButton, board, lightState):
+    if lightState == 'on':
+        if board.input(lightButton) == False:
+            board.output(fadeLed, board.LOW)
+            lightState = 'off'
+            return lightState
+        else:
+            pass
+    elif lightState == 'off':
+        if board.input(lightButton) == False:
+            board.output(fadeLed, board.HIGH)
+            lightState = 'on'
+            return lightState
+        else:
+            pass
+    else:
+        pass
+    return lightState
+
 tempSet()
 setup()
+lightState = 'on'
 try:
     while True:
-        pir = getPir(pirSensor, buzzSensor, board, lcd)
-        temp = getTemp()
-        time.sleep(2)
+        lightSwitch(fadeLed, lightButton, board, lightState)
+        #pir = getPir(pirSensor, buzzSensor, board)
+        #temp = getTemp()
+        #time.sleep(2)
         #dist = getDist(dtSensor, deSensor)
 except KeyboardInterrupt:
     print('Exiting')
