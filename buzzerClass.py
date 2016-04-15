@@ -15,9 +15,9 @@ class Buzz:
     def buzzMethod(self):
         self.lcd.lcd_string('Presence', self.lcd.LCD_LINE_1)
         self.lcd.lcd_string('Detected', self.lcd.LCD_LINE_2)
-        self.board.output(buzzSensor, self.board.HIGH)  # Buzzer On
+        self.board.output(self.buzzSensor, self.board.HIGH)  # Buzzer On
         time.sleep(2)
-        self.board.output(buzzSensor, self.board.LOW)   # Buzzer Off
+        self.board.output(self.buzzSensor, self.board.LOW)   # Buzzer Off
         self.lcd.lcd_clear()                     # Clear LCD
 
 if __name__ == "__main__":
