@@ -13,6 +13,7 @@ class Pir:
         for i in range(1, 26):
             time.sleep(0.08)
             self.pirState = self.board.input(self.pirSensor)
+            print (self.pirState)
             if self.pirState == 1:
                 self.pirState = 1
                 break
