@@ -22,7 +22,7 @@ class Led:
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
-    lights = [14, 12, 16]
+    lights = [37,11,13,15]
     for pin in lights:
         gpio.setup(pin, gpio.OUT)
         print (str(pin) + ' is set to out')

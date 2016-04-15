@@ -13,4 +13,4 @@ class carReverse:
         self.dtSensor = dtSensor
         self.carReverseMethod()
 
-    def carReverseMethod(self):
+#    def carReverseMethod(self):

@@ -1,9 +1,9 @@
 import RPi.GPIO as gpio
-from board import Board
-import time, os, sys
+import time
 
 class Pir:
     def __init__(self, pirSensor, board):
+        self.time = time
         self.board = board
         self.pirSensor = pirSensor
         self.pirState = 0
@@ -23,7 +23,7 @@ class Pir:
             else:
                 print('Error PIR not functioning, aborting...')
                 self.board.cleanup()
-                sys.exit()
+                #sys.exit()
         return self.pirState
 
 if __name__ == "__main__":

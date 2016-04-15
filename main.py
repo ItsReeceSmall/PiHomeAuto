@@ -35,7 +35,7 @@ def setup():
     inputs = [tempSensor,pirSensor,deSensor]   # Set there categories in arrays
     outputs = [powerLed,tempLed,dtSensor,buzzSensor]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
-    pins.Pins(inputs, outputs, board)    #Set up pins from a class
+    pins.Pins(inputs, outputs, board, time)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
 
 def getTemp():
@@ -48,14 +48,14 @@ def getTemp():
     lcd.lcd_string(temp, lcd.LCD_LINE_2)
     return temp
     
-def getDist(dtSensor, deSensor):
+def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
     value = dval.distValue
     lcd.lcd_string('Distance', lcd.LCD_LINE_1)
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
 
-def getPir(buzzSensor, pirSensor):
+def getPir(buzzSensor, pirSensor, board):
     lcd.lcd_string('Checking', lcd.LCD_LINE_1)
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
     pval = p(pirSensor, board)
@@ -72,15 +72,12 @@ tempSet()
 setup()
 try:
     while True:
-        pir = getPir(pirSensor, buzzSensor)
+        pir = getPir(pirSensor, buzzSensor, board)
         temp = getTemp()
         time.sleep(2)
         #dist = getDist(dtSensor, deSensor)
-        #time.sleep(10)
 except KeyboardInterrupt:
-    print('Error exiting')
-    lcd.lcd_string('Ending   Program', lcd.LCD_LINE_1)
-    lcd.lcd_string('Shutting    Down', lcd.LCD_LINE_2)
+    print('Exiting')
     time.sleep(2)
     lcd.lcd_clear()
     lcd.cleanup()
