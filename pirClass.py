@@ -10,15 +10,17 @@ class Pir:
         self.pirMethod()
     
     def pirMethod(self):
-        self.pirState = self.board.input(self.pirSensor)
-        if self.pirState == 1:
-            self.pirState = 1
-        elif self.pirState == 0:
-            self.pirState = 0
-        else:
-            print('Error PIR not functioning, aborting...')
-            self.board.cleanup()
-            sys.exit()
+        for i in range(1, 51):
+            self.pirState = self.board.input(self.pirSensor)
+            if self.pirState == 1:
+                self.pirState = 1
+                break
+            elif self.pirState == 0:
+                self.pirState = 0
+            else:
+                print('Error PIR not functioning, aborting...')
+                self.board.cleanup()
+                sys.exit()
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
