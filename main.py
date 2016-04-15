@@ -83,7 +83,7 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
 tempSet()
 setup()
 lightState = 'on'
-lcd.lcd_string('C  F Pir Dist', lcd.LCD_LINE_1)
+lcd.lcd_string('C  F  Pir Dist', lcd.LCD_LINE_1)
 
 try:
     while True:
@@ -91,7 +91,7 @@ try:
         pir = getPir(pirSensor, buzzSensor, board)
         temp = getTemp()
         #dist = getDist(dtSensor, deSensor, board)
-        lcd.lcd_string('C  F Pir Dist', lcd.LCD_LINE_1)
+        lcd.lcd_string('C  F  Pir Dist', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + '42.5cm', lcd.LCD_LINE_2)
 except KeyboardInterrupt:
     print('Exiting')
