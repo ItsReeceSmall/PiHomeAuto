@@ -18,6 +18,7 @@ class Pir:
             print (value)
             if self.pirState == 1:
                 self.pirState = 1
+                return self.pirState
             elif self.pirState == 0:
                 self.pirState = 0
             else:
