@@ -13,7 +13,6 @@ class Buzz:
         self.board.setup(self.buzzSensor, self.board.OUT)
         self.board.output(self.buzzSensor, self.board.HIGH)
         print ('buzzer on')# Buzzer On
-        time.sleep(1)
         self.board.output(self.buzzSensor, self.board.LOW)
         print('buzzer off')# Buzzer Off
 
