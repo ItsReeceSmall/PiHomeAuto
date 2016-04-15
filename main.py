@@ -49,33 +49,29 @@ def getTemp():
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' C & ' + ft + ' F') # creates compiled string of temperature values
     print ('The temperature is: ' + temp)
-    lcd.lcd_string('Temperature', lcd.LCD_LINE_1)
-    lcd.lcd_string(temp, lcd.LCD_LINE_2)
-    return temp
+    tempFin = (ct + ' C')
+    return tempFin
     
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
-    value = dval.distValue
+    value = (str(dval.distValue) + 'cm')
     lcd.lcd_string('Distance', lcd.LCD_LINE_1)
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
 
 def getPir(buzzSensor, pirSensor, board):
-    lcd.lcd_string('Checking', lcd.LCD_LINE_1)
-    lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
     pval = p(pirSensor, board)
     value = pval.pirState
     print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
-        lcd.lcd_string('Presence', lcd.LCD_LINE_1)
-        lcd.lcd_string('Detected', lcd.LCD_LINE_2)
+        finValue = 'ON'
         b(buzzSensor, board).buzzOn()
         time.sleep(0.2)
         b(buzzSensor, board).buzzOff()
     else:
-        pass
+        finValue = 'OFF'
     lcd.lcd_clear()
-    return value
+    return finValue
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
     if board.input(lightButton) == False:
@@ -96,8 +92,9 @@ try:
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
         pir = getPir(pirSensor, buzzSensor, board)
         temp = getTemp()
-        #time.sleep(2)
-        #dist = getDist(dtSensor, deSensor)
+        dist = getDist(dtSensor, deSensor, board)
+        lcd.lcd_string('Temp Pir Dist', lcd.LCD_LINE_1)
+        lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
 except KeyboardInterrupt:
     print('Exiting')
     time.sleep(2)
