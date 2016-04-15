@@ -8,20 +8,18 @@ device_file = device_folder + '/w1_slave'
 
 class Temp:
     def __init__(self):
-        self.read_temp()
         pass
 
-    def read_temp_raw(self):
+
+    def read_temp():
         f = open(device_file, 'r')
         lines = f.readlines()
         f.close()
-        return lines
-
-    def read_temp(self):
-        lines = self.read_temp_raw()
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
-            lines = self.read_temp_raw()
+            f = open(device_file, 'r')
+            lines = f.readlines()
+            f.close()
         equals_pos = lines[1].find('t=')
         if equals_pos != -1:
             temp_string = lines[1][equals_pos + 2:]
