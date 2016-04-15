@@ -62,7 +62,7 @@ def getPir(buzzSensor, pirSensor, board):
     value = pval.pirState
     print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
-        finValue = 'ON'
+        finValue = 'ON '
         b(buzzSensor, board).buzzOn()
         time.sleep(0.2)
         b(buzzSensor, board).buzzOff()

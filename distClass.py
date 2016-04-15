@@ -30,7 +30,7 @@ class Dist:
       pulse_duration = (pulse_end - pulse_start)
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
       distance = pulse_duration * 17150
-      distance = round(distance, 2)
+      distance = round(distance, 1)
       self.distValue = str(distance)
       return self.distValue
 
