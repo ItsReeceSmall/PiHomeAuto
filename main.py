@@ -82,18 +82,12 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
             lightState = 'off'
             print (lightState)
             return lightState
-        else:
-            pass
     elif lightState == 'off':
         if board.input(lightButton) == False:
             board.output(fadeLed, board.HIGH)
             lightState = 'on'
             print(lightState)
             return lightState
-        else:
-            pass
-    else:
-        pass
     return lightState
 
 tempSet()
