@@ -29,4 +29,4 @@ if __name__ == "__main__":
         #p = Pir(pirSensor)
         pirState = gpio.input(pirSensor)
         print (pirState)
-        time.sleep(0.1)
+        time.sleep(0.5)
