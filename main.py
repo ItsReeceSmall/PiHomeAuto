@@ -2,7 +2,7 @@ import time, os, sys, glob
 # FILES IMPORT BELOW
 from board import Board
 import pins
-#from LedClass import led as l
+from LedClass import Led as l
 from tempClass import Temp as t
 from distClass import Dist as d
 from pirClass import Pir as p
@@ -78,11 +78,11 @@ def getPir(buzzSensor, pirSensor, board):
 def lightSwitch(fadeLed, lightButton, board, lightState):
     if board.input(lightButton) == False:
         if lightState == 'on':
-            board.output(fadeLed, board.LOW)
+            l(fadeLed, board).LedOff()
             lightState = 'off'
             print (lightState)
         elif lightState == 'off':
-            board.output(fadeLed, board.HIGH)
+            l(fadeLed, board).LedOn()
             lightState = 'on'
             print(lightState)
     return lightState
