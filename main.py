@@ -18,6 +18,7 @@ dtSensor = 36
 deSensor = 38
 pirSensor = 32
 buzzSensor = 35
+fadeLed = 37
 
 board = Board().board
 lcd = LCD1602(board)
@@ -33,10 +34,11 @@ def setup():
     board.setmode(board.BOARD)    #set GPIO up
     board.setwarnings(False)
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
-    outputs = [powerLed, tempLed, dtSensor, buzzSensor]
+    outputs = [powerLed, tempLed, dtSensor, buzzSensor, fadeLed]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs, board, time)    #Set up pins from a class
     print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
+    board.output(fadeLed, board.HIGH)
 
 def getTemp():
     c, f = t.read_temp() # Get temp values
@@ -60,7 +62,7 @@ def getPir(buzzSensor, pirSensor, board, lcd):
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
     pval = p(pirSensor, board)
     value = pval.pirState
-    print (str(value) + ' exter')
+    print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
         b(buzzSensor, board, lcd).buzzMethod()
     else:
