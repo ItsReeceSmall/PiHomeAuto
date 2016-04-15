@@ -7,14 +7,16 @@ class Buzz:
     def __init__(self, buzzSensor, board):
         self.board = board
         self.buzzSensor = 32
+        self.outpin()
+
+    def outpin(self):
+        self.board.setup(self.buzzSensor, self.board.OUT)
 
     def buzzOn(self):
-        #self.board.setup(self.buzzSensor, self.board.OUT)
         self.board.output(self.buzzSensor, self.board.HIGH)
         print ('buzzer on')# Buzzer On
 
     def buzzOff(self):
-        #self.board.setup(self.buzzSensor, self.board.OUT)
         self.board.output(self.buzzSensor, self.board.LOW)
         print('buzzer off')  # Buzzer Off
 
