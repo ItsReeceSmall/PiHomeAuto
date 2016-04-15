@@ -54,7 +54,7 @@ def getTemp():
     
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
-    value = (str(dval.distValue) + 'cm')
+    value = (str(dval.distValue))
     return value
 
 def getPir(buzzSensor, pirSensor, board, counter, pirLight):
@@ -89,16 +89,16 @@ tempSet()
 setup()
 lightState = 'on'
 counter = 0
-lcd.lcd_string('C  F  Pir Dist', lcd.LCD_LINE_1)
+lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
 
 try:
     while True:
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
         pir, counter = getPir(pirSensor, buzzSensor, board, counter, pirLight)
         temp = getTemp()
-        #dist = getDist(dtSensor, deSensor, board)
-        lcd.lcd_string('C  F  Pir Dist', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + '42.5cm', lcd.LCD_LINE_2)
+        dist = getDist(dtSensor, deSensor, board)
+        lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
+        lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
 except KeyboardInterrupt:
     print('Exiting')
     time.sleep(2)
