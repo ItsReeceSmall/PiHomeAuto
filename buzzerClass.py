@@ -13,6 +13,7 @@ class Buzz:
         self.buzzMethod()
 
     def buzzMethod(self):
+        self.board.setup(self.buzzSensor, self.board.OUT)
         self.lcd.lcd_string('Presence', self.lcd.LCD_LINE_1)
         self.lcd.lcd_string('Detected', self.lcd.LCD_LINE_2)
         self.board.output(self.buzzSensor, self.board.HIGH)  # Buzzer On
