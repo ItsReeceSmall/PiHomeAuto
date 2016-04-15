@@ -92,7 +92,7 @@ setup()
 lightState = 'on'
 try:
     while True:
-        lightSwitch(fadeLed, lightButton, board, lightState)
+        lightState = lightSwitch(fadeLed, lightButton, board, lightState)
         time.sleep(0.1)
         #pir = getPir(pirSensor, buzzSensor, board)
         #temp = getTemp()
