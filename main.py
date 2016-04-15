@@ -61,7 +61,7 @@ def getPir(buzzSensor, pirSensor, board):
     pval = p(pirSensor, board)
     value = pval.pirState
     print (str(value) + ' exter')
-    if value == '1':
+    if value == 1:
         b(buzzSensor, board).buzzMethod()
     else:
         pass
