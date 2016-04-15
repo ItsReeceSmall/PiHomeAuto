@@ -22,6 +22,7 @@ class Pir:
                 print('Error PIR not functioning, aborting...')
                 self.board.cleanup()
                 sys.exit()
+        return self.pirState
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
@@ -32,4 +33,4 @@ if __name__ == "__main__":
         #p = Pir(pirSensor)
         pirState = gpio.input(pirSensor)
         print (pirState)
-        time.sleep(0.08)
+        time.sleep(0.2)
