@@ -62,7 +62,7 @@ def getPir(buzzSensor, pirSensor, board):
     value = pval.pirState
     print (str(value) + ' exter')
     if value == '1':
-        b(buzzSensor, board)
+        b(buzzSensor, board).buzzMethod()
     else:
         pass
     lcd.lcd_clear()
