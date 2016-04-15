@@ -10,7 +10,6 @@ from buzzerClass import Buzz as b
 from lcd1602 import LCD1602
 
 #Pins
-powerLed = 11
 tempSensor = 7
 tempLed = 29
 dtSensor = 36
@@ -21,6 +20,7 @@ fadeLed = 37
 lightButton = 31
 nextButton = 33
 backButton = 40
+pirLight = 11
 
 board = Board().board
 lcd = LCD1602(board)
@@ -36,7 +36,7 @@ def setup():
     board.setmode(board.BOARD)    #set GPIO up
     board.setwarnings(False)
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
-    outputs = [powerLed, tempLed, dtSensor, buzzSensor, fadeLed]
+    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed]
     buttons = [lightButton, nextButton, backButton]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
@@ -57,18 +57,23 @@ def getDist(dtSensor, deSensor, board):
     value = (str(dval.distValue) + 'cm')
     return value
 
-def getPir(buzzSensor, pirSensor, board):
+def getPir(buzzSensor, pirSensor, board, counter, pirLight):
+    if counter >= 5:
+        l(pirLight, board).LedOff()
+        counter = 0
     pval = p(pirSensor, board)
     value = pval.pirState
     print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
         finValue = 'ON '
+        l(pirLight, board).LedOn()
+        counter = (counter + 1)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
         b(buzzSensor, board).buzzOff()
     else:
         finValue = 'OFF'
-    return finValue
+    return finValue, counter
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
     if board.input(lightButton) == False:
@@ -83,12 +88,13 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
 tempSet()
 setup()
 lightState = 'on'
+counter = 0
 lcd.lcd_string('C  F  Pir Dist', lcd.LCD_LINE_1)
 
 try:
     while True:
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
-        pir = getPir(pirSensor, buzzSensor, board)
+        pir, counter = getPir(pirSensor, buzzSensor, board, counter, pirLight)
         temp = getTemp()
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dist', lcd.LCD_LINE_1)
