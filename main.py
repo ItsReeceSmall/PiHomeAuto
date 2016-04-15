@@ -12,7 +12,7 @@ from lcd1602 import LCD1602
 #Pins
 powerLed = 11
 tempSensor = 7
-tempLed = 10
+tempLed = 29
 dtSensor = 36
 deSensor = 38
 pirSensor = 32
@@ -80,22 +80,20 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
         if lightState == 'on':
             l(fadeLed, board).LedOff()
             lightState = 'off'
-            print (lightState)
         elif lightState == 'off':
             l(fadeLed, board).LedOn()
             lightState = 'on'
-            print(lightState)
     return lightState
 
 tempSet()
 setup()
 lightState = 'on'
+
 try:
     while True:
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
-        time.sleep(0.1)
-        #pir = getPir(pirSensor, buzzSensor, board)
-        #temp = getTemp()
+        pir = getPir(pirSensor, buzzSensor, board)
+        temp = getTemp()
         #time.sleep(2)
         #dist = getDist(dtSensor, deSensor)
 except KeyboardInterrupt:
@@ -104,4 +102,3 @@ except KeyboardInterrupt:
     lcd.lcd_clear()
     lcd.cleanup()
     sys.exit()
-    
