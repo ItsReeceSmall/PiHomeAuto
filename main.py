@@ -55,14 +55,14 @@ def getDist(dtSensor, deSensor, board):
     lcd.lcd_string(value + 'cm', lcd.LCD_LINE_2)
     return value
 
-def getPir(buzzSensor, pirSensor, board):
+def getPir(buzzSensor, pirSensor, board, lcd):
     lcd.lcd_string('Checking', lcd.LCD_LINE_1)
     lcd.lcd_string('PIR Sensor', lcd.LCD_LINE_2)
     pval = p(pirSensor, board)
     value = pval.pirState
     print (str(value) + ' exter')
     if value == 1:
-        b(buzzSensor, board).buzzMethod()
+        b(buzzSensor, board, lcd).buzzMethod()
     else:
         pass
     lcd.lcd_clear()
@@ -72,7 +72,7 @@ tempSet()
 setup()
 try:
     while True:
-        pir = getPir(pirSensor, buzzSensor, board)
+        pir = getPir(pirSensor, buzzSensor, board, lcd)
         temp = getTemp()
         time.sleep(2)
         #dist = getDist(dtSensor, deSensor)

@@ -1,24 +1,24 @@
 import RPi.GPIO as gpio
-import os, time, sys, glob
+import time
 from lcd1602 import LCD1602
 from board import Board
 
 board = Board().board
-lcd = LCD1602(board)
 
 class Buzz:
-    def __init__(self, buzzSensor, board):
+    def __init__(self, buzzSensor, board, lcd):
+        self.lcd = lcd
         self.board = board
         self.buzzSensor = buzzSensor
         self.buzzMethod()
 
     def buzzMethod(self):
-        lcd.lcd_string('Presence', lcd.LCD_LINE_1)
-        lcd.lcd_string('Detected', lcd.LCD_LINE_2)
-        gpio.output(buzzSensor, gpio.HIGH)  # Buzzer On
+        self.lcd.lcd_string('Presence', self.lcd.LCD_LINE_1)
+        self.lcd.lcd_string('Detected', self.lcd.LCD_LINE_2)
+        self.board.output(buzzSensor, self.board.HIGH)  # Buzzer On
         time.sleep(2)
-        gpio.output(buzzSensor, gpio.LOW)   # Buzzer Off
-        lcd.lcd_clear()                     # Clear LCD
+        self.board.output(buzzSensor, self.board.LOW)   # Buzzer Off
+        self.lcd.lcd_clear()                     # Clear LCD
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
