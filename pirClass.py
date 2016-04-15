@@ -14,8 +14,8 @@ class Pir:
             self.pirState = self.board.input(self.pirSensor)
             value = self.board.input(self.pirSensor)
             time.sleep(0.3)
-            print (self.pirState)
-            print (value)
+            print (str(self.pirState) + ' self')
+            print (str(value) + ' value')
             if self.pirState == 1:
                 self.pirState = 1
                 return self.pirState
