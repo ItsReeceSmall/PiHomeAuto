@@ -76,18 +76,15 @@ def getPir(buzzSensor, pirSensor, board):
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
-    if lightState == 'on':
-        if board.input(lightButton) == False:
+    if board.input(lightButton) == False:
+        if lightState == 'on':
             board.output(fadeLed, board.LOW)
             lightState = 'off'
             print (lightState)
-            return lightState
-    elif lightState == 'off':
-        if board.input(lightButton) == False:
+        elif lightState == 'off':
             board.output(fadeLed, board.HIGH)
             lightState = 'on'
             print(lightState)
-            return lightState
     return lightState
 
 tempSet()
