@@ -67,9 +67,12 @@ def getPir(buzzSensor, pirSensor, board):
     value = pval.pirState
     print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
-        b(buzzSensor, board).buzzMethod()
         lcd.lcd_string('Presence', lcd.LCD_LINE_1)
         lcd.lcd_string('Detected', lcd.LCD_LINE_2)
+        print (buzzSensor)
+        b(buzzSensor, board).buzzOn()
+        time.sleep(0.2)
+        b(buzzSensor, board).buzzOff()
     else:
         pass
     lcd.lcd_clear()
