@@ -9,7 +9,7 @@ class Buzz:
     def __init__(self, buzzSensor, board, lcd):
         self.lcd = lcd
         self.board = board
-        self.buzzSensor = buzzSensor
+        self.buzzSensor = 35
         self.buzzMethod()
 
     def buzzMethod(self):
