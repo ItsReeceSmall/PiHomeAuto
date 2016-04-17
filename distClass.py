@@ -31,6 +31,7 @@ class Dist:
       while self.board.input(self.deSensor)==1:
         pulse_end = time.time()
       pulse_duration = pulse_end - pulse_start
+      print (str(pulse_duration) + ' is pulse duration')
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
       distance = pulse_duration * 17150
       distance = round(distance, 1)
