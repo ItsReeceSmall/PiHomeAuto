@@ -14,7 +14,7 @@ class Dist:
       self.distCheck()
   
   def distCheck(self):
-      pulse_end, pulse_start = 0
+      pulse_end, pulse_start = 0, 0
       self.dtSensor = 36
       self.deSensor = 38
       self.board.setup(self.dtSensor,self.board.OUT)
