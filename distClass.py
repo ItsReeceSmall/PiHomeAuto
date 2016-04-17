@@ -26,10 +26,12 @@ class Dist:
       self.board.output(self.dtSensor, False)
       print ('DEBUG: while gpio.input(self.deSensor)==0:')
       while self.board.input(self.deSensor)==0:
-        pulse_start = time.time()
+          pulse_start = time.time()
+          print(str(pulse_start) + ' is start')
       print ('DEBUG: while gpio.input(self.deSensor)==1:')
       while self.board.input(self.deSensor)==1:
-        pulse_end = time.time()
+          pulse_end = time.time()
+          print (str(pulse_end) + ' is end')
       pulse_duration = pulse_end - pulse_start
       print (str(pulse_duration) + ' is pulse duration')
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
