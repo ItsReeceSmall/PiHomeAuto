@@ -27,7 +27,7 @@ class Dist:
       print ('DEBUG: while gpio.input(self.deSensor)==1:')
       while self.board.input(self.deSensor)==1:
           pulse_end = time.time()
-      pulse_duration = (pulse_end - pulse_start)
+      pulse_duration = pulse_end - pulse_start
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
       distance = pulse_duration * 17150
       distance = round(distance, 1)
