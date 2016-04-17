@@ -8,8 +8,8 @@ board = Board().board
 class Dist:
   def __init__(self, dtSensor, deSensor, board):
       self.board = board
-      self.dtSensor = dtSensor
-      self.deSensor = deSensor
+      self.dtSensor = 36
+      self.deSensor = 38
       self.distValue = 0
       self.distCheck()
   
@@ -17,7 +17,7 @@ class Dist:
       self.board.setup(self.dtSensor,self.board.OUT)
       self.board.setup(self.deSensor,self.board.IN)
       self.board.output(self.dtSensor, False)
-      time.sleep(1)
+      time.sleep(0.2)
       self.board.output(self.dtSensor, True)
       time.sleep(0.00001)
       self.board.output(self.dtSensor, False)
