@@ -14,6 +14,7 @@ class Dist:
       self.distCheck()
   
   def distCheck(self):
+      pulse_end, pulse_start = 0
       self.dtSensor = 36
       self.deSensor = 38
       self.board.setup(self.dtSensor,self.board.OUT)
@@ -25,11 +26,11 @@ class Dist:
       self.board.output(self.dtSensor, False)
       print ('DEBUG: while gpio.input(self.deSensor)==0:')
       while self.board.input(self.deSensor)==0:
-          self.pulse_start = time.time()
+        pulse_start = time.time()
       print ('DEBUG: while gpio.input(self.deSensor)==1:')
       while self.board.input(self.deSensor)==1:
-          self.pulse_end = time.time()
-      pulse_duration = self.pulse_end - self.pulse_start
+        pulse_end = time.time()
+      pulse_duration = pulse_end - pulse_start
       print ('DEBUG: pulse_duration = pulse_end - pulse_start')
       distance = pulse_duration * 17150
       distance = round(distance, 1)
