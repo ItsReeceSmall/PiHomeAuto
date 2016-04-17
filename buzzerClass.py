@@ -6,7 +6,7 @@ board = Board().board
 class Buzz:
     def __init__(self, buzzSensor, board):
         self.board = board
-        self.buzzSensor = 32
+        self.buzzSensor = 35
         self.outpin()
 
     def outpin(self):
