@@ -73,6 +73,7 @@ def getPir(pirSensor, board, counter, pirLight):
     return finValue, counter
 
 def runBuzz(board, buzzSensor, pir):
+    print (pir)
     if pir == 'OFF':
         return buzzSensor
     elif pir == 'ON ':
