@@ -57,7 +57,7 @@ def getDist(dtSensor, deSensor, board):
     value = (str(dval.distValue))
     return value
 
-def getPir(pirSensor, board, counter, pirLight):
+def getPir(pirSensor, board, counter, pirLight, buzzSensor):
     if counter >= 5:
         l(pirLight, board).LedOff()
         counter = 0
@@ -68,22 +68,12 @@ def getPir(pirSensor, board, counter, pirLight):
         finValue = 'ON '
         l(pirLight, board).LedOn()
         counter = (counter + 1)
-    else:
-        finValue = 'OFF'
-    return finValue, counter
-
-def runBuzz(board, buzzSensor, pir):
-    print (pir)
-    if pir == 'OFF':
-        return buzzSensor
-    elif pir == 'ON ':
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
         b(buzzSensor, board).buzzOff()
     else:
-        print('ERROR: Value not ON or OFF, exiting')
-        lcd.cleanup()
-        sys.exit()
+        finValue = 'OFF'
+    return finValue, counter
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
     if board.input(lightButton) == False:
@@ -104,8 +94,7 @@ lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
 try:
     while True:
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
-        pir, counter = getPir(pirSensor, board, counter, pirLight)
-        runBuzz(pir, buzzSensor, board)
+        pir, counter = getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = getTemp()
         dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
