@@ -16,11 +16,11 @@ dtSensor = 36
 deSensor = 38
 pirSensor = 32
 buzzSensor = 35
-fadeLed = 37
-lightButton = 31
+fadeLed = 11
+lightButton = 40
 nextButton = 33
-backButton = 40
-pirLight = 11
+backButton = 31
+pirLight = 12
 
 board = Board().board
 lcd = LCD1602(board)
