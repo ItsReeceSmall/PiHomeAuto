@@ -24,20 +24,20 @@ class Dist:
       self.board.output(self.dtSensor, True)
       time.sleep(0.00001)
       self.board.output(self.dtSensor, False)
-      print ('DEBUG: while gpio.input(self.deSensor)==0:')
+      #print ('DEBUG: while gpio.input(self.deSensor)==0:')
       while self.board.input(self.deSensor)==0:
           pulse_start = time.time()
-          print(str(pulse_start) + ' is start')
-      print ('DEBUG: while gpio.input(self.deSensor)==1:')
+          #print(str(pulse_start) + ' is start')
+      #print ('DEBUG: while gpio.input(self.deSensor)==1:')
       while self.board.input(self.deSensor)==1:
           pulse_end = time.time()
-          print (str(pulse_end) + ' is end')
+          #print (str(pulse_end) + ' is end')
       pulse_duration = pulse_end - pulse_start
-      print (str(pulse_duration) + ' is pulse duration')
-      print ('DEBUG: pulse_duration = pulse_end - pulse_start')
+      #print (str(pulse_duration) + ' is pulse duration')
+      #print ('DEBUG: pulse_duration = pulse_end - pulse_start')
       distance = pulse_duration * 17150
       distance = round(distance, 1)
-      print (str(distance) + ' is the distance')
+      print (str(distance) + ' is the distance.')
       self.distValue = str(distance)
       return self.distValue
 
