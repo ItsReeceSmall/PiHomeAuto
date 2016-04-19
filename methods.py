@@ -40,6 +40,7 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
         counter = 0
     pval = p(pirSensor, board)
     value = pval.pirState
+    sys.stdout.write("\033[F")
     print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
         finValue = 'ON '
