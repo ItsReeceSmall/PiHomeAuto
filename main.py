@@ -50,7 +50,7 @@ try:
         if loopVal >= 2:
             for i in range(1,5):
                 sys.stdout.write("\033[F")
-                sys.stdout.write("\033[K")
+                #sys.stdout.write("\033[K")
         print('### Loop ' + str(loopVal) + ' ###')
         #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
         #M.endButton(board, backButton)
