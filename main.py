@@ -1,8 +1,7 @@
-import time, os, sys, glob, threading
-# FILES IMPORT BELOW
+import time, sys, threading, os, glob
 from board import Board
 import pins
-import methods as M
+import methods as M # All methods stored here
 from lcd1602 import LCD1602
 
 #Pins
@@ -23,7 +22,7 @@ ledGreen = 38
 ledBlue = 40
 
 board = Board().board
-lcd = LCD1602(board)
+lcd = LCD1602(board) # Can use 'lcd' as a shortened way to access the lcd1602 class
 board.setwarnings(False)
 
 def setup():
@@ -34,23 +33,21 @@ def setup():
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
     print('### ALL THE PINS ARE IMPORTED AND SETUP ###')
-    board.output(fadeLed, board.HIGH)
+    board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
 try:
     M.tempSet()
     setup()
-    lightState = 'on'
-    counter = 0
-    lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-    loopVal = 1
+    lightState = 'on' # Current state of the light stored in a variable
+    counter = 0 # Counter for pir light
+    loopVal = 1 # Shows what loop the program is on
     threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
-    threading.Thread(target=M.endButton, args=(board, backButton)).start()
+    threading.Thread(target=M.endButton, args=(board, backButton)).start() # Runs two threads so they function anytime
     print('')
     while True:
         if loopVal >= 2:
             for i in range(1,5):
                 sys.stdout.write("\033[F")
-                #sys.stdout.write("\033[K")
         print('### Loop ' + str(loopVal) + ' ###')
         #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
         #M.endButton(board, backButton)
@@ -63,7 +60,7 @@ try:
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
 except KeyboardInterrupt:
-    print('### Ctrl-C Pressed: Exiting ###')
+    print('\n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
     lcd.lcd_clear()
     lcd.cleanup()
