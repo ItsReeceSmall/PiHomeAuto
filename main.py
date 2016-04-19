@@ -78,7 +78,9 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
     return finValue, counter
 
 def getLight(lightSensor, board):
-    value = L(lightSensor, board)
+    LSV = 0
+    lval = L(lightSensor, board, LSV)
+    value = lval.LSV
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
@@ -103,6 +105,7 @@ try:
         pir, counter = getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = getTemp()
         light = getLight(lightSensor, board)
+        print(light)
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)

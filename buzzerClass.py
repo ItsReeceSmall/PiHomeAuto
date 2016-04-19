@@ -14,11 +14,11 @@ class Buzz:
 
     def buzzOn(self):
         self.board.output(self.buzzSensor, self.board.HIGH)
-        print ('buzzer on')# Buzzer On
+        #print ('buzzer on')# Buzzer On
 
     def buzzOff(self):
         self.board.output(self.buzzSensor, self.board.LOW)
-        print('buzzer off')  # Buzzer Off
+        #print('buzzer off')  # Buzzer Off
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
