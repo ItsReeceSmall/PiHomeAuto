@@ -105,7 +105,7 @@ try:
         light = getLight(lightSensor, board)
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + light, lcd.LCD_LINE_2)
+        lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
 except KeyboardInterrupt:
     print('Exiting')
     time.sleep(2)
