@@ -10,7 +10,7 @@ class LCD1602:
         self.LCD_RS = 26
         self.LCD_E  = 24
         self.LCD_D4 = 15 #Pins for the variable resistor build
-        self.LCD_D5 = 29
+        self.LCD_D5 = 33
         self.LCD_D6 = 13
         self.LCD_D7 = 37
 

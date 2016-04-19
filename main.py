@@ -18,9 +18,10 @@ pirSensor = 32
 buzzSensor = 35
 fadeLed = 11
 lightButton = 40
-nextButton = 33
-backButton = 31
-pirLight = 12
+nextButton = 12
+backButton = 16
+lightSensor = 18
+pirLight = 30
 
 board = Board().board
 lcd = LCD1602(board)
@@ -35,7 +36,7 @@ def tempSet():
 def setup():
     board.setmode(board.BOARD)    #set GPIO up
     board.setwarnings(False)
-    inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
+    inputs = [tempSensor, pirSensor, deSensor, lightSensor]   # Set there categories in arrays
     outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed]
     buttons = [lightButton, nextButton, backButton]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
@@ -96,9 +97,9 @@ try:
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
         pir, counter = getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = getTemp()
-        dist = getDist(dtSensor, deSensor, board)
+        #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
+        lcd.lcd_string(temp + ' ' + pir + ' ' + 'test', lcd.LCD_LINE_2)
 except KeyboardInterrupt:
     print('Exiting')
     time.sleep(2)
