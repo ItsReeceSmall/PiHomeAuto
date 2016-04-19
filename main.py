@@ -78,7 +78,7 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
     return finValue, counter
 
 def getLight(lightSensor, board):
-    value = L.lightMethod(lightSensor, board)
+    value = L(lightSensor, board)
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
