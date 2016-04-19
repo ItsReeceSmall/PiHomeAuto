@@ -16,9 +16,9 @@ class Light:
         self.LSV = 0
         time.sleep(0.05)
         self.board.setup(self.lightSensor,self.board.IN)
-        #for i in range(1,11):
-        if self.board.input(self.lightSensor) == self.board.LOW:
-            self.LSV += 1
+        for i in range(1,11):
+            if (self.board.input(self.lightSensor) == self.board.LOW):
+                self.LSV += 1
         return self.LSV
 
 if __name__ == "__main__":
