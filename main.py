@@ -47,6 +47,8 @@ try:
     #threading.Thread(target=M.endButton, args=(board, backButton)).start()
     while True:
         print('### Loop ' + str(loopVal) + ' ###')
+        #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
+        M.endButton(board, backButton)
         loopVal = loopVal + 1
         pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = M.getTemp()
@@ -54,7 +56,7 @@ try:
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
-except board.input(backButton) == False:
+except KeyboardInterrupt:
     print('### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
     lcd.lcd_clear()
