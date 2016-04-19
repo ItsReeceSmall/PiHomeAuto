@@ -1,7 +1,6 @@
 import time, os, sys, glob, threading
 # FILES IMPORT BELOW
 from board import Board
-import pins
 from lightClass import Light as L
 from LedClass import Led as l
 from tempClass import Temp as t
@@ -19,17 +18,6 @@ def tempSet():
     base_dir = '/sys/bus/w1/devices/'
     device_folder = glob.glob(base_dir + '28*')[0]
     device_file = device_folder + '/w1_slave'
-
-def setup():
-    board.setmode(board.BOARD)    #set GPIO up
-    board.setwarnings(False)
-    inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
-    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed]
-    buttons = [lightButton, nextButton, backButton]
-    print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
-    pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
-    print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
-    board.output(fadeLed, board.HIGH)
 
 def getTemp():
     c, f = t.read_temp() # Get temp values
@@ -71,12 +59,16 @@ def getLight(lightSensor, board):
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
-    while True:
-        time.sleep(0.8)
-        if board.input(lightButton) == False:
-            if lightState == 'on':
-                l(fadeLed, board).LedOff()
-                lightState = 'off'
-            elif lightState == 'off':
-                l(fadeLed, board).LedOn()
-                lightState = 'on'
+    try:
+        while True:
+            time.sleep(0.2)
+            if board.input(lightButton) == False:
+                if lightState == 'on':
+                    l(fadeLed, board).LedOff()
+                    lightState = 'off'
+                elif lightState == 'off':
+                    l(fadeLed, board).LedOn()
+                    lightState = 'on'
+    except KeyboardInterrupt:
+        board.cleanup()
+        sys.exit()
