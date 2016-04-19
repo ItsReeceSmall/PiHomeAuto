@@ -35,4 +35,4 @@ class Pins:
             sys.stdout.write("\033[F")
             # lcd.lcd_string('Pin ' + str(pin) + ' setup', lcd.LCD_LINE_1)
             self.time.sleep(0.15)
-        print('########################################')
+        print('###########################################')

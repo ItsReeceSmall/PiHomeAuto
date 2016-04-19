@@ -24,16 +24,16 @@ ledBlue = 40
 
 board = Board().board
 lcd = LCD1602(board)
+board.setwarnings(False)
 
 def setup():
     board.setmode(board.BOARD)    #set GPIO up
-    board.setwarnings(False)
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
     outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed]
     buttons = [lightButton, nextButton, backButton]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
-    print('### ALL PINS ARE IMPORTED AND SETUP SUCCESSFULLY ###')
+    print('### ALL THE PINS ARE IMPORTED AND SETUP ###')
     board.output(fadeLed, board.HIGH)
 
 try:
