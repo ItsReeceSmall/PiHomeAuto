@@ -50,10 +50,10 @@ try:
         #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
         #M.endButton(board, backButton)
         loopVal = loopVal + 1
-        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
-        temp, celcius = M.getTemp()
+        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, loopVal)
+        temp, celcius = M.getTemp(loopVal)
         M.tempLight(celcius, board, ledRed, ledGreen, ledBlue)
-        light = M.getLight(lightSensor, board)
+        light = M.getLight(lightSensor, board, loopVal)
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)

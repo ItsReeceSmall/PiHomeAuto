@@ -20,11 +20,14 @@ def tempSet():
     device_folder = glob.glob(base_dir + '28*')[0]
     device_file = device_folder + '/w1_slave'
 
-def getTemp():
+def getTemp(loopVal):
     c, f = t.read_temp() # Get temp values
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
+    if loopVal >= 2:
+        sys.stdout.write("\033[F")
+        sys.stdout.write("\033[F")
     print ('Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
     return tempFin, c
@@ -34,13 +37,16 @@ def getDist(dtSensor, deSensor, board):
     value = (str(dval.distValue))
     return value
 
-def getPir(pirSensor, board, counter, pirLight, buzzSensor):
+def getPir(pirSensor, board, counter, pirLight, buzzSensor, loopVal):
     if counter >= 5:
         l(pirLight, board).LedOff()
         counter = 0
     pval = p(pirSensor, board)
     value = pval.pirState
-    sys.stdout.write("\033[F")
+    if loopVal >= 2:
+        sys.stdout.write("\033[F")
+        sys.stdout.write("\033[F")
+        sys.stdout.write("\033[F")
     print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
         finValue = 'ON '
@@ -53,7 +59,9 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
         finValue = 'OFF'
     return finValue, counter
 
-def getLight(lightSensor, board):
+def getLight(lightSensor, board, loopVal):
+    if loopVal >= 2:
+        sys.stdout.write("\033[F")
     LSV = 0
     lval = L(lightSensor, board, LSV)
     value = lval.LSV
