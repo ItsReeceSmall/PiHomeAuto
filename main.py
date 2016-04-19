@@ -63,5 +63,5 @@ except KeyboardInterrupt:
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
     lcd.lcd_clear()
-    board.cleanup()
+    #board.cleanup()
     sys.exit()
