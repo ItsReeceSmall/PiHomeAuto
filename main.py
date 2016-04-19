@@ -45,12 +45,12 @@ try:
     loopVal = 1
     threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
     threading.Thread(target=M.endButton, args=(board, backButton)).start()
+    print('')
     while True:
         if loopVal >= 2:
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
+            for i in range(1,5):
+                sys.stdout.write("\033[F")
+                sys.stdout.write("\033[K")
         print('### Loop ' + str(loopVal) + ' ###')
         #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
         #M.endButton(board, backButton)
