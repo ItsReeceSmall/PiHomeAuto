@@ -69,10 +69,10 @@ def Buttons(fadeLed, lightButton, board, lightState, backButton):
             elif lightState == 'off':
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
-        elif board.input(backButton) == False:
-            lcd.lcd_clear()
-            board.cleanup()
-            sys.exit()
+        #elif board.input(backButton) == False:
+            #lcd.lcd_clear()
+            #board.cleanup()
+            #sys.exit()
 
 def tempLight(celcius, board, ledRed, ledGreen, ledBlue):
     if celcius < 18:
