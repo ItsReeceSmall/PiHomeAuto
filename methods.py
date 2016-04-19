@@ -27,7 +27,7 @@ def getTemp():
     temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
     print ('Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
-    return tempFin
+    return tempFin, c
 
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
@@ -77,5 +77,17 @@ def endButton(board, backButton):
             lcd.lcd_clear()
             board.cleanup()
             sys.exit()
-        else:
-            pass
+
+def tempLight(celcius, board, ledRed, ledGreen, ledBlue):
+    if celcius < 18:
+        l(ledBlue, board).LedOn()
+        l(ledGreen, board).LedOff()
+        l(ledRed, board).LedOff()
+    elif celcius > 22:
+        l(ledRed, board).LedOn()
+        l(ledGreen, board).LedOff()
+        l(ledBlue, board).LedOff()
+    else:
+        l(ledGreen, board).LedOn()
+        l(ledRed, board).LedOff()
+        l(ledBlue, board).LedOff()

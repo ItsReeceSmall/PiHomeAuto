@@ -44,14 +44,15 @@ try:
     lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
     loopVal = 1
     threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
-    #threading.Thread(target=M.endButton, args=(board, backButton)).start()
+    threading.Thread(target=M.endButton, args=(board, backButton)).start()
     while True:
         print('### Loop ' + str(loopVal) + ' ###')
         #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
-        M.endButton(board, backButton)
+        #M.endButton(board, backButton)
         loopVal = loopVal + 1
         pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
-        temp = M.getTemp()
+        temp, celcius = M.getTemp()
+        M.tempLight(celcius, board, ledRed, ledGreen, ledBlue)
         light = M.getLight(lightSensor, board)
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
