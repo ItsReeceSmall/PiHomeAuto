@@ -1,4 +1,3 @@
-import RPi.GPIO as gpio
 import time, sys, os
 from board import Board
 
