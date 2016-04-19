@@ -1,4 +1,4 @@
-import time, os, sys, glob
+import time, os, sys, glob, threading
 # FILES IMPORT BELOW
 from board import Board
 import pins
@@ -88,14 +88,14 @@ def getLight(lightSensor, board):
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
-    if board.input(lightButton) == False:
-        if lightState == 'on':
-            l(fadeLed, board).LedOff()
-            lightState = 'off'
-        elif lightState == 'off':
-            l(fadeLed, board).LedOn()
-            lightState = 'on'
-    return lightState
+    while True:
+        if board.input(lightButton) == False:
+            if lightState == 'on':
+                l(fadeLed, board).LedOff()
+                lightState = 'off'
+            elif lightState == 'off':
+                l(fadeLed, board).LedOn()
+                lightState = 'on'
 
 tempSet()
 setup()
@@ -103,12 +103,12 @@ lightState = 'on'
 counter = 0
 lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
 loopVal = 1
-
+threading.Thread(target=lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
 try:
     while True:
         print ('### Loop ' + str(loopVal) + ' ###')
         loopVal = loopVal + 1
-        lightState = lightSwitch(fadeLed, lightButton, board, lightState)
+        #lightState = lightSwitch(fadeLed, lightButton, board, lightState)
         pir, counter = getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = getTemp()
         light = getLight(lightSensor, board)
