@@ -1,5 +1,6 @@
 import time, os, sys, glob, threading
 # FILES IMPORT BELOW
+
 from board import Board
 from lightClass import Light as L
 from LedClass import Led as l
@@ -59,16 +60,20 @@ def getLight(lightSensor, board):
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
-    try:
-        while True:
-            time.sleep(0.2)
-            if board.input(lightButton) == False:
-                if lightState == 'on':
-                    l(fadeLed, board).LedOff()
-                    lightState = 'off'
-                elif lightState == 'off':
-                    l(fadeLed, board).LedOn()
-                    lightState = 'on'
-    except KeyboardInterrupt:
-        board.cleanup()
-        sys.exit()
+    while True:
+        time.sleep(0.05)
+        if board.input(lightButton) == False:
+            if lightState == 'on':
+                l(fadeLed, board).LedOff()
+                lightState = 'off'
+            elif lightState == 'off':
+                l(fadeLed, board).LedOn()
+                lightState = 'on'
+
+def endButton(board, backButton):
+    while True:
+        time.sleep(0.05)
+        if board.input(backButton) == False:
+            lcd.lcd_clear()
+            board.cleanup()
+            sys.exit()

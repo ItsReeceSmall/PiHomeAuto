@@ -44,6 +44,7 @@ try:
     lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
     loopVal = 1
     threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
+    threading.Thread(target=M.endButton, args=(board, backButton)).start()
     while True:
         print('### Loop ' + str(loopVal) + ' ###')
         loopVal = loopVal + 1
