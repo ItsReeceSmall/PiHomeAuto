@@ -2,31 +2,13 @@ import time, os, sys, glob, threading
 # FILES IMPORT BELOW
 from board import Board
 import pins
-import methods as M
-#from lightClass import Light as L
-#from LedClass import Led as l
-#from tempClass import Temp as t
-#from distClass import Dist as d
-#from pirClass import Pir as p
-#from buzzerClass import Buzz as b
+from lightClass import Light as L
+from LedClass import Led as l
+from tempClass import Temp as t
+from distClass import Dist as d
+from pirClass import Pir as p
+from buzzerClass import Buzz as b
 from lcd1602 import LCD1602
-
-#Pins
-tempSensor = 7
-tempLed = 23
-dtSensor = 31
-deSensor = 29
-pirSensor = 32
-buzzSensor = 35
-fadeLed = 11
-lightButton = 22
-nextButton = 12
-backButton = 16
-lightSensor = 18
-pirLight = 31
-ledRed = 36
-ledGreen = 38
-ledBlue = 40
 
 board = Board().board
 lcd = LCD1602(board)
@@ -57,7 +39,7 @@ def getTemp():
     print ('Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
     return tempFin
-    
+
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
     value = (str(dval.distValue))
@@ -98,27 +80,3 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
             elif lightState == 'off':
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
-
-try:
-    M.tempSet()
-    setup()
-    lightState = 'on'
-    counter = 0
-    lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-    loopVal = 1
-    threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
-    while True:
-        print('### Loop ' + str(loopVal) + ' ###')
-        loopVal = loopVal + 1
-        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
-        temp = M.getTemp()
-        light = M.getLight(lightSensor, board)
-        #dist = getDist(dtSensor, deSensor, board)
-        lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
-except KeyboardInterrupt:
-    print('### Ctrl-C Pressed: Exiting ###')
-    time.sleep(0.1)
-    lcd.lcd_clear()
-    lcd.cleanup()
-    sys.exit()
