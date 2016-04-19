@@ -41,16 +41,14 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     loopVal = 1 # Shows what loop the program is on
-    threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
-    threading.Thread(target=M.endButton, args=(board, backButton)).start() # Runs two threads so they function anytime
+    threading.Thread(target=M.Buttons, args=(fadeLed, backButton, lightButton, board, lightState)).start()
     print('')
     while True:
         if loopVal >= 2:
             for i in range(1,5):
                 sys.stdout.write("\033[F")
         print('### Loop ' + str(loopVal) + ' ###')
-        #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
-        #M.endButton(board, backButton)
+        #lightState = M.Buttons(fadeLed, lightButton, board, lightState, backButton)
         loopVal = loopVal + 1
         pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp, celcius = M.getTemp()

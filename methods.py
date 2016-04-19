@@ -59,7 +59,7 @@ def getLight(lightSensor, board):
     print ('Light Sensor Value = ' + str(value))
     return value
 
-def lightSwitch(fadeLed, lightButton, board, lightState):
+def Buttons(fadeLed, lightButton, board, lightState, backButton):
     while True:
         time.sleep(0.05)
         if board.input(lightButton) == False:
@@ -69,10 +69,6 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
             elif lightState == 'off':
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
-
-def endButton(board, backButton):
-    while True:
-        time.sleep(0.05)
         if board.input(backButton) == False:
             lcd.lcd_clear()
             board.cleanup()
