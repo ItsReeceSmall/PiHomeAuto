@@ -77,3 +77,5 @@ def endButton(board, backButton):
             lcd.lcd_clear()
             board.cleanup()
             sys.exit()
+        else:
+            pass
