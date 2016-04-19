@@ -22,7 +22,7 @@ lightButton = 40
 nextButton = 12
 backButton = 16
 lightSensor = 18
-pirLight = 30
+pirLight = 31
 
 board = Board().board
 lcd = LCD1602(board)
