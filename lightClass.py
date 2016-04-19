@@ -22,4 +22,5 @@ def RCtime (PiPin):
 
 # Main program loop
 while True:
-  print RCtime(18) # Measure timing using GPIO4
+  value = RCtime(18)
+  print value # Measure timing using GPIO4
