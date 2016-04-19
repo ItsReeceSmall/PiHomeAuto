@@ -25,7 +25,7 @@ def getTemp():
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
-    print ('Temperature: ' + temp)
+    print ('### Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
     return tempFin, c
 
@@ -40,7 +40,7 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
         counter = 0
     pval = p(pirSensor, board)
     value = pval.pirState
-    print ('PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
+    print ('### PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
         finValue = 'ON '
         l(pirLight, board).LedOn()
@@ -56,7 +56,7 @@ def getLight(lightSensor, board):
     LSV = 0
     lval = L(lightSensor, board, LSV)
     value = lval.LSV
-    print ('Light Sensor Value = ' + str(value))
+    print ('### Light Sensor Value = ' + str(value))
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
