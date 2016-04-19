@@ -41,7 +41,7 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     loopVal = 1 # Shows what loop the program is on
-    threading.Thread(target=M.lightSwitch, args=(fadeLed, backButton, lightButton, board, lightState)).start()
+    threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
     print('')
     while True:
         if loopVal >= 2:
