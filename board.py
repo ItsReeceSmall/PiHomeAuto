@@ -7,7 +7,7 @@ class Board:
         self.setup()
     
     def setup(self):
-        self.cleanup()
+        #self.cleanup()
         #print ('Warnings = False')
         self.board.setwarnings(False)
         #print ('Board = gpio.BOARD')
