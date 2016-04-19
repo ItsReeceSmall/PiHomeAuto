@@ -46,14 +46,19 @@ try:
     threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
     threading.Thread(target=M.endButton, args=(board, backButton)).start()
     while True:
+        if loopVal >= 2:
+            sys.stdout.write("\033[F")
+            sys.stdout.write("\033[F")
+            sys.stdout.write("\033[F")
+            sys.stdout.write("\033[F")
         print('### Loop ' + str(loopVal) + ' ###')
         #lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
         #M.endButton(board, backButton)
         loopVal = loopVal + 1
-        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, loopVal)
-        temp, celcius = M.getTemp(loopVal)
+        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
+        temp, celcius = M.getTemp()
         M.tempLight(celcius, board, ledRed, ledGreen, ledBlue)
-        light = M.getLight(lightSensor, board, loopVal)
+        light = M.getLight(lightSensor, board)
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
