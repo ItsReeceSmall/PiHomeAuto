@@ -2,6 +2,7 @@ import time, os, sys, glob
 # FILES IMPORT BELOW
 from board import Board
 import pins
+from lightClass import Light as L
 from LedClass import Led as l
 from tempClass import Temp as t
 from distClass import Dist as d
@@ -76,6 +77,10 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
         finValue = 'OFF'
     return finValue, counter
 
+def getLight(lightSensor, board):
+    value = L.lightMethod(lightSensor, board)
+    return value
+
 def lightSwitch(fadeLed, lightButton, board, lightState):
     if board.input(lightButton) == False:
         if lightState == 'on':
@@ -97,9 +102,10 @@ try:
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
         pir, counter = getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = getTemp()
+        light = getLight(lightSensor, board)
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + 'test', lcd.LCD_LINE_2)
+        lcd.lcd_string(temp + ' ' + pir + ' ' + light, lcd.LCD_LINE_2)
 except KeyboardInterrupt:
     print('Exiting')
     time.sleep(2)

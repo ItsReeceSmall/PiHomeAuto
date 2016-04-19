@@ -1,26 +1,28 @@
-import RPi.GPIO as GPIO, time
+import RPi.GPIO as gpio
+import time, sys, os
+from board import Board
 
-# Tell the GPIO library to use
-# Broadcom GPIO references
-GPIO.setmode(GPIO.BOARD)
+board = Board().board
 
-# Define function to measure charge time
-def RCtime (PiPin):
-  measurement = 0
-  # Discharge capacitor
-  GPIO.setup(PiPin, GPIO.OUT)
-  GPIO.output(PiPin, GPIO.LOW)
-  time.sleep(0.1)
+class Light:
+    def __init__(self, lightSensor, board):
+        self.board = board
+        self.lightSensor = lightSensor
+        self.lightMehtod()
 
-  GPIO.setup(PiPin, GPIO.IN)
-  # Count loops until voltage across
-  # capacitor reads high on GPIO
-  while (GPIO.input(PiPin) == GPIO.LOW):
-    measurement += 1
+    def lightMethod(self):
+        self.board.setup(lightSensor, self.board.OUT)
+        self.board.output(lightSensor, self.board.LOW)
+        measurement = 0
+        time.sleep(0.05)
+        self.board.setup(lightSensor,self.board.IN)
+        #for i in range(1,11):
+        if self.board.input(lightSensor) == self.board.LOW:
+            measurement += 1
+        return measurement
 
-  return measurement
-
-# Main program loop
-while True:
-  value = RCtime(18)
-  print (value) # Measure timing using GPIO4
+if __name__ == "__main__":
+    l = Light()
+    lightSensor = 18
+    value = l.lightMethod(lightSensor, board)
+    print (value)
