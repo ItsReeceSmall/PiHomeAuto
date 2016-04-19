@@ -52,8 +52,8 @@ def getTemp():
     c, f = t.read_temp() # Get temp values
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
-    temp = (ct + ' C & ' + ft + ' F') # creates compiled string of temperature values
-    print ('The temperature is: ' + temp)
+    temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
+    print ('Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
     return tempFin
     
@@ -112,7 +112,6 @@ try:
         pir, counter = getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = getTemp()
         light = getLight(lightSensor, board)
-        print(light)
         #dist = getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
