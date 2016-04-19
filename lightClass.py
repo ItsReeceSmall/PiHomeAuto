@@ -22,7 +22,7 @@ class Light:
         return measurement
 
 if __name__ == "__main__":
-    l = Light()
+    l = Light(lightSensor, board)
     lightSensor = 18
     value = l.lightMethod(lightSensor, board)
     print (value)
