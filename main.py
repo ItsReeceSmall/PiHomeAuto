@@ -60,7 +60,7 @@ try:
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
 except KeyboardInterrupt:
-    print('\n \n### Ctrl-C Pressed: Exiting ###')
+    print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
     lcd.lcd_clear()
     lcd.cleanup()
