@@ -18,11 +18,14 @@ deSensor = 29
 pirSensor = 32
 buzzSensor = 35
 fadeLed = 11
-lightButton = 40
+lightButton = 22
 nextButton = 12
 backButton = 16
 lightSensor = 18
 pirLight = 31
+ledRed = 36
+ledGreen = 38
+ledBlue = 40
 
 board = Board().board
 lcd = LCD1602(board)
@@ -38,7 +41,7 @@ def setup():
     board.setmode(board.BOARD)    #set GPIO up
     board.setwarnings(False)
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
-    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor]
+    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed]
     buttons = [lightButton, nextButton, backButton]
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
@@ -81,6 +84,7 @@ def getLight(lightSensor, board):
     LSV = 0
     lval = L(lightSensor, board, LSV)
     value = lval.LSV
+    print ('Light Sensor Value = ' + str(value))
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):
@@ -98,9 +102,12 @@ setup()
 lightState = 'on'
 counter = 0
 lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
+loopVal = 1
 
 try:
     while True:
+        print ('### Loop ' + str(loopVal) + ' ###')
+        loopVal = loopVal + 1
         lightState = lightSwitch(fadeLed, lightButton, board, lightState)
         pir, counter = getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp = getTemp()
@@ -110,8 +117,8 @@ try:
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
 except KeyboardInterrupt:
-    print('Exiting')
-    time.sleep(2)
+    print('### Ctrl-C Pressed: Exiting ###')
+    time.sleep(0.1)
     lcd.lcd_clear()
     lcd.cleanup()
     sys.exit()
