@@ -6,7 +6,7 @@ board = Board().board
 class Light:
     def __init__(self, lightSensor, board):
         self.board = board
-        self.lightSensor = lightSensor
+        self.lightSensor = 18
         self.lightMethod()
 
     def lightMethod(self):
