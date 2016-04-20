@@ -16,7 +16,7 @@ lightButton = 22
 nextButton = 12
 backButton = 16
 lightSensor = 18
-pirLight = 31
+pirLight = 10
 ledRed = 36
 ledGreen = 38
 ledBlue = 40
@@ -41,7 +41,7 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     loopVal = 1 # Shows what loop the program is on
-    threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
+    lightState = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
     print('')
     while True:
         if loopVal >= 2:
@@ -60,6 +60,9 @@ try:
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
+    print('lcd clear')
     lcd.lcd_clear()
     #board.cleanup()
+    print('sys exit')
     sys.exit()
+    print('')

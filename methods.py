@@ -32,6 +32,7 @@ def getTemp():
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
     value = (str(dval.distValue))
+    print('### Distance: ' + value)
     return value
 
 def getPir(pirSensor, board, counter, pirLight, buzzSensor):
