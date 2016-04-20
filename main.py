@@ -48,11 +48,12 @@ try:
     counter = 0 # Counter for pir light
     loopVal = 1 # Shows what loop the program is on
     #TKR = Tk()
-    lightState = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton)).start()
+    screen = 0
+    screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
     print('')
     while True:
         if loopVal >= 2:
-            for i in range(1,6):
+            for i in range(1,7):
                 sys.stdout.write("\033[F")
         print('### Loop ' + str(loopVal) + ' ###')
         loopVal = loopVal + 1
@@ -61,6 +62,7 @@ try:
         M.tempLight(far, board, ledRed, ledGreen, ledBlue)
         light = M.getLight(lightSensor, board)
         dist = M.getDist(dtSensor, deSensor, board)
+        print (screen)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
         #TKR.mainloop()
