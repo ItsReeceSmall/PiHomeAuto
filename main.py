@@ -7,8 +7,8 @@ from lcd1602 import LCD1602
 #Pins
 tempSensor = 7
 tempLed = 23
-dtSensor = 31
-deSensor = 29
+dtSensor = 29
+deSensor = 31
 pirSensor = 32
 buzzSensor = 35
 fadeLed = 11
