@@ -4,7 +4,6 @@ import pins
 import methods as M # All methods stored here
 from lcd1602 import LCD1602
 from tkinter import *
-import tkinterClass as T
 
 #Pins
 tempSensor = 7
