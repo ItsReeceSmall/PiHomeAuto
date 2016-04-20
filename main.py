@@ -45,7 +45,7 @@ try:
     print('')
     while True:
         if loopVal >= 2:
-            for i in range(1,5):
+            for i in range(1,6):
                 sys.stdout.write("\033[F")
         print('### Loop ' + str(loopVal) + ' ###')
         #lightState = M.Buttons(fadeLed, lightButton, board, lightState, backButton)
@@ -54,9 +54,9 @@ try:
         temp, celcius = M.getTemp()
         M.tempLight(celcius, board, ledRed, ledGreen, ledBlue)
         light = M.getLight(lightSensor, board)
-        #dist = getDist(dtSensor, deSensor, board)
+        dist = M.getDist(dtSensor, deSensor, board)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + str(light), lcd.LCD_LINE_2)
+        lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
