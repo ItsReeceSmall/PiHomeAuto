@@ -34,6 +34,7 @@ def getTemp():
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
     value = (str(dval.distValue))
+    sys.stdout.write("\033[K")
     print('### Distance: ' + value)
     #Label(TKR, text=('Distance: ' + str(value)), boarderwidth=1).grid(row=4, column=1)
     return value
