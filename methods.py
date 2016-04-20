@@ -95,13 +95,25 @@ def tempLight(far, board, ledRed, ledGreen, ledBlue):
 def Closeness(board, buzzSensor, dist):
     if dist <= 5:
         b(buzzSensor, board).buzzOn()
-        time.sleep(0.01)
+        time.sleep(0.2)
         b(buzzSensor, board).buzzOff()
     elif dist <= 10:
         b(buzzSensor, board).buzzOn()
         time.sleep(0.1)
         b(buzzSensor, board).buzzOff()
-    else:
+    elif dist <= 15:
         b(buzzSensor, board).buzzOn()
         time.sleep(0.2)
+        b(buzzSensor, board).buzzOff()
+    elif dist <= 20:
+        b(buzzSensor, board).buzzOn()
+        time.sleep(0.4)
+        b(buzzSensor, board).buzzOff()
+    elif dist <= 25:
+        b(buzzSensor, board).buzzOn()
+        time.sleep(0.5)
+        b(buzzSensor, board).buzzOff()
+    else:
+        b(buzzSensor, board).buzzOn()
+        time.sleep(0.6)
         b(buzzSensor, board).buzzOff()
