@@ -21,31 +21,31 @@ def tempSet():
     device_folder = glob.glob(base_dir + '28*')[0]
     device_file = device_folder + '/w1_slave'
 
-def getTemp(TKR):
+def getTemp():
     c, f = t.read_temp() # Get temp values
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
     print ('### Temperature: ' + temp)
-    Label(TKR, text=('Temperature: ' + str(temp)), boarderwidth=1).grid(row=2, column=1)
+    #Label(TKR, text=('Temperature: ' + str(temp)), boarderwidth=1).grid(row=2, column=1)
     tempFin = (ct + ' ' + ft)
     return tempFin, c
 
-def getDist(dtSensor, deSensor, board, TKR):
+def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
     value = (str(dval.distValue))
     print('### Distance: ' + value)
-    Label(TKR, text=('Distance: ' + str(value)), boarderwidth=1).grid(row=4, column=1)
+    #Label(TKR, text=('Distance: ' + str(value)), boarderwidth=1).grid(row=4, column=1)
     return value
 
-def getPir(pirSensor, board, counter, pirLight, buzzSensor, TKR):
+def getPir(pirSensor, board, counter, pirLight, buzzSensor):
     if counter >= 5:
         l(pirLight, board).LedOff()
         counter = 0
     pval = p(pirSensor, board)
     value = pval.pirState
     print ('### PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
-    Label(TKR, text=('PIR: ' + str(value)), boarderwidth=1).grid(row=1, column=1)
+    #Label(TKR, text=('PIR: ' + str(value)), boarderwidth=1).grid(row=1, column=1)
     if value == 1:
         finValue = 'ON '
         l(pirLight, board).LedOn()
@@ -60,12 +60,12 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, TKR):
         counter = (counter + 1)
     return finValue, counter
 
-def getLight(lightSensor, board, TKR):
+def getLight(lightSensor, board):
     LSV = 0
     lval = L(lightSensor, board, LSV)
     value = lval.LSV
     print ('### Light Sensor Value = ' + str(value))
-    Label(TKR, text=('Light: ' + str(value)), boarderwidth=1).grid(row=3, column=1)
+    #Label(TKR, text=('Light: ' + str(value)), boarderwidth=1).grid(row=3, column=1)
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState):

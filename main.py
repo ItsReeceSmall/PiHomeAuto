@@ -42,7 +42,7 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     loopVal = 1 # Shows what loop the program is on
-    TKR = Tk()
+    #TKR = Tk()
     lightState = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
     print('')
     while True:
@@ -52,15 +52,15 @@ try:
         print('### Loop ' + str(loopVal) + ' ###')
         lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
         loopVal = loopVal + 1
-        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, TKR)
-        temp, far = M.getTemp(TKR)
+        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
+        temp, far = M.getTemp()
         M.tempLight(far, board, ledRed, ledGreen, ledBlue)
-        light = M.getLight(lightSensor, board, TKR)
-        dist = M.getDist(dtSensor, deSensor, board, TKR)
+        light = M.getLight(lightSensor, board)
+        dist = M.getDist(dtSensor, deSensor, board)
         dist  = float(dist)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
-        TKR.mainloop()
+        #TKR.mainloop()
         #M.Closeness(board, buzzSensor, dist)
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
