@@ -45,7 +45,9 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
     if value == 1:
         finValue = 'ON '
         l(pirLight, board).LedOn()
+        print ('counter was: ' + str(counter))
         counter = (counter + 1)
+        print ('counter now is: ' + str(counter))
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
         b(buzzSensor, board).buzzOff()
