@@ -97,7 +97,7 @@ def Closeness(board, buzzSensor, dist):
         b(buzzSensor, board).buzzOn()
         time.sleep(0.05)
         b(buzzSensor, board).buzzOff()
-    elif dist >= 5 & dist <= 10:
+    elif dist <= 10:
         b(buzzSensor, board).buzzOn()
         time.sleep(0.5)
         b(buzzSensor, board).buzzOff()
