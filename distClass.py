@@ -15,8 +15,8 @@ class Dist:
   
   def distCheck(self):
       pulse_end, pulse_start = 0, 0
-      self.dtSensor = 36
-      self.deSensor = 38
+      self.dtSensor = 29
+      self.deSensor = 31
       self.board.setup(self.dtSensor,self.board.OUT)
       self.board.setup(self.deSensor,self.board.IN)
       self.board.output(self.dtSensor, False)
@@ -43,7 +43,7 @@ class Dist:
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
-    dtSensor = 31
-    deSensor = 29
+    dtSensor = 29
+    deSensor = 31
     d = Dist(dtSensor, deSensor, board)
     print (d.distValue)
