@@ -25,7 +25,12 @@ ledBlue = 40
 board = Board().board
 lcd = LCD1602(board) # Can use 'lcd' as a shortened way to access the lcd1602 class
 board.setwarnings(False)
+'''
+class App:
 
+    def __init__(self, temp, dist, pir, light):
+
+'''
 def setup():
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
