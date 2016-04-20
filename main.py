@@ -61,9 +61,8 @@ try:
         M.tempLight(far, board, ledRed, ledGreen, ledBlue)
         light = M.getLight(lightSensor, board)
         dist = M.getDist(dtSensor, deSensor, board)
-        dist  = float(dist)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
+        lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
         #TKR.mainloop()
         #M.Closeness(board, buzzSensor, dist)
 except (KeyboardInterrupt, SystemExit):
