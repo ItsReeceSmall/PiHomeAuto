@@ -44,19 +44,20 @@ try:
     lightState = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState)).start()
     print('')
     while True:
-        if loopVal >= 2:
-            for i in range(1,6):
-                sys.stdout.write("\033[F")
-        print('### Loop ' + str(loopVal) + ' ###')
+        #if loopVal >= 2:
+            #for i in range(1,6):
+                #sys.stdout.write("\033[F")
+        #print('### Loop ' + str(loopVal) + ' ###')
         #lightState = M.Buttons(fadeLed, lightButton, board, lightState, backButton)
-        loopVal = loopVal + 1
-        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
-        temp, celcius = M.getTemp()
-        M.tempLight(celcius, board, ledRed, ledGreen, ledBlue)
-        light = M.getLight(lightSensor, board)
+        #loopVal = loopVal + 1
+        #pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
+        #temp, far = M.getTemp()
+        #M.tempLight(far, board, ledRed, ledGreen, ledBlue)
+        #light = M.getLight(lightSensor, board)
         dist = M.getDist(dtSensor, deSensor, board)
-        lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
+        #lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
+        #lcd.lcd_string(temp + ' ' + pir + ' ' + dist, lcd.LCD_LINE_2)
+        M.Closeness(board, buzzSensor, dist)
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)

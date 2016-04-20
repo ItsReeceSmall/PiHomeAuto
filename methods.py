@@ -78,12 +78,12 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
             #board.cleanup()
             #sys.exit()
 
-def tempLight(celcius, board, ledRed, ledGreen, ledBlue):
-    if celcius < 18:
+def tempLight(far, board, ledRed, ledGreen, ledBlue):
+    if far <= 65:
         l(ledBlue, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledRed, board).LedOff()
-    elif celcius > 22:
+    elif far >= 69.8:
         l(ledRed, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledBlue, board).LedOff()
@@ -91,3 +91,17 @@ def tempLight(celcius, board, ledRed, ledGreen, ledBlue):
         l(ledGreen, board).LedOn()
         l(ledRed, board).LedOff()
         l(ledBlue, board).LedOff()
+
+def Closeness(board, buzzSensor, dist):
+    if dist <= 5:
+        b(buzzSensor, board).buzzOn()
+        time.sleep(0.05)
+        b(buzzSensor, board).buzzOff()
+    elif dist >= 5 & dist <= 10:
+        b(buzzSensor, board).buzzOn()
+        time.sleep(0.5)
+        b(buzzSensor, board).buzzOff()
+    else:
+        b(buzzSensor, board).buzzOn()
+        time.sleep(1)
+        b(buzzSensor, board).buzzOff()
