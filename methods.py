@@ -72,7 +72,7 @@ def getLight(lightSensor, board):
     #Label(TKR, text=('Light: ' + str(value)), boarderwidth=1).grid(row=3, column=1)
     return value
 
-def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton):
+def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton, screen):
     while True:
         time.sleep(0.05)
         if board.input(lightButton) == False:
@@ -83,19 +83,11 @@ def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton)
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
         elif board.input(nextButton) == False:
-            if lightState == 'on':
-                l(fadeLed, board).LedOff()
-                lightState = 'off'
-            elif lightState == 'off':
-                l(fadeLed, board).LedOn()
-                lightState = 'on'
+            screen = screen + 1
+            return screen
         elif board.input(backButton) == False:
-            if lightState == 'on':
-                l(fadeLed, board).LedOff()
-                lightState = 'off'
-            elif lightState == 'off':
-                l(fadeLed, board).LedOn()
-                lightState = 'on'
+            screen = screen - 1
+            return screen
         #elif board.input(backButton) == False:
             #lcd.lcd_clear()
             #board.cleanup()
