@@ -3,7 +3,7 @@ from board import Board
 import pins
 import methods as M # All methods stored here
 from lcd1602 import LCD1602
-from tkinter import *
+#from tkinter import *
 
 #Pins
 tempSensor = 7
