@@ -43,7 +43,7 @@ class Dist:
 
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
-    dtSensor = 29
-    deSensor = 31
+    dtSensor = 31
+    deSensor = 29
     d = Dist(dtSensor, deSensor, board)
     print (d.distValue)
