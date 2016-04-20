@@ -26,6 +26,7 @@ def getTemp():
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
+    sys.stdout.write("\033[K")
     print ('### Temperature: ' + temp)
     #Label(TKR, text=('Temperature: ' + str(temp)), boarderwidth=1).grid(row=2, column=1)
     tempFin = (ct + ' ' + ft)
@@ -45,6 +46,7 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
         counter = 0
     pval = p(pirSensor, board)
     value = pval.pirState
+    sys.stdout.write("\033[K")
     print ('### PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     #Label(TKR, text=('PIR: ' + str(value)), boarderwidth=1).grid(row=1, column=1)
     if value == 1:
@@ -65,6 +67,7 @@ def getLight(lightSensor, board):
     LSV = 0
     lval = L(lightSensor, board, LSV)
     value = lval.LSV
+    sys.stdout.write("\033[K")
     print ('### Light Sensor Value = ' + str(value))
     #Label(TKR, text=('Light: ' + str(value)), boarderwidth=1).grid(row=3, column=1)
     return value
