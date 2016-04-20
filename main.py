@@ -55,7 +55,6 @@ try:
             for i in range(1,6):
                 sys.stdout.write("\033[F")
         print('### Loop ' + str(loopVal) + ' ###')
-        lightState = M.lightSwitch(fadeLed, lightButton, board, lightState)
         loopVal = loopVal + 1
         pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
         temp, far = M.getTemp()
