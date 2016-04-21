@@ -28,7 +28,6 @@ def getTemp():
     temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
     sys.stdout.write("\033[K")
     print ('### Temperature: ' + temp)
-    #Label(TKR, text=('Temperature: ' + str(temp)), boarderwidth=1).grid(row=2, column=1)
     tempFin = (ct + ' ' + ft)
     return tempFin, c
 
@@ -37,7 +36,6 @@ def getDist(dtSensor, deSensor, board):
     value = (str(dval.distValue))
     sys.stdout.write("\033[K")
     print('### Distance: ' + value)
-    #Label(TKR, text=('Distance: ' + str(value)), boarderwidth=1).grid(row=4, column=1)
     return value
 
 def getPir(pirSensor, board, counter, pirLight, buzzSensor):
@@ -48,7 +46,6 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
     value = pval.pirState
     sys.stdout.write("\033[K")
     print ('### PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
-    #Label(TKR, text=('PIR: ' + str(value)), boarderwidth=1).grid(row=1, column=1)
     if value == 1:
         finValue = 'ON '
         l(pirLight, board).LedOn()
@@ -69,7 +66,6 @@ def getLight(lightSensor, board):
     value = lval.LSV
     sys.stdout.write("\033[K")
     print ('### Light Sensor Value = ' + str(value))
-    #Label(TKR, text=('Light: ' + str(value)), boarderwidth=1).grid(row=3, column=1)
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton, screen):

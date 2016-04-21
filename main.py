@@ -55,18 +55,18 @@ try:
         if loopVal >= 2:
             for i in range(1,7):
                 sys.stdout.write("\033[F")
-        print('### Loop ' + str(loopVal) + ' ###')
-        loopVal = loopVal + 1
-        pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
-        temp, far = M.getTemp()
-        M.tempLight(far, board, ledRed, ledGreen, ledBlue)
-        light = M.getLight(lightSensor, board)
+        #print('### Loop ' + str(loopVal) + ' ###')
+        #loopVal = loopVal + 1
+        #pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
+        #temp, far = M.getTemp()
+        #M.tempLight(far, board, ledRed, ledGreen, ledBlue)
+        #light = M.getLight(lightSensor, board)
         dist = M.getDist(dtSensor, deSensor, board)
-        print (screen)
-        lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
-        lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
+        #print (screen)
+        #lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
+        #lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
         #TKR.mainloop()
-        #M.Closeness(board, buzzSensor, dist)
+        M.Closeness(board, buzzSensor, dist)
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
