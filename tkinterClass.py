@@ -8,7 +8,7 @@ class App:
         frame.grid()
 
         self.titleLabel = Label(frame, text=('Home Automation System'), borderwidth=1).grid(row=1,column=2,padx=10,pady=10)
-        self.LoopLabel = Label(frame, text=('Loop ' + str(loopVal)), borderwidth=1).grid(row=2,column=2,padx=10,pady=10)
+        self.LoopLabel = Label(frame, text=('Loop '), borderwidth=1).grid(row=2,column=2,padx=10,pady=10)
 
         self.PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1).grid(row=3,column=1,padx=10,pady=10)
         self.TempLabel = Label(frame, text=('Temperature: '), borderwidth=1).grid(row=4,column=1,padx=10,pady=10)
