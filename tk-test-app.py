@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 
 checkbox_value = True
 
