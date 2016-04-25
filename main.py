@@ -77,7 +77,7 @@ class App:
                 self.TempValue = Label(frame, text=(temp), borderwidth=1).grid(row=4, column=2, padx=10, pady=10)
                 self.LightValue = Label(frame, text=(light), borderwidth=1).grid(row=5, column=2, padx=10, pady=10)
                 self.DistValue = Label(frame, text=(dist), borderwidth=1).grid(row=6, column=2, padx=10, pady=10)
-                root.after(1, frame.quit)
+                root.after(1000, frame.quit)
                 root.mainloop()
         except (KeyboardInterrupt, SystemExit):
             print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
