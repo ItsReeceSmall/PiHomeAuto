@@ -15,10 +15,10 @@ class App:
         self.LightLabel = Label(frame, text=('Light Sensor Value: '), borderwidth=1).grid(row=5,column=1,padx=10,pady=10)
         self.DistLabel = Label(frame, text=('Distance: '), borderwidth=1).grid(row=6,column=1,padx=10,pady=10)
 
-        self.PirValue = Label(frame, text=(pir), borderwidth=1).grid(row=3, column=2, padx=10, pady=10)
-        self.TempValue = Label(frame, text=(temp), borderwidth=1).grid(row=4, column=2, padx=10, pady=10)
-        self.LightValue = Label(frame, text=(light), borderwidth=1).grid(row=5, column=2, padx=10,pady=10)
-        self.DistValue = Label(frame, text=(dist), borderwidth=1).grid(row=6, column=2, padx=10, pady=10)
+        self.PirValue = Label(frame, text=('3'), borderwidth=1).grid(row=3, column=2, padx=10, pady=10)
+        self.TempValue = Label(frame, text=('3'), borderwidth=1).grid(row=4, column=2, padx=10, pady=10)
+        self.LightValue = Label(frame, text=('3'), borderwidth=1).grid(row=5, column=2, padx=10,pady=10)
+        self.DistValue = Label(frame, text=('3'), borderwidth=1).grid(row=6, column=2, padx=10, pady=10)
 
         self.close = Button(frame, text="Close", command=frame.quit).grid(row=7,column=2,padx=10,pady=10)
 
