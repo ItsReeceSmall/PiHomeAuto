@@ -43,6 +43,7 @@ class App:
             board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
         try:
+            root.mainloop()
             self.titleLabel = Label(frame, text=('Home Automation System'), borderwidth=1).grid(row=1, column=2,padx=10, pady=10)
             M.tempSet()
             setup()
@@ -85,7 +86,7 @@ class App:
             sys.exit()
 
 root = Tk()
+print('')
 root.title('Home Automation System v0.3 by Reece Small')
 app = App(root)
-root.mainloop()
 root.destroy()
