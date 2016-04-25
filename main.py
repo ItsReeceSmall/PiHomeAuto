@@ -43,7 +43,6 @@ class App:
             board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
         try:
-            root.mainloop()
             self.titleLabel = Label(frame, text=('Home Automation System'), borderwidth=1).grid(row=1, column=2,padx=10, pady=10)
             M.tempSet()
             setup()
@@ -78,6 +77,7 @@ class App:
                 self.TempValue = Label(frame, text=(temp), borderwidth=1).grid(row=4, column=2, padx=10, pady=10)
                 self.LightValue = Label(frame, text=(light), borderwidth=1).grid(row=5, column=2, padx=10, pady=10)
                 self.DistValue = Label(frame, text=(dist), borderwidth=1).grid(row=6, column=2, padx=10, pady=10)
+                root.mainloop()
         except (KeyboardInterrupt, SystemExit):
             print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
             time.sleep(0.1)
