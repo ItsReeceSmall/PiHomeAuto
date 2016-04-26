@@ -53,7 +53,7 @@ def getAll(lcdyon):
     dist = M.getDist(dtSensor, deSensor, board, frame)
     if lcdyon == 1:
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
-        lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + ' ' + str(light),lcd.LCD_LINE_2)
+        lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
 
 
 try:
