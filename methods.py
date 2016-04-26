@@ -21,7 +21,7 @@ def tempSet():
     device_folder = glob.glob(base_dir + '28*')[0]
     device_file = device_folder + '/w1_slave'
 
-def getTemp():
+def getTemp(frame):
     c, f = t.read_temp() # Get temp values
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
@@ -30,16 +30,20 @@ def getTemp():
     print ('### Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
     gui = (str(c) + ' C ' + str(f) + ' F')
+    TempValue = Label(frame, text=(gui), borderwidth=1)
+    TempValue.grid(row=4, column=2, padx=5, pady=5)
     return tempFin, c, gui
 
-def getDist(dtSensor, deSensor, board):
+def getDist(dtSensor, deSensor, board, frame):
     dval = d(dtSensor, deSensor, board)
     value = (str(dval.distValue))
     sys.stdout.write("\033[K")
     print('### Distance: ' + value)
+    DistValue = Label(frame, text=(value), borderwidth=1)
+    DistValue.grid(row=6, column=2, padx=5, pady=5)
     return value
 
-def getPir(pirSensor, board, counter, pirLight, buzzSensor):
+def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
     if counter >= 5:
         l(pirLight, board).LedOff()
         counter = 0
@@ -59,14 +63,17 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor):
     else:
         finValue = 'OFF'
         counter = (counter + 1)
+    PirValue = Label(frame, text=(finValue), borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
     return finValue, counter
 
-def getLight(lightSensor, board):
+def getLight(lightSensor, board, frame):
     LSV = 0
     lval = L(lightSensor, board, LSV)
     value = lval.LSV
     sys.stdout.write("\033[K")
     print ('### Light Sensor Value = ' + str(value))
+    LightValue = Label(frame, text=(value), borderwidth=1)
+    LightValue.grid(row=5, column=2, padx=5, pady=5)
     return value
 
 def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton, screen):
@@ -90,12 +97,12 @@ def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton,
             #board.cleanup()
             #sys.exit()
 
-def tempLight(far, board, ledRed, ledGreen, ledBlue):
-    if far <= 63:
+def tempLight(far, board, ledRed, ledGreen, ledBlue, frame, highTemp, lowTemp):
+    if far <= highTemp:
         l(ledBlue, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledRed, board).LedOff()
-    elif far >= 68:
+    elif far >= lowTemp:
         l(ledRed, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledBlue, board).LedOff()
@@ -145,5 +152,13 @@ def createWidgets(frame):
     DistLabel.grid(row=6, column=1, padx=5, pady=5)
     ##################################################
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=frame.quit)
-    CloseButton.grid(row=7, column=2, padx=5, pady=5)
+    CloseButton.grid(row=9, column=2, padx=5, pady=5)
     ##################################################
+    line1lab = Label(frame, text=('Line 1: '), borderwidth=1)
+    line1lab.grid(row=7,column=1,padx=5,pady=2)
+    line2lab = Label(frame, text=('Line 2: '), borderwidth=1)
+    line2lab.grid(row=8, column=1, padx=5, pady=2)
+
+def setLcd(line1, line2):
+    lcd.lcd_string(line1, lcd.LCD_LINE_1)
+    lcd.lcd_string(line2, lcd.LCD_LINE_2)
