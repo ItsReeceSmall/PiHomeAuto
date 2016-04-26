@@ -154,9 +154,9 @@ def setLcd(line1, line2):
     lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
 
 def testBuzz(board, buzzSensor, frame):
-    BuzzValue = Label(frame, text=('ON'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
+    BuzzValue = Label(frame, text=('ON'), fg='green', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
     b(buzzSensor, board).buzzTest()
-    BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
+    BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
 '''
 def clearLcd(line1, line2):
     line1.delete()
@@ -176,8 +176,8 @@ def createWidgets(frame, root):
     DistLabel = Label(frame, text=('Distance: '), borderwidth=1).grid(row=6, column=1, padx=5, pady=5)
     BuzzerLabel = Label(frame, text=('Buzzer: '), borderwidth=1).grid(row=7, column=1, padx=5, pady=5)
     ##################################################
-    line1lab = Label(frame, text=('LCD Line 1: '), borderwidth=1).grid(row=8,column=1,padx=5,pady=2)
-    line2lab = Label(frame, text=('LCD Line 2: '), borderwidth=1).grid(row=9, column=1, padx=5, pady=2)
+    line1lab = Label(frame, text=('LCD Line 1: '), fg='blue', borderwidth=1).grid(row=8,column=1,padx=5,pady=2)
+    line2lab = Label(frame, text=('LCD Line 2: '), fg='blue', borderwidth=1).grid(row=9, column=1, padx=5, pady=2)
     ##################################
     line1 = StringVar(frame, value='')
     lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1).grid(row=8,column=2,padx=5,pady=2)
