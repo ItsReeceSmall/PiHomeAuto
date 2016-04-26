@@ -23,6 +23,8 @@ def tempSet():
 
 def getTemp(frame):
     c, f = t.read_temp() # Get temp values
+    f = round(f, 2)
+    c = round(c, 2)
     ct = str(int(c))     # converts degrees c to string
     ft = str(int(f))     # converts degrees f to string
     temp = (ct + ' Celsius & ' + ft + ' Fahrenheit') # creates compiled string of temperature values
@@ -139,11 +141,6 @@ def Closeness(board, buzzSensor, dist):
         b(buzzSensor, board).buzzOff()
 
 def setLcd(line1, line2):
-    print (line1)
-    print (line2)
-    print('d')
-    print (line1.get())
-    print (line2.get())
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
     lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
 
@@ -174,6 +171,6 @@ def createWidgets(frame):
     line2 = StringVar(frame, value='')
     lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2)
     lcdLine2.grid(row=8, column=2, padx=5, pady=2)
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=setLcd(line1, line2))
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=lambda: setLcd(line1, line2))
     lcdBut.grid(row=7, column=3, padx=5, pady=2)
     ##################################################

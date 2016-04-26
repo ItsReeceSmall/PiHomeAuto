@@ -52,26 +52,23 @@ try:
     highTemp = 68
     lowTemp = 64
     print('')
+    '''
     pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
-    ##################################################################################################################################
     temp, far = M.getTemp(frame)
     M.tempLight(far, board, ledRed, ledGreen, ledBlue, frame, highTemp, lowTemp)
-    ##################################################################################################################################
     light = M.getLight(lightSensor, board, frame)
-    ##################################################################################################################################
     dist = M.getDist(dtSensor, deSensor, board, frame)
-    ##################################################################################################################################
-    print (screen)
     lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
     lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
+    '''
     ##################################################################################################################################
-    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, command=M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame))
+    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, command=lambda: M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame))
     pirBut.grid(row=3, column=3, padx=5,pady=5)
-    tempBut = Button(frame, text=('Get Text'), borderwidth=1, command=M.getTemp(frame))
+    tempBut = Button(frame, text=('Get Text'), borderwidth=1, command=lambda: M.getTemp(frame))
     tempBut.grid(row=4, column=3, padx=5, pady=5)
-    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, command=M.getLight(lightSensor, board, frame))
+    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, command=lambda: M.getLight(lightSensor, board, frame))
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
-    distBut = Button(frame, text=('Get Dist'), borderwidth=1, command=M.getDist(dtSensor, deSensor, board, frame))
+    distBut = Button(frame, text=('Get Dist'), borderwidth=1, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
     distBut.grid(row=6, column=3, padx=5, pady=5)
     ##################################################################################################################################
     root.mainloop()
