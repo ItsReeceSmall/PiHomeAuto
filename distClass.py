@@ -38,7 +38,7 @@ class Dist:
       distance = pulse_duration * 17150
       distance = round(distance, 1)
       #print (str(distance) + ' is the distance.')
-      self.distValue = str(distance)
+      self.distValue = distance
       return self.distValue
 
 if __name__ == "__main__":
