@@ -80,6 +80,10 @@ try:
     doAll.grid(row=1,column=3,padx=2,pady=5)
     ##################################################################################################################################
     root.mainloop()
+    root.destroy()
+    lcd.lcd_clear()
+    board.cleanup()
+    sys.exit()
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
     time.sleep(0.1)
