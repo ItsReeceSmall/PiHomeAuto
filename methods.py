@@ -171,11 +171,11 @@ def createWidgets(frame):
     lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2)
     lcdLine2.grid(row=8, column=2, padx=5, pady=2)
     ##################################
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=lambda: setLcd(line1, line2))
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=10, command=lambda: setLcd(line1, line2))
     lcdBut.grid(row=7, column=3, padx=5, pady=2)
-    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, command=lambda: setLcd(line1, line2))
-    lcdClearBut.grid(row=7, column=3, padx=5, pady=2)
+    #lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, command=lambda: setLcd(line1, line2))
+    #lcdClearBut.grid(row=8, column=3, padx=5, pady=2)
     ##################################################
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: board.cleanup())
-    CloseButton.grid(row=2, column=2, padx=5, pady=5)
+    CloseButton.grid(row=1, column=2, padx=5, pady=5)
     ##################################################
