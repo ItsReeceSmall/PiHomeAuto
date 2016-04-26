@@ -50,7 +50,7 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
     if counter >= 5:
         l(pirLight, board).LedOff()
         counter = 0
-    pval = p(pirSensor, board)
+    pval = p(pirSensor, board, frame)
     value = pval.pirState
     sys.stdout.write("\033[K")
     print ('### PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
@@ -61,11 +61,11 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
         counter = 0
         #print ('counter now is: ' + str(counter))
         BuzzValue = Label(frame, text=('ON'), borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
-        b(buzzSensor, board).buzzOn()
+        b(buzzSensor, board, frame).buzzOn()
         time.sleep(0.4)
         BuzzValue = Label(frame, text=(''), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
-        b(buzzSensor, board).buzzOff()
+        b(buzzSensor, board, frame).buzzOff()
     else:
         BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         finValue = 'OFF'
@@ -119,31 +119,31 @@ def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
         l(ledRed, board).LedOff()
         l(ledBlue, board).LedOff()
 
-def Closeness(board, buzzSensor, dist):
+def Closeness(board, buzzSensor, dist, frame):
     if dist <= 5:
-        b(buzzSensor, board).buzzOn()
+        b(buzzSensor, board, frame).buzzOn()
         time.sleep(0.6)
-        b(buzzSensor, board).buzzOff()
+        b(buzzSensor, board, frame).buzzOff()
     elif dist <= 10:
-        b(buzzSensor, board).buzzOn()
+        b(buzzSensor, board, frame).buzzOn()
         time.sleep(0.45)
-        b(buzzSensor, board).buzzOff()
+        b(buzzSensor, board, frame).buzzOff()
     elif dist <= 15:
-        b(buzzSensor, board).buzzOn()
+        b(buzzSensor, board, frame).buzzOn()
         time.sleep(0.35)
-        b(buzzSensor, board).buzzOff()
+        b(buzzSensor, board, frame).buzzOff()
     elif dist <= 20:
-        b(buzzSensor, board).buzzOn()
+        b(buzzSensor, board, frame).buzzOn()
         time.sleep(0.2)
-        b(buzzSensor, board).buzzOff()
+        b(buzzSensor, board, frame).buzzOff()
     elif dist <= 25:
-        b(buzzSensor, board).buzzOn()
+        b(buzzSensor, board, frame).buzzOn()
         time.sleep(0.1)
-        b(buzzSensor, board).buzzOff()
+        b(buzzSensor, board, frame).buzzOff()
     else:
-        b(buzzSensor, board).buzzOn()
+        b(buzzSensor, board, frame).buzzOn()
         time.sleep(0.03)
-        b(buzzSensor, board).buzzOff()
+        b(buzzSensor, board, frame).buzzOff()
 
 def setLcd(line1, line2):
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
