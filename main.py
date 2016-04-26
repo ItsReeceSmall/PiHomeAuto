@@ -68,15 +68,15 @@ try:
     lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
     '''
     ##################################################################################################################################
-    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=200, command=lambda: M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame))
+    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=10, command=lambda: M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame))
     pirBut.grid(row=3, column=3, padx=5,pady=5)
-    tempBut = Button(frame, text=('Get Temp'), borderwidth=1, width=200, command=lambda: M.getTemp(frame))
+    tempBut = Button(frame, text=('Get Temp'), borderwidth=1, width=10, command=lambda: M.getTemp(frame))
     tempBut.grid(row=4, column=3, padx=5, pady=5)
-    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=200, command=lambda: M.getLight(lightSensor, board, frame))
+    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=10, command=lambda: M.getLight(lightSensor, board, frame))
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
-    distBut = Button(frame, text=('Get Dist'), borderwidth=1, width=200, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
+    distBut = Button(frame, text=('Get Dist'), borderwidth=1, width=10, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
     distBut.grid(row=6, column=3, padx=5, pady=5)
-    doAll = Button(frame, text=('Get All'), borderwidth=1, width=200, command=lambda: getAll)
+    doAll = Button(frame, text=('Get All'), borderwidth=1, width=10, command=lambda: getAll)
     doAll.grid(row=1,column=3,padx=2,pady=5)
     ##################################################################################################################################
     root.mainloop()
