@@ -52,8 +52,9 @@ def getAll(lcdyon):
     light = M.getLight(lightSensor, board, frame)
     dist = M.getDist(dtSensor, deSensor, board, frame)
     if lcdyon == 1:
-        lcd.lcd_string('C  PIR Dist',lcd.LCD_LINE_1)
-        lcd.lcd_string(str(c) + ' ' + str(pir) + '' + str(dist),lcd.LCD_LINE_2)
+        lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
+        lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + ' ' + str(light),lcd.LCD_LINE_2)
+
 
 try:
     M.tempSet()
