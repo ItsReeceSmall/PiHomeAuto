@@ -29,7 +29,8 @@ def getTemp():
     sys.stdout.write("\033[K")
     print ('### Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
-    return tempFin, c
+    gui = (str(c) + ' C ' + str(f) + ' F')
+    return tempFin, c, gui
 
 def getDist(dtSensor, deSensor, board):
     dval = d(dtSensor, deSensor, board)
@@ -89,7 +90,7 @@ def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton,
             #board.cleanup()
             #sys.exit()
 
-def tempLight(far, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
+def tempLight(far, board, ledRed, ledGreen, ledBlue):
     if far <= lowTemp:
         l(ledBlue, board).LedOn()
         l(ledGreen, board).LedOff()
@@ -129,12 +130,7 @@ def Closeness(board, buzzSensor, dist):
         time.sleep(0.03)
         b(buzzSensor, board).buzzOff()
 
-def createWidgets():
-    root = Tk()
-    print('')
-    root.title('Home Automation System v0.3 by Reece Small')
-    frame = Frame(root)
-    frame.grid()
+def createWidgets(frame):
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1)
     titleLabel.grid(row=1, column=1, padx=5, pady=5)
@@ -151,4 +147,3 @@ def createWidgets():
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=frame.quit)
     CloseButton.grid(row=7, column=1, padx=5, pady=5)
     ##################################################
-    return frame

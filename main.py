@@ -22,6 +22,12 @@ ledRed = 36
 ledGreen = 38
 ledBlue = 40
 
+root = Tk()
+print('')
+root.title('Home Automation System v0.3 by Reece Small')
+frame = Frame(root)
+frame.grid()
+
 board = Board().board
 lcd = LCD1602(board) # Can use 'lcd' as a shortened way to access the lcd1602 class
 
@@ -43,10 +49,9 @@ try:
     loopVal = 1 # Shows what loop the program is on
     screen = 0
     screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
-    frame = M.createWidgets()
+    M.createWidgets(frame)
     highTemp = 68
     lowTemp = 64
-    print('')
     while True:
         if loopVal >= 2:
             for i in range(1,7):
@@ -56,9 +61,9 @@ try:
         LoopLabel = Label(frame, text=('Loop ' + str(loopVal)), borderwidth=1).grid(row=2, column=2,padx=5, pady=5)
         pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
         PirValue = Label(frame, text=(pir), borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
-        temp, far = M.getTemp()
-        TempValue = Label(frame, text=(temp), borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
-        M.tempLight(far, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
+        temp, far, gui = M.getTemp()
+        TempValue = Label(frame, text=(gui), borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
+        M.tempLight(far, board, ledRed, ledGreen, ledBlue)
         light = M.getLight(lightSensor, board)
         LightValue = Label(frame, text=(light), borderwidth=1).grid(row=5, column=2, padx=5, pady=5)
         dist = M.getDist(dtSensor, deSensor, board)
@@ -66,7 +71,6 @@ try:
         print (screen)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
-        #root.after(200, frame.quit)
         root.mainloop()
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
