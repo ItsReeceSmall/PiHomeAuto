@@ -129,10 +129,15 @@ def Closeness(board, buzzSensor, dist):
         time.sleep(0.03)
         b(buzzSensor, board).buzzOff()
 
-def createWidgets(frame):
+def createWidgets():
+    root = Tk()
+    print('')
+    root.title('Home Automation System v0.3 by Reece Small')
+    frame = Frame(root)
+    frame.grid()
     ##################################################
-    titleLabel = Label(frame, text=('Home Automation System'), borderwidth=1)
-    titleLabel.grid(row=1, column=2, padx=5, pady=5)
+    titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1)
+    titleLabel.grid(row=1, column=1, padx=5, pady=5)
     ##################################################
     PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1)
     PirLabel.grid(row=3, column=1, padx=5, pady=5)
@@ -143,6 +148,7 @@ def createWidgets(frame):
     DistLabel = Label(frame, text=('Distance: '), borderwidth=1)
     DistLabel.grid(row=6, column=1, padx=5, pady=5)
     ##################################################
-    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1)
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=frame.quit)
     CloseButton.grid(row=7, column=1, padx=5, pady=5)
     ##################################################
+    return frame
