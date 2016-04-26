@@ -46,11 +46,14 @@ def setup():
     print(split)
     board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
-def getAll():
-    M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
-    M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
-    M.getLight(lightSensor, board, frame)
-    M.getDist(dtSensor, deSensor, board, frame)
+def getAll(lcdyon):
+    pir = M.getPir(pirSensor, board, pirLight, buzzSensor, frame)
+    list, c = M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
+    light = M.getLight(lightSensor, board, frame)
+    dist = M.getDist(dtSensor, deSensor, board, frame)
+    if lcdyon == '1':
+        lcd.lcd_string('C  PIR Dist',lcd.LCD_LINE_1)
+        lcd.lcd_string(str(c) + ' ' + str(pir) + '' + str(dist),lcd.LCD_LINE_2)
 
 try:
     M.tempSet()
@@ -62,6 +65,7 @@ try:
     M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 63
+    lcdyon = 0
     print('')
     '''
     pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
@@ -71,18 +75,18 @@ try:
     lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
     '''
     ##################################################################################################################################
-    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=11, command=lambda: M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame))
+    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=11, command=lambda: M.getPir(pirSensor, board, pirLight, buzzSensor, frame))
     pirBut.grid(row=3, column=3, padx=5,pady=5)
     tempBut = Button(frame, text=('Get Temperature'), borderwidth=1, width=11, command=lambda: M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp))
     tempBut.grid(row=4, column=3, padx=5, pady=5)
-    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: M.getLight(lightSensor, board, frame))
+    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: M.getLight(lightSensor, board, frame, 1))
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
-    distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
+    distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: M.getDist(dtSensor, deSensor, board, frame, 1))
     distBut.grid(row=6, column=3, padx=5, pady=5)
-    doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll())
+    doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll(1))
     doAll.grid(row=1,column=3,padx=2,pady=5)
     ##################################################################################################################################
-    getAll() # Initial Run of the components
+    getAll(0) # Initial Run of the components
     root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()

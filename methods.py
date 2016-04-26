@@ -50,10 +50,12 @@ def getDist(dtSensor, deSensor, board, frame):
     DistValue.grid(row=6, column=2, padx=5, pady=5)
     return value
 
-def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
+def getPir(pirSensor, board, pirLight, buzzSensor, frame):
+    '''
     if counter >= 5:
         l(pirLight, board).LedOff()
         counter = 0
+    '''
     pval = p(pirSensor, board, frame)
     value = pval.pirState
     sys.stdout.write("\033[K")
@@ -62,9 +64,7 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
         finValue = 'ON '
         PirValue = Label(frame, text=(finValue), fg='green', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
         l(pirLight, board).LedOn()
-        #print ('counter was: ' + str(counter))
-        counter = 0
-        #print ('counter now is: ' + str(counter))
+        #counter = 0
         BuzzValue = Label(frame, text=('ON'), fg='green', borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
@@ -74,9 +74,9 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
     else:
         finValue = 'OFF'
         PirValue = Label(frame, text=(finValue), fg='red', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
-        counter = (counter + 1)
+        #counter = (counter + 1)
     BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
-    return finValue, counter
+    return finValue
 
 def getLight(lightSensor, board, frame):
     LSV = 0
