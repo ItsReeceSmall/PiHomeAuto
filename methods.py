@@ -145,5 +145,5 @@ def createWidgets(frame):
     DistLabel.grid(row=6, column=1, padx=5, pady=5)
     ##################################################
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=frame.quit)
-    CloseButton.grid(row=7, column=1, padx=5, pady=5)
+    CloseButton.grid(row=7, column=2, padx=5, pady=5)
     ##################################################

@@ -54,24 +54,42 @@ try:
     lowTemp = 64
     print('')
     while True:
+        ##################################################################################################################################
         if loopVal >= 2:
             for i in range(1,7):
                 sys.stdout.write("\033[F")
                 print('### Loop ' + str(loopVal) + ' ###')
         loopVal = loopVal + 1
         LoopLabel = Label(frame, text=('Loop ' + str(loopVal)), borderwidth=1).grid(row=2, column=2,padx=5, pady=5)
+        ##################################################################################################################################
         pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor)
         PirValue = Label(frame, text=(pir), borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
+        ##################################################################################################################################
         temp, far, gui = M.getTemp()
         TempValue = Label(frame, text=(gui), borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
         M.tempLight(far, board, ledRed, ledGreen, ledBlue)
+        ##################################################################################################################################
         light = M.getLight(lightSensor, board)
         LightValue = Label(frame, text=(light), borderwidth=1).grid(row=5, column=2, padx=5, pady=5)
+        ##################################################################################################################################
         dist = M.getDist(dtSensor, deSensor, board)
         DistValue = Label(frame, text=(dist), borderwidth=1).grid(row=6, column=2, padx=5, pady=5)
+        ##################################################################################################################################
         print (screen)
         lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
         lcd.lcd_string(temp + ' ' + pir + ' ' + str(dist), lcd.LCD_LINE_2)
+        ##################################################################################################################################
+        '''
+        pirBut = Button(frame, text=('Get Pir'), borderwidth=1, command=M.getPir(pirSensor, board, counter, pirLight, buzzSensor))
+        pirBut.grid(row=3, column=3, padx=5,pady=5)
+        tempBut = Button(frame, text=('Get Text'), borderwidth=1, command=M.getTemp())
+        tempBut.grid(row=4, column=3, padx=5, pady=5)
+        lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, command=M.getLight(lightSensor, board))
+        lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
+        distBut = Button(frame, text=('Get Dist'), borderwidth=1, command=M.getDist(dtSensor, deSensor, board))
+        distBut.grid(row=6, column=3, padx=5, pady=5)
+        '''
+        ##################################################################################################################################
         root.mainloop()
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n### Ctrl-C Pressed: Exiting ###')
