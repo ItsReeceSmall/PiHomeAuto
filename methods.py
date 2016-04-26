@@ -158,19 +158,24 @@ def createWidgets(frame):
     DistLabel = Label(frame, text=('Distance: '), borderwidth=1)
     DistLabel.grid(row=6, column=1, padx=5, pady=5)
     ##################################################
-    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: board.cleanup())
-    CloseButton.grid(row=9, column=2, padx=5, pady=5)
-    ##################################################
     line1lab = Label(frame, text=('LCD Line 1: '), borderwidth=1)
     line1lab.grid(row=7,column=1,padx=5,pady=2)
     line2lab = Label(frame, text=('LCD Line 2: '), borderwidth=1)
     line2lab.grid(row=8, column=1, padx=5, pady=2)
+    ##################################
     line1 = StringVar(frame, value='')
     lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1)
     lcdLine1.grid(row=7,column=2,padx=5,pady=2)
+    ##################################
     line2 = StringVar(frame, value='')
     lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2)
     lcdLine2.grid(row=8, column=2, padx=5, pady=2)
+    ##################################
     lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=lambda: setLcd(line1, line2))
     lcdBut.grid(row=7, column=3, padx=5, pady=2)
+    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, command=lambda: setLcd(line1, line2))
+    lcdClearBut.grid(row=7, column=3, padx=5, pady=2)
+    ##################################################
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: board.cleanup())
+    CloseButton.grid(row=2, column=2, padx=5, pady=5)
     ##################################################
