@@ -44,13 +44,13 @@ def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
 
 def getDist(dtSensor, deSensor, board, frame):
     dval = d(dtSensor, deSensor, board)
-    value = (str(dval.distValue))
+    value = (dval.distValue)
+    value = round(value, 0)
+    value = str(value)
     sys.stdout.write("\033[K")
     print('### Distance: ' + value)
     DistValue = Label(frame, text=(str(value) + 'cm'), borderwidth=1)
     DistValue.grid(row=6, column=2, padx=5, pady=5)
-    value = int(value)
-    value = round(value, 0)
     return value
 
 def getPir(pirSensor, board, pirLight, buzzSensor, frame):
