@@ -50,7 +50,7 @@ class App:
             loopVal = 1 # Shows what loop the program is on
             screen = 0
             screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
-            M.createWidgets()
+            M.createWidgets(frame)
             highTemp = 68
             lowTemp = 64
             print('')

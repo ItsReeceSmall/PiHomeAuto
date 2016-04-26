@@ -129,7 +129,7 @@ def Closeness(board, buzzSensor, dist):
         time.sleep(0.03)
         b(buzzSensor, board).buzzOff()
 
-def createWidgets():
+def createWidgets(frame):
     ##################################################
     titleLabel = Label(frame, text=('Home Automation System'), borderwidth=1)
     titleLabel.grid(row=1, column=2, padx=5, pady=5)
