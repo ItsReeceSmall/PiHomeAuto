@@ -138,6 +138,8 @@ def Closeness(board, buzzSensor, dist):
         b(buzzSensor, board).buzzOff()
 
 def createWidgets(frame):
+    line1 = ''
+    line2 = ''
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1)
     titleLabel.grid(row=1, column=1, padx=5, pady=5)
@@ -158,7 +160,14 @@ def createWidgets(frame):
     line1lab.grid(row=7,column=1,padx=5,pady=2)
     line2lab = Label(frame, text=('Line 2: '), borderwidth=1)
     line2lab.grid(row=8, column=1, padx=5, pady=2)
+    lcdLine1 = Entry(frame, bd =5, width=16, textvariable=line1)
+    lcdLine1.grid(row=7,column=2,padx=5,pady=2)
+    lcdLine2 = Entry(frame, bd=5, width=16, textvariable=line2)
+    lcdLine2.grid(row=8, column=2, padx=5, pady=2)
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=setLcd(line1, line2))
+    lcdBut.grid(row=7, column=3, padx=5, pady=2)
+    ##################################################
 
 def setLcd(line1, line2):
-    lcd.lcd_string(line1, lcd.LCD_LINE_1)
-    lcd.lcd_string(line2, lcd.LCD_LINE_2)
+    lcd.lcd_string(str(line1), lcd.LCD_LINE_1)
+    lcd.lcd_string(str(line2), lcd.LCD_LINE_2)

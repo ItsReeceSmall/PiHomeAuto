@@ -52,7 +52,6 @@ try:
     highTemp = 68
     lowTemp = 64
     print('')
-
     pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
     ##################################################################################################################################
     temp, far = M.getTemp(frame)
@@ -74,8 +73,6 @@ try:
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
     distBut = Button(frame, text=('Get Dist'), borderwidth=1, command=M.getDist(dtSensor, deSensor, board, frame))
     distBut.grid(row=6, column=3, padx=5, pady=5)
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=M.setLcd(line1, line2))
-    lcdBut.grid(row=7, column=3, padx=5, pady=5)
     ##################################################################################################################################
     root.mainloop()
 except (KeyboardInterrupt, SystemExit):
