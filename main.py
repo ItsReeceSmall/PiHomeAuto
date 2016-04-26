@@ -32,13 +32,18 @@ frame = Frame(root)
 frame.grid()
 
 def setup():
+    split = '###########################################'
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
     outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed]
     buttons = [lightButton, nextButton, backButton]
+    print(split)
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
     pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
     print('### ALL THE PINS ARE IMPORTED AND SETUP ###')
+    print(split)
+    print('### RUNNING HOME AUTOMATION IN GUI MODE ###')
+    print(split)
     board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
 def getAll():
@@ -53,10 +58,8 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     screen = 0
-    screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
+    #screen = M.lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)
     M.createWidgets(frame, root)
-    highTemp = 68
-    lowTemp = 64
     print('')
     '''
     pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
@@ -76,10 +79,11 @@ try:
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
     distBut = Button(frame, text=('Get Dist'), borderwidth=1, width=10, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
     distBut.grid(row=6, column=3, padx=5, pady=5)
-    doAll = Button(frame, text=('Get All'), borderwidth=1, width=10, command=lambda: getAll)
+    doAll = Button(frame, text=('Get All'), borderwidth=1, width=10, command=lambda: getAll())
     doAll.grid(row=1,column=3,padx=2,pady=5)
     ##################################################################################################################################
     root.mainloop()
+    print('\n \n### Exiting ###')
     lcd.lcd_clear()
     board.cleanup()
     sys.exit()
