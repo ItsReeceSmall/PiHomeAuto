@@ -148,6 +148,11 @@ def Closeness(board, buzzSensor, dist, frame):
 def setLcd(line1, line2):
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
     lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
+
+def testBuzz(board, buzzSensor, frame):
+    BuzzValue = Label(frame, text=('ON'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
+    b(buzzSensor, board).buzzTest()
+    BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
 '''
 def clearLcd(line1, line2):
     line1.delete()
@@ -158,9 +163,8 @@ def createWidgets(frame, root):
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
     ##################################################
-    sepLabel1 = Label(frame, text=('##########'), borderwidth=1).grid(row=2, column=1, padx=5, pady=5)
-    sepLabel2 = Label(frame, text=('##########'), borderwidth=1).grid(row=2, column=2, padx=5, pady=5)
-    sepLabel3 = Label(frame, text=('##########'), borderwidth=1).grid(row=2, column=3, padx=5, pady=5)
+    for i in range(1,3):
+        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=2, column=i, padx=5, pady=5)
     ##################################################
     PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1).grid(row=3, column=1, padx=5, pady=5)
     TempLabel = Label(frame, text=('Temperature: '), borderwidth=1).grid(row=4, column=1, padx=5, pady=5)
@@ -180,6 +184,8 @@ def createWidgets(frame, root):
     lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=10, command=lambda: setLcd(line1, line2)).grid(row=8, column=3, padx=5, pady=2)
     lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=10, command=lambda: lcd.lcd_clear()).grid(row=9, column=3, padx=5, pady=2)
     ##################################################
-    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=10, command=lambda: b(35, board, frame).buzzTest()).grid(row=7,column=3,padx=5,pady=2)
+    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=10, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
     ##################################################
+    for i in range(1,3):
+        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=10, column=i, padx=5, pady=5)

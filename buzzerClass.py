@@ -4,8 +4,7 @@ from board import Board
 board = Board().board
 
 class Buzz:
-    def __init__(self, buzzSensor, board, frame):
-        self.frame = frame
+    def __init__(self, buzzSensor, board):
         self.board = board
         self.buzzSensor = 35
         self.outpin()
@@ -22,10 +21,8 @@ class Buzz:
         #print('buzzer off')  # Buzzer Off
 
     def buzzTest(self):
-        BuzzValue = Label(self.frame, text=('ON'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         self.board.output(self.buzzSensor, self.board.HIGH)
         time.sleep(0.5)
-        BuzzValue = Label(self.frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         self.board.output(self.buzzSensor, self.board.LOW)
 
 if __name__ == "__main__":
