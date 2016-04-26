@@ -89,12 +89,12 @@ def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton,
             #board.cleanup()
             #sys.exit()
 
-def tempLight(far, board, ledRed, ledGreen, ledBlue):
-    if far <= 65:
+def tempLight(far, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
+    if far <= lowTemp:
         l(ledBlue, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledRed, board).LedOff()
-    elif far >= 69.8:
+    elif far >= highTemp:
         l(ledRed, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledBlue, board).LedOff()
@@ -128,3 +128,21 @@ def Closeness(board, buzzSensor, dist):
         b(buzzSensor, board).buzzOn()
         time.sleep(0.03)
         b(buzzSensor, board).buzzOff()
+
+def createWidgets():
+    ##################################################
+    titleLabel = Label(frame, text=('Home Automation System'), borderwidth=1)
+    titleLabel.grid(row=1, column=2, padx=5, pady=5)
+    ##################################################
+    PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1)
+    PirLabel.grid(row=3, column=1, padx=5, pady=5)
+    TempLabel = Label(frame, text=('Temperature: '), borderwidth=1)
+    TempLabel.grid(row=4, column=1, padx=5, pady=5)
+    LightLabel = Label(frame, text=('Light Sensor Value: '), borderwidth=1)
+    LightLabel.grid(row=5, column=1, padx=5, pady=5)
+    DistLabel = Label(frame, text=('Distance: '), borderwidth=1)
+    DistLabel.grid(row=6, column=1, padx=5, pady=5)
+    ##################################################
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1)
+    CloseButton.grid(row=7, column=1, padx=5, pady=5)
+    ##################################################
