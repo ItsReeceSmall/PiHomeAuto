@@ -63,7 +63,8 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
     else:
         finValue = 'OFF'
         counter = (counter + 1)
-    PirValue = Label(frame, text=(finValue), borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
+    PirValue = Label(frame, text=(finValue), borderwidth=1)
+    PirValue.grid(row=3, column=2, padx=5, pady=5)
     return finValue, counter
 
 def getLight(lightSensor, board, frame):
@@ -138,8 +139,8 @@ def Closeness(board, buzzSensor, dist):
         b(buzzSensor, board).buzzOff()
 
 def createWidgets(frame):
-    line1 = ''
-    line2 = ''
+    line1 = 'l1'
+    line2 = 'l2'
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1)
     titleLabel.grid(row=1, column=1, padx=5, pady=5)
@@ -160,14 +161,14 @@ def createWidgets(frame):
     line1lab.grid(row=7,column=1,padx=5,pady=2)
     line2lab = Label(frame, text=('Line 2: '), borderwidth=1)
     line2lab.grid(row=8, column=1, padx=5, pady=2)
-    lcdLine1 = Entry(frame, bd =5, width=16, textvariable=line1)
+    lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1)
     lcdLine1.grid(row=7,column=2,padx=5,pady=2)
-    lcdLine2 = Entry(frame, bd=5, width=16, textvariable=line2)
+    lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2)
     lcdLine2.grid(row=8, column=2, padx=5, pady=2)
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=setLcd(line1, line2))
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=setLcd)
     lcdBut.grid(row=7, column=3, padx=5, pady=2)
     ##################################################
 
 def setLcd(line1, line2):
-    lcd.lcd_string(str(line1), lcd.LCD_LINE_1)
-    lcd.lcd_string(str(line2), lcd.LCD_LINE_2)
+    lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
+    lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
