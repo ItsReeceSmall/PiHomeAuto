@@ -53,7 +53,7 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     screen = 0
-    #screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
+    screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
     M.createWidgets(frame)
     highTemp = 68
     lowTemp = 64
