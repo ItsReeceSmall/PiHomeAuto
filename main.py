@@ -82,6 +82,7 @@ try:
     root.mainloop()
 except (KeyboardInterrupt, SystemExit):
     print('\n \n \n \n###  Exiting ###')
+    root.destroy()
     lcd.lcd_clear()
     board.cleanup()
     sys.exit()
