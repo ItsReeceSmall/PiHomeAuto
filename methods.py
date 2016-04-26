@@ -45,7 +45,7 @@ def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
 def getDist(dtSensor, deSensor, board, frame):
     dval = d(dtSensor, deSensor, board)
     value = (dval.distValue)
-    value = round(value, 0)
+    value = round(value)
     value = str(value)
     sys.stdout.write("\033[K")
     print('### Distance: ' + value)
