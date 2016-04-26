@@ -32,8 +32,12 @@ def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     print ('### Temperature: ' + temp)
     tempFin = (ct + ' ' + ft)
     gui = (str(c) + ' C ' + str(f) + ' F')
-    TempValue = Label(frame, text=(gui), borderwidth=1)
-    TempValue.grid(row=4, column=2, padx=5, pady=5)
+    if f <= lowTemp:
+        TempValue = Label(frame, text=(gui), fg='blue', borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
+    elif f >= highTemp:
+        TempValue = Label(frame, text=(gui), fg='red', borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
+    else:
+        TempValue = Label(frame, text=(gui), fg='green', borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
     tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
     return tempFin, c
 
@@ -56,22 +60,22 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
     print ('### PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
         finValue = 'ON '
+        PirValue = Label(frame, text=(finValue), fg='green', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
         l(pirLight, board).LedOn()
         #print ('counter was: ' + str(counter))
         counter = 0
         #print ('counter now is: ' + str(counter))
-        BuzzValue = Label(frame, text=('ON'), borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
+        BuzzValue = Label(frame, text=('ON'), fg='green', borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
         BuzzValue = Label(frame, text=(''), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
-        BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
+        BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         b(buzzSensor, board).buzzOff()
     else:
-        BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         finValue = 'OFF'
+        PirValue = Label(frame, text=(finValue), fg='red', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
         counter = (counter + 1)
-    PirValue = Label(frame, text=(finValue), borderwidth=1)
-    PirValue.grid(row=3, column=2, padx=5, pady=5)
+    BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
     return finValue, counter
 
 def getLight(lightSensor, board, frame):
@@ -181,12 +185,12 @@ def createWidgets(frame, root):
     line2 = StringVar(frame, value='')
     lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2).grid(row=9, column=2, padx=5, pady=2)
     ##################################
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=10, command=lambda: setLcd(line1, line2)).grid(row=8, column=3, padx=5, pady=2)
-    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=10, command=lambda: lcd.lcd_clear()).grid(row=9, column=3, padx=5, pady=2)
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=11, command=lambda: setLcd(line1, line2)).grid(row=8, column=3, padx=5, pady=2)
+    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=11, command=lambda: lcd.lcd_clear()).grid(row=9, column=3, padx=5, pady=2)
     ##################################################
-    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=10, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
+    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=11, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
     ##################################################
     for i in range(1,4):
-        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=10, column=i, padx=5, pady=5)
+        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=11, column=i, padx=5, pady=5)
     ##################################################
