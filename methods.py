@@ -157,7 +157,9 @@ def createWidgets(frame, root):
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
     ##################################################
-    sepLabel = Label(frame, text=('#########################################'), borderwidth=1).grid(row=2,column=2,padx=5,pady=5)
+    sepLabel1 = Label(frame, text=('##########'), borderwidth=1).grid(row=2, column=1, padx=5, pady=5)
+    sepLabel2 = Label(frame, text=('##########'), borderwidth=1).grid(row=2, column=2, padx=5, pady=5)
+    sepLabel3 = Label(frame, text=('##########'), borderwidth=1).grid(row=2, column=3, padx=5, pady=5)
     ##################################################
     PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1).grid(row=3, column=1, padx=5, pady=5)
     TempLabel = Label(frame, text=('Temperature: '), borderwidth=1).grid(row=4, column=1, padx=5, pady=5)
