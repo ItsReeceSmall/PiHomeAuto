@@ -143,12 +143,12 @@ def Closeness(board, buzzSensor, dist):
 def setLcd(line1, line2):
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
     lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
-
+'''
 def clearLcd(line1, line2):
     line1.delete()
     line2.delete()
-    lcd.lcd_clear()
-
+   lcd.lcd_clear()
+'''
 def createWidgets(frame):
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1)
@@ -178,9 +178,9 @@ def createWidgets(frame):
     ##################################
     lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=10, command=lambda: setLcd(line1, line2))
     lcdBut.grid(row=7, column=3, padx=5, pady=2)
-    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, command=lambda: clearLcd(line1, line2))
+    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, command=lambda: lcd.lcd_clear())
     lcdClearBut.grid(row=8, column=3, padx=5, pady=2)
     ##################################################
-    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: frame.quit)
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: frame.root.destroy)
     CloseButton.grid(row=1, column=2, padx=5, pady=5)
     ##################################################
