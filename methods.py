@@ -32,7 +32,7 @@ def getTemp(frame):
     gui = (str(c) + ' C ' + str(f) + ' F')
     TempValue = Label(frame, text=(gui), borderwidth=1)
     TempValue.grid(row=4, column=2, padx=5, pady=5)
-    return tempFin, c, gui
+    return tempFin, c
 
 def getDist(dtSensor, deSensor, board, frame):
     dval = d(dtSensor, deSensor, board)
