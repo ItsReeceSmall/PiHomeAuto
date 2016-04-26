@@ -60,11 +60,11 @@ try:
     screen = 0
     #screen = M.lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)
     M.createWidgets(frame, root)
+    highTemp = 68
+    lowTemp = 63
     print('')
     '''
     pir, counter = M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
-    temp, far = M.getTemp(frame)
-    M.tempLight(far, board, ledRed, ledGreen, ledBlue, frame, highTemp, lowTemp)
     light = M.getLight(lightSensor, board, frame)
     dist = M.getDist(dtSensor, deSensor, board, frame)
     lcd.lcd_string('C  F  Pir Dis Cm', lcd.LCD_LINE_1)
@@ -73,7 +73,7 @@ try:
     ##################################################################################################################################
     pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=10, command=lambda: M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame))
     pirBut.grid(row=3, column=3, padx=5,pady=5)
-    tempBut = Button(frame, text=('Get Temp'), borderwidth=1, width=10, command=lambda: M.getTemp(frame))
+    tempBut = Button(frame, text=('Get Temp'), borderwidth=1, width=10, command=lambda: M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp))
     tempBut.grid(row=4, column=3, padx=5, pady=5)
     lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=10, command=lambda: M.getLight(lightSensor, board, frame))
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)

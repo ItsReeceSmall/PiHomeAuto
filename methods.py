@@ -21,7 +21,7 @@ def tempSet():
     device_folder = glob.glob(base_dir + '28*')[0]
     device_file = device_folder + '/w1_slave'
 
-def getTemp(frame):
+def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     c, f = t.read_temp() # Get temp values
     f = round(f, 2)
     c = round(c, 2)
@@ -34,6 +34,7 @@ def getTemp(frame):
     gui = (str(c) + ' C ' + str(f) + ' F')
     TempValue = Label(frame, text=(gui), borderwidth=1)
     TempValue.grid(row=4, column=2, padx=5, pady=5)
+    tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
     return tempFin, c
 
 def getDist(dtSensor, deSensor, board, frame):
@@ -41,7 +42,7 @@ def getDist(dtSensor, deSensor, board, frame):
     value = (str(dval.distValue))
     sys.stdout.write("\033[K")
     print('### Distance: ' + value)
-    DistValue = Label(frame, text=(value), borderwidth=1)
+    DistValue = Label(frame, text=(str(value) + 'cm'), borderwidth=1)
     DistValue.grid(row=6, column=2, padx=5, pady=5)
     return value
 
@@ -59,8 +60,11 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
         #print ('counter was: ' + str(counter))
         counter = 0
         #print ('counter now is: ' + str(counter))
+        BuzzValue = Label(frame, text=('ON'), borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
+        BuzzValue = Label(frame, text=(''), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
+        BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         b(buzzSensor, board).buzzOff()
     else:
         finValue = 'OFF'
@@ -100,12 +104,12 @@ def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton,
             #board.cleanup()
             #sys.exit()
 
-def tempLight(far, board, ledRed, ledGreen, ledBlue, frame, highTemp, lowTemp):
-    if far <= highTemp:
+def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
+    if f <= highTemp:
         l(ledBlue, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledRed, board).LedOff()
-    elif far >= lowTemp:
+    elif f >= lowTemp:
         l(ledRed, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledBlue, board).LedOff()
@@ -151,36 +155,28 @@ def clearLcd(line1, line2):
 '''
 def createWidgets(frame, root):
     ##################################################
-    titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1)
-    titleLabel.grid(row=1, column=1, padx=5, pady=5)
+    titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
     ##################################################
-    PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1)
-    PirLabel.grid(row=3, column=1, padx=5, pady=5)
-    TempLabel = Label(frame, text=('Temperature: '), borderwidth=1)
-    TempLabel.grid(row=4, column=1, padx=5, pady=5)
-    LightLabel = Label(frame, text=('Light Sensor Value: '), borderwidth=1)
-    LightLabel.grid(row=5, column=1, padx=5, pady=5)
-    DistLabel = Label(frame, text=('Distance: '), borderwidth=1)
-    DistLabel.grid(row=6, column=1, padx=5, pady=5)
+    sepLabel = Label(frame, text=('#########################################'), borderwidth=1).grid(row=2,column=2,padx=5,pady=5)
     ##################################################
-    line1lab = Label(frame, text=('LCD Line 1: '), borderwidth=1)
-    line1lab.grid(row=7,column=1,padx=5,pady=2)
-    line2lab = Label(frame, text=('LCD Line 2: '), borderwidth=1)
-    line2lab.grid(row=8, column=1, padx=5, pady=2)
+    PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1).grid(row=3, column=1, padx=5, pady=5)
+    TempLabel = Label(frame, text=('Temperature: '), borderwidth=1).grid(row=4, column=1, padx=5, pady=5)
+    LightLabel = Label(frame, text=('Light Sensor Value: '), borderwidth=1).grid(row=5, column=1, padx=5, pady=5)
+    DistLabel = Label(frame, text=('Distance: '), borderwidth=1).grid(row=6, column=1, padx=5, pady=5)
+    BuzzerLabel = Label(frame, text=('Buzzer: '), borderwidth=1).grid(row=7, column=1, padx=5, pady=5)
+    ##################################################
+    line1lab = Label(frame, text=('LCD Line 1: '), borderwidth=1).grid(row=8,column=1,padx=5,pady=2)
+    line2lab = Label(frame, text=('LCD Line 2: '), borderwidth=1).grid(row=9, column=1, padx=5, pady=2)
     ##################################
     line1 = StringVar(frame, value='')
-    lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1)
-    lcdLine1.grid(row=7,column=2,padx=5,pady=2)
+    lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1).grid(row=8,column=2,padx=5,pady=2)
     ##################################
     line2 = StringVar(frame, value='')
-    lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2)
-    lcdLine2.grid(row=8, column=2, padx=5, pady=2)
+    lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2).grid(row=9, column=2, padx=5, pady=2)
     ##################################
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=10, command=lambda: setLcd(line1, line2))
-    lcdBut.grid(row=7, column=3, padx=5, pady=2)
-    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=10, command=lambda: lcd.lcd_clear())
-    lcdClearBut.grid(row=8, column=3, padx=5, pady=2)
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=10, command=lambda: setLcd(line1, line2)).grid(row=8, column=3, padx=5, pady=2)
+    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=10, command=lambda: lcd.lcd_clear()).grid(row=9, column=3, padx=5, pady=2)
     ##################################################
-    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit())
-    CloseButton.grid(row=1, column=2, padx=5, pady=5)
+    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=10, command=lambda: b(35, board).buzzTest()).grid(row=7,column=3,padx=5,pady=2)
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
     ##################################################

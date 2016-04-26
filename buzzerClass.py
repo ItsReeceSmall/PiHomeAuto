@@ -20,6 +20,11 @@ class Buzz:
         self.board.output(self.buzzSensor, self.board.LOW)
         #print('buzzer off')  # Buzzer Off
 
+    def buzzTest(self):
+        self.board.output(self.buzzSensor, self.board.HIGH)
+        time.sleep(0.5)
+        self.board.output(self.buzzSensor, self.board.LOW)
+
 if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
     buzzSensor = 35
