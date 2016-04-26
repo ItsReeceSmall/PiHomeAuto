@@ -51,7 +51,7 @@ def getAll(lcdyon):
     list, c = M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
     light = M.getLight(lightSensor, board, frame)
     dist = M.getDist(dtSensor, deSensor, board, frame)
-    if lcdyon == '1':
+    if lcdyon == 1:
         lcd.lcd_string('C  PIR Dist',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + '' + str(dist),lcd.LCD_LINE_2)
 
