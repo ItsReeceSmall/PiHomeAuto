@@ -138,6 +138,15 @@ def Closeness(board, buzzSensor, dist):
         time.sleep(0.03)
         b(buzzSensor, board).buzzOff()
 
+def setLcd(line1, line2):
+    print (line1)
+    print (line2)
+    print('d')
+    print (line1.get())
+    print (line2.get())
+    lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
+    lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
+
 def createWidgets(frame):
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1)
@@ -168,7 +177,3 @@ def createWidgets(frame):
     lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=setLcd(line1, line2))
     lcdBut.grid(row=7, column=3, padx=5, pady=2)
     ##################################################
-
-def setLcd(line1, line2):
-    lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
-    lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
