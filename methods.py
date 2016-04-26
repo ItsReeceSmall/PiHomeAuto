@@ -165,7 +165,7 @@ def createWidgets(frame):
     line2 = StringVar(frame, value='')
     lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2)
     lcdLine2.grid(row=8, column=2, padx=5, pady=2)
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=setLcd)
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, command=setLcd(line1, line2))
     lcdBut.grid(row=7, column=3, padx=5, pady=2)
     ##################################################
 
