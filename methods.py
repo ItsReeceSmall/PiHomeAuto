@@ -49,7 +49,7 @@ def getDist(dtSensor, deSensor, board, frame):
     print('### Distance: ' + value)
     DistValue = Label(frame, text=(str(value) + 'cm'), borderwidth=1)
     DistValue.grid(row=6, column=2, padx=5, pady=5)
-    value = round(value, 0)
+    value = round(int(value), 0)
     return value
 
 def getPir(pirSensor, board, pirLight, buzzSensor, frame):
