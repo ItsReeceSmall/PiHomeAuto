@@ -1,4 +1,4 @@
-import sys, os, time
+import sys
 import RPi.GPIO as gpio
 
 class Board:
@@ -7,14 +7,13 @@ class Board:
         self.setup()
     
     def setup(self):
-        #self.cleanup()
-        #print ('Warnings = False')
         self.board.setwarnings(False)
-        #print ('Board = gpio.BOARD')
         self.board.setmode(self.board.BOARD)
     
     def cleanup(self):
+        print('### User input recieved ###\n### Closing down ###')
         self.board.cleanup()
+        sys.exit()
 
 if __name__ == "__main__":
     b = Board()

@@ -41,6 +41,12 @@ def setup():
     print('### ALL THE PINS ARE IMPORTED AND SETUP ###')
     board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
+def getAll():
+    M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
+    M.getTemp(frame)
+    M.getLight(lightSensor, board, frame)
+    M.getDist(dtSensor, deSensor, board, frame)
+
 try:
     M.tempSet()
     setup()
@@ -70,6 +76,8 @@ try:
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
     distBut = Button(frame, text=('Get Dist'), borderwidth=1, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
     distBut.grid(row=6, column=3, padx=5, pady=5)
+    doAll = Button(frame, text=('Get All'), borderwidth=1, command=lambda: getAll)
+    doAll.grid(row=9,column=2,padx=2,pady=5)
     ##################################################################################################################################
     root.mainloop()
 except (KeyboardInterrupt, SystemExit):

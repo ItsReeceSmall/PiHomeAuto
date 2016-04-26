@@ -158,7 +158,7 @@ def createWidgets(frame):
     DistLabel = Label(frame, text=('Distance: '), borderwidth=1)
     DistLabel.grid(row=6, column=1, padx=5, pady=5)
     ##################################################
-    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=frame.quit)
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=board.cleanup())
     CloseButton.grid(row=9, column=2, padx=5, pady=5)
     ##################################################
     line1lab = Label(frame, text=('LCD Line 1: '), borderwidth=1)
