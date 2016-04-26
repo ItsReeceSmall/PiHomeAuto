@@ -91,11 +91,11 @@ def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton,
             #sys.exit()
 
 def tempLight(far, board, ledRed, ledGreen, ledBlue):
-    if far <= lowTemp:
+    if far <= 63:
         l(ledBlue, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledRed, board).LedOff()
-    elif far >= highTemp:
+    elif far >= 68:
         l(ledRed, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledBlue, board).LedOff()

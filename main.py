@@ -52,6 +52,7 @@ try:
     M.createWidgets(frame)
     highTemp = 68
     lowTemp = 64
+    print('')
     while True:
         if loopVal >= 2:
             for i in range(1,7):
