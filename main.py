@@ -22,14 +22,14 @@ ledRed = 36
 ledGreen = 38
 ledBlue = 40
 
+board = Board().board
+lcd = LCD1602(board) # Can use 'lcd' as a shortened way to access the lcd1602 class
+
 root = Tk()
 print('')
 root.title('Home Automation System v0.3 by Reece Small')
 frame = Frame(root)
 frame.grid()
-
-board = Board().board
-lcd = LCD1602(board) # Can use 'lcd' as a shortened way to access the lcd1602 class
 
 def setup():
     board.setmode(board.BOARD)    #set GPIO up
@@ -53,7 +53,7 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     screen = 0
-    screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
+    #screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
     M.createWidgets(frame)
     highTemp = 68
     lowTemp = 64
