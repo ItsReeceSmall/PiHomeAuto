@@ -80,7 +80,6 @@ try:
     doAll.grid(row=1,column=3,padx=2,pady=5)
     ##################################################################################################################################
     root.mainloop()
-    root.destroy()
     lcd.lcd_clear()
     board.cleanup()
     sys.exit()
