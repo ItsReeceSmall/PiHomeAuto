@@ -29,5 +29,5 @@ if __name__ == "__main__":
     gpio.setmode(gpio.BOARD)
     buzzSensor = 35
     gpio.setup(buzzSensor, gpio.OUT)
-    b = Buzz(buzzSensor, board, 1)
+    b = Buzz(buzzSensor, board)
     #b.buzzMethod()

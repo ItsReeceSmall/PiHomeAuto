@@ -61,11 +61,11 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
         counter = 0
         #print ('counter now is: ' + str(counter))
         BuzzValue = Label(frame, text=('ON'), borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
-        b(buzzSensor, board, frame).buzzOn()
+        b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
         BuzzValue = Label(frame, text=(''), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
-        b(buzzSensor, board, frame).buzzOff()
+        b(buzzSensor, board).buzzOff()
     else:
         BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         finValue = 'OFF'
@@ -119,31 +119,31 @@ def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
         l(ledRed, board).LedOff()
         l(ledBlue, board).LedOff()
 
-def Closeness(board, buzzSensor, dist, frame):
+def Closeness(board, buzzSensor, dist):
     if dist <= 5:
-        b(buzzSensor, board, frame).buzzOn()
+        b(buzzSensor, board).buzzOn()
         time.sleep(0.6)
-        b(buzzSensor, board, frame).buzzOff()
+        b(buzzSensor, board).buzzOff()
     elif dist <= 10:
-        b(buzzSensor, board, frame).buzzOn()
+        b(buzzSensor, board).buzzOn()
         time.sleep(0.45)
-        b(buzzSensor, board, frame).buzzOff()
+        b(buzzSensor, board).buzzOff()
     elif dist <= 15:
-        b(buzzSensor, board, frame).buzzOn()
+        b(buzzSensor, board).buzzOn()
         time.sleep(0.35)
-        b(buzzSensor, board, frame).buzzOff()
+        b(buzzSensor, board).buzzOff()
     elif dist <= 20:
-        b(buzzSensor, board, frame).buzzOn()
+        b(buzzSensor, board).buzzOn()
         time.sleep(0.2)
-        b(buzzSensor, board, frame).buzzOff()
+        b(buzzSensor, board).buzzOff()
     elif dist <= 25:
-        b(buzzSensor, board, frame).buzzOn()
+        b(buzzSensor, board).buzzOn()
         time.sleep(0.1)
-        b(buzzSensor, board, frame).buzzOff()
+        b(buzzSensor, board).buzzOff()
     else:
-        b(buzzSensor, board, frame).buzzOn()
+        b(buzzSensor, board).buzzOn()
         time.sleep(0.03)
-        b(buzzSensor, board, frame).buzzOff()
+        b(buzzSensor, board).buzzOff()
 
 def setLcd(line1, line2):
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
@@ -163,7 +163,7 @@ def createWidgets(frame, root):
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
     ##################################################
-    for i in range(1,3):
+    for i in range(1,4):
         sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=2, column=i, padx=5, pady=5)
     ##################################################
     PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1).grid(row=3, column=1, padx=5, pady=5)
@@ -187,5 +187,6 @@ def createWidgets(frame, root):
     BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=10, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
     ##################################################
-    for i in range(1,3):
+    for i in range(1,4):
         sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=10, column=i, padx=5, pady=5)
+    ##################################################
