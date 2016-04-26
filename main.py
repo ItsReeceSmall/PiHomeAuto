@@ -54,7 +54,7 @@ try:
     counter = 0 # Counter for pir light
     screen = 0
     screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, nextButton, backButton, screen)).start()
-    M.createWidgets(frame)
+    M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 64
     print('')
