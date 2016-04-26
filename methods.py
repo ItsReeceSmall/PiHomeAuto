@@ -67,6 +67,7 @@ def getPir(pirSensor, board, counter, pirLight, buzzSensor, frame):
         BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         b(buzzSensor, board).buzzOff()
     else:
+        BuzzValue = Label(frame, text=('OFF'), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
         finValue = 'OFF'
         counter = (counter + 1)
     PirValue = Label(frame, text=(finValue), borderwidth=1)
@@ -179,6 +180,6 @@ def createWidgets(frame, root):
     lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=10, command=lambda: setLcd(line1, line2)).grid(row=8, column=3, padx=5, pady=2)
     lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=10, command=lambda: lcd.lcd_clear()).grid(row=9, column=3, padx=5, pady=2)
     ##################################################
-    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=10, command=lambda: b(35, board).buzzTest()).grid(row=7,column=3,padx=5,pady=2)
+    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=10, command=lambda: b(35, board, frame).buzzTest()).grid(row=7,column=3,padx=5,pady=2)
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
     ##################################################

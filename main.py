@@ -48,7 +48,7 @@ def setup():
 
 def getAll():
     M.getPir(pirSensor, board, counter, pirLight, buzzSensor, frame)
-    M.getTemp(frame)
+    M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
     M.getLight(lightSensor, board, frame)
     M.getDist(dtSensor, deSensor, board, frame)
 
