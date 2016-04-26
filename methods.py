@@ -176,6 +176,6 @@ def createWidgets(frame):
     #lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, command=lambda: setLcd(line1, line2))
     #lcdClearBut.grid(row=8, column=3, padx=5, pady=2)
     ##################################################
-    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: board.cleanup())
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: KeyboardInterrupt())
     CloseButton.grid(row=1, column=2, padx=5, pady=5)
     ##################################################
