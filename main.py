@@ -49,6 +49,10 @@ def getAll(lcdyon):
     light = M.getLight(lightSensor, board, frame)
     dist = M.getDist(dtSensor, deSensor, board, frame)
     if lcdyon == 1:
+        lcd1Label = Label(frame, text=('C  PIR Dis Light'), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+        lcd1Label.grid(row=13, column=1, padx=5, pady=5)
+        lcd2Label = Label(frame, text=(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light)), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+        lcd2Label.grid(row=14, column=1, padx=5, pady=5)
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
 
@@ -72,8 +76,10 @@ try:
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
     distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
     distBut.grid(row=6, column=3, padx=5, pady=5)
-    doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll(1))
+    doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll(0))
     doAll.grid(row=1,column=3,padx=2,pady=5)
+    p2lcd = Button(frame, text=('View Sensor Data'), borderwidth=1, command=lambda: getAll(1))
+    p2lcd.grid(row=15, column=1,padx=5, pady=5)
     ##################################################################################################################################
     getAll(0) # Initial Run of the components
     root.mainloop()
