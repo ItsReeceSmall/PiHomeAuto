@@ -198,5 +198,5 @@ def createWidgets(frame, root):
     for i in range(1,4):
         sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=11, column=i, padx=5, pady=5)
     ##################################################
-    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', anchor=LEFT).grid(row=12, column=1, padx=5,pady=5)
-    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', anchor=LEFT).grid(row=13, column=1, padx=5,pady=5)
+    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', anchor=w, height=5).grid(row=12, column=1, padx=5,pady=5)
+    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', anchor=w, height=5).grid(row=13, column=1, padx=5,pady=5)
