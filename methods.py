@@ -102,6 +102,7 @@ def lightSwitch(fadeLed, lightButton, board, lightState,frame):
                 l(fadeLed, board).LedOff()
                 lightState = 'off'
             elif lightState == 'off':
+                lsta = Label(frame, text=(' ON '), borderwidth=1, fg=('green')).grid(row=14, column=3, padx=5, pady=5)
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
 
