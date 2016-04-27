@@ -146,8 +146,8 @@ def Closeness(board, buzzSensor, dist):
 def setLcd(line1, line2, frame):
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
     lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
-    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', height=5).grid(row=13,column=1,padx=5,pady=5)
-    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', height=5).grid(row=14,column=1,padx=5,pady=5)
+    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', height=1.2, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
+    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', height=1.2, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
 
 def testBuzz(board, buzzSensor, frame):
     BuzzValue = Label(frame, text=('ON'), fg='green', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
@@ -191,8 +191,8 @@ def createWidgets(frame, root):
         sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=11, column=i, padx=5, pady=5)
     ##################################################
     lcdLabel = Label(frame, text=('LCD State'),borderwidth=1).grid(row=12,column=1,padx=5,pady=5)
-    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', height=5).grid(row=13,column=1,padx=5,pady=5)
-    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', height=5).grid(row=14,column=1,padx=5,pady=5)
+    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', height=1.2, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
+    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', height=1.2, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     ##################################################
 
 
