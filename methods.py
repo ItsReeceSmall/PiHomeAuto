@@ -161,7 +161,7 @@ def clearLcd(line1, line2, frame):
 
 def createWidgets(frame, root):
     ##################################################
-    titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
+    #titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
     ##################################################
     for i in range(1,4):
         sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=2, column=i, padx=5, pady=5)
@@ -186,7 +186,7 @@ def createWidgets(frame, root):
     ##################################################
     BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=11, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
-    HelpButton = Button(frame, text=('Help'), fg=('black'), bg=('yellow'), borderwidth=1, anchor=E, command=lambda: helpscreen).grid(row=1,column=2,padx=5,pady=5)
+    HelpButton = Button(frame, text=('Help'), fg=('black'), bg=('yellow'), borderwidth=1, command=lambda: helpscreen).grid(row=1,column=1,padx=5,pady=5)
     ##################################################
     for i in range(1,4):
         sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=11, column=i, padx=5, pady=5)
