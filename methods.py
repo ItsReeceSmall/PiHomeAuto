@@ -10,6 +10,7 @@ from pirClass import Pir as p
 from buzzerClass import Buzz as b
 from lcd1602 import LCD1602
 from tkinter import *
+from tkinter import messagebox
 
 board = Board().board
 lcd = LCD1602(board)
@@ -104,11 +105,11 @@ def lightSwitch(fadeLed, lightButton, board, lightState):
                 lightState = 'on'
 
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
-    if f <= highTemp:
+    if f <= lowTemp:
         l(ledBlue, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledRed, board).LedOff()
-    elif f >= lowTemp:
+    elif f >= highTemp:
         l(ledRed, board).LedOn()
         l(ledGreen, board).LedOff()
         l(ledBlue, board).LedOff()
@@ -195,3 +196,6 @@ def createWidgets(frame, root):
     lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
     lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     ##################################################
+
+def helpscreen():
+    messagebox.showinfo("Help", "Welcome to the the Home Automation help screen.\n \nClick the buttons on the same row as the modules to recieve the sensor value manually.\n \nUsing the text box's, enter what you want to be displayed on the LCD Screen and press 'Set Text' to display it on screen.\n \n")
