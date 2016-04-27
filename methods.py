@@ -93,11 +93,12 @@ def getLight(lightSensor, board, frame):
     LightValue.grid(row=5, column=2, padx=5, pady=5)
     return value
 
-def lightSwitch(fadeLed, lightButton, board, lightState):
+def lightSwitch(fadeLed, lightButton, board, lightState,frame):
     while True:
         time.sleep(0.05)
         if board.input(lightButton) == False:
             if lightState == 'on':
+                lsta = Label(frame, text=('OFF'), borderwidth=1, fg=('red')).grid(row=14,column=3,padx=5,pady=5)
                 l(fadeLed, board).LedOff()
                 lightState = 'off'
             elif lightState == 'off':

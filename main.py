@@ -61,7 +61,7 @@ try:
     setup()
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
-    #screen = M.lightSwitch(fadeLed, lightButton, board, lightState)
+    screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, frame)).start()
     M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 63
