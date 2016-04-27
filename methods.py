@@ -69,7 +69,7 @@ def getPir(pirSensor, board, pirLight, buzzSensor, frame):
         PirValue = Label(frame, text=(finValue), fg='green', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
         l(pirLight, board).LedOn()
         #counter = 0
-        BuzzValue = Label(frame, text=('ON'), fg='green', borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
+        BuzzValue = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
         BuzzValue = Label(frame, text=(''), borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
@@ -150,15 +150,17 @@ def setLcd(line1, line2, frame):
     lcd2Label = Label(frame, text=(' ' + line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
 
 def testBuzz(board, buzzSensor, frame):
-    BuzzValue = Label(frame, text=('ON'), fg='green', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
+    BuzzValue = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
     b(buzzSensor, board).buzzTest()
     BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
-'''
-def clearLcd(line1, line2):
+
+def clearLcd(line1, line2, frame):
     line1.delete()
     line2.delete()
-   lcd.lcd_clear()
-'''
+    lcd1Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
+    lcd2Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
+    lcd.lcd_clear()
+
 def createWidgets(frame, root):
     ##################################################
     titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
@@ -182,7 +184,7 @@ def createWidgets(frame, root):
     lcdLine2 = Entry(frame, bd=2, width=17, textvariable=line2).grid(row=9, column=2, padx=5, pady=2)
     ##################################
     lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=11, command=lambda: setLcd(line1, line2, frame)).grid(row=8, column=3, padx=5, pady=2)
-    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=11, command=lambda: lcd.lcd_clear()).grid(row=9, column=3, padx=5, pady=2)
+    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=11, command=lambda: clearLcd(line1, line2, frame)).grid(row=9, column=3, padx=5, pady=2)
     ##################################################
     BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=11, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
@@ -194,5 +196,3 @@ def createWidgets(frame, root):
     lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
     lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     ##################################################
-
-
