@@ -92,7 +92,7 @@ def getLight(lightSensor, board, frame):
     LightValue.grid(row=5, column=2, padx=5, pady=5)
     return value
 
-def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton, screen):
+def lightSwitch(fadeLed, lightButton, board, lightState):
     while True:
         time.sleep(0.05)
         if board.input(lightButton) == False:
@@ -102,16 +102,6 @@ def lightSwitch(fadeLed, lightButton, board, lightState, nextButton, backButton,
             elif lightState == 'off':
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
-        elif board.input(nextButton) == False:
-            screen = screen + 1
-            return screen
-        elif board.input(backButton) == False:
-            screen = screen - 1
-            return screen
-        #elif board.input(backButton) == False:
-            #lcd.lcd_clear()
-            #board.cleanup()
-            #sys.exit()
 
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     if f <= highTemp:
@@ -156,6 +146,8 @@ def Closeness(board, buzzSensor, dist):
 def setLcd(line1, line2):
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
     lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
+    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', height=5).grid(row=13,column=1,padx=5,pady=5)
+    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', height=5).grid(row=14,column=1,padx=5,pady=5)
 
 def testBuzz(board, buzzSensor, frame):
     BuzzValue = Label(frame, text=('ON'), fg='green', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
@@ -198,5 +190,7 @@ def createWidgets(frame, root):
     for i in range(1,4):
         sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=11, column=i, padx=5, pady=5)
     ##################################################
-    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=16, fg='white', bg='blue', anchor=w, height=5).grid(row=12, column=1, padx=5,pady=5)
-    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=16, fg='white', bg='blue', anchor=w, height=5).grid(row=13, column=1, padx=5,pady=5)
+    lcdLabel = Label(frame, text=('LCD State'),borderwidth=1).grid(row=12,column=1,padx=5,pady=5)
+    ##################################################
+
+
