@@ -155,8 +155,6 @@ def testBuzz(board, buzzSensor, frame):
     BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
 
 def clearLcd(line1, line2, frame):
-    line1.delete()
-    line2.delete()
     lcd1Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
     lcd2Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     lcd.lcd_clear()
@@ -178,13 +176,13 @@ def createWidgets(frame, root):
     line2lab = Label(frame, text=('LCD Line 2: '), fg='blue', borderwidth=1).grid(row=9, column=1, padx=5, pady=2)
     ##################################
     line1 = StringVar(frame, value='')
-    lcdLine1 = Entry(frame, bd =2, width=17, textvariable=line1).grid(row=8,column=2,padx=5,pady=2)
+    lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1).grid(row=8,column=2,padx=5,pady=2)
     ##################################
     line2 = StringVar(frame, value='')
-    lcdLine2 = Entry(frame, bd=2, width=17, textvariable=line2).grid(row=9, column=2, padx=5, pady=2)
+    lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2).grid(row=9, column=2, padx=5, pady=2)
     ##################################
     lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=11, command=lambda: setLcd(line1, line2, frame)).grid(row=8, column=3, padx=5, pady=2)
-    lcdClearBut = Button(frame, text=('Clear Text'), borderwidth=1, width=11, command=lambda: clearLcd(line1, line2, frame)).grid(row=9, column=3, padx=5, pady=2)
+    lcdClearBut = Button(frame, text=('Clear LCD'), borderwidth=1, width=11, command=lambda: clearLcd(line1, line2, frame)).grid(row=9, column=3, padx=5, pady=2)
     ##################################################
     BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=11, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
     CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
