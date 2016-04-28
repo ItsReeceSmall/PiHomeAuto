@@ -56,6 +56,12 @@ def getAll(lcdyon):
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
 
+def runAuto(val):
+    if val == 1:
+        thethread = threading.Thread(target=getAll(0)).start().set()
+    elif val == 2:
+        thethread = threading.Thread(target=getAll(0)).isSet()
+
 try:
     M.tempSet()
     setup()
@@ -80,9 +86,8 @@ try:
     doAll.grid(row=1,column=3,padx=2,pady=5)
     p2lcd = Button(frame, text=('View Sensor Data'), borderwidth=1, command=lambda: getAll(1))
     p2lcd.grid(row=15, column=1,padx=5, pady=5)
-    p2lcd.pack(side = LEFT)
-    testbut = Button(frame, text=('test'), borderwidth=1).grid(row=15,column=1,pady=5)
-    testbut.pack(side = RIGHT)
+    startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
+    startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
     getAll(0) # Initial Run of the components
     root.mainloop()
