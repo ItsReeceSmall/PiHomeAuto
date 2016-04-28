@@ -199,5 +199,6 @@ def createWidgets(frame, root):
     lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     ##################################################
 
+
 def helpscreen():
     messagebox.showinfo("Help", "Welcome to the the Home Automation help screen.\n \nClick the buttons on the same row as the modules to recieve the sensor value manually.\n \nUsing the text box's, enter what you want to be displayed on the LCD Screen and press 'Set Text' to display it on screen.\n \n")
