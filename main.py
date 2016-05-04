@@ -67,7 +67,7 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, frame)).start()
-    bell = threading.Thread(target=M.Doorbell, args=(board, frame, buzzSensor, buzzButton)).start()
+    bell = threading.Thread(target=M.Doorbell, args=(board, frame, buzzButton, buzzSensor)).start()
     M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 63
@@ -78,7 +78,7 @@ try:
     pirBut.grid(row=3, column=3, padx=5,pady=5)
     tempBut = Button(frame, text=('Get Temperature'), borderwidth=1, width=11, command=lambda: M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp))
     tempBut.grid(row=4, column=3, padx=5, pady=5)
-    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: M.getLight(lightSensor, board, frame))
+    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: M.getLight(lightSensor, board, frame, lsLight))
     lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
     distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
     distBut.grid(row=6, column=3, padx=5, pady=5)
