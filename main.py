@@ -66,8 +66,7 @@ try:
     setup()
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
-    screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, frame)).start()
-    bell = threading.Thread(target=M.Doorbell, args=(board, frame, buzzButton, buzzSensor)).start()
+    screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
     M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 63

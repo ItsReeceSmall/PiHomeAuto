@@ -99,7 +99,7 @@ def getLight(lightSensor, board, frame, lsLight):
     LightValue.grid(row=5, column=2, padx=5, pady=5)
     return value
 
-def lightSwitch(fadeLed, lightButton, board, lightState,frame):
+def ButtonSwitch(fadeLed, lightButton, board, lightState,frame, buzzSensor, buzzButton):
     while True:
         time.sleep(0.05)
         if board.input(lightButton) == False:
@@ -111,18 +111,15 @@ def lightSwitch(fadeLed, lightButton, board, lightState,frame):
                 lsta = Label(frame, text=(' ON '), borderwidth=1, fg=('green')).grid(row=14, column=3, padx=5, pady=5)
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
-
-def Doorbell(board, frame, buzzButton, buzzSensor):
-    while True:
-        time.sleep(0.02)
         if board.input(buzzButton) == False:
             b(buzzSensor, board).buzzOn()
             doorbell = Label(frame, text=(' ON '), borderwidth=1, fg=('green'))
-            doorbell.grid(row=16,column=2,padx=5,pady=5)
-        else:
+            doorbell.grid(row=16, column=2, padx=5, pady=5)
+        elif board.input(buzzButton) == True:
             b(buzzSensor, board).buzzOff()
             doorbell = Label(frame, text=('OFF'), borderwidth=1, fg=('red'))
             doorbell.grid(row=16, column=2, padx=5, pady=5)
+
 '''
 def lsLightMethod(board, frame):
 
