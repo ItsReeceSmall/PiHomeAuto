@@ -19,13 +19,15 @@ pirLight = 10
 ledRed = 36
 ledGreen = 38
 ledBlue = 40
+buzzButton = 16
+lsLight = 12
 
 board = Board().board
 lcd = LCD1602(board) # Can use 'lcd' as a shortened way to access the lcd1602 class
 
 root = Tk()
 print('')
-root.title('Home Automation System v0.3 by Reece Small')
+root.title('Home Automation System by Reece Small')
 frame = Frame(root)
 frame.grid()
 
@@ -33,10 +35,11 @@ def setup():
     split = '###########################################'
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
-    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed]
+    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed, lsLight]
+    buttons = [lightButton, buzzButton]
     print(split)
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
-    pins.Pins(inputs, outputs, lightButton, board, time)    #Set up pins from a class
+    pins.Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
     print('### ALL THE PINS ARE IMPORTED AND SETUP ###')
     print(split)
     print('### RUNNING HOME AUTOMATION IN GUI MODE ###')
@@ -44,23 +47,19 @@ def setup():
     board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
 def getAll(lcdyon):
-    pir = M.getPir(pirSensor, board, pirLight, buzzSensor, frame)
-    list, c = M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
-    light = M.getLight(lightSensor, board, frame)
-    dist = M.getDist(dtSensor, deSensor, board, frame)
+    pir = M.getPir(pirSensor, board, pirLight, buzzSensor, frame)                   #
+    list, c = M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
+    light = M.getLight(lightSensor, board, frame, lsLight)                                   #
+    dist = M.getDist(dtSensor, deSensor, board, frame)                              #
+    theString = (str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light)) # String for the LCD screen
     if lcdyon == 1:
         lcd1Label = Label(frame, text=('C  PIR Dis Light'), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
-        lcd1Label.grid(row=13, column=1, padx=5, pady=5)
-        lcd2Label = Label(frame, text=(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light)), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+        lcd1Label.grid(row=13, column=1, padx=5, pady=5) # Allignment on the grid
+        lcd2Label = Label(frame, text=(theString), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
         lcd2Label.grid(row=14, column=1, padx=5, pady=5)
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
 
-def runAuto(val):
-    if val == 1:
-        thethread = threading.Thread(target=getAll(0)).start().set()
-    elif val == 2:
-        thethread = threading.Thread(target=getAll(0)).isSet()
 
 try:
     M.tempSet()
@@ -68,6 +67,7 @@ try:
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     screen = threading.Thread(target=M.lightSwitch, args=(fadeLed, lightButton, board, lightState, frame)).start()
+    bell = threading.Thread(target=M.Doorbell, args=(board, frame, buzzSensor, buzzButton)).start()
     M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 63

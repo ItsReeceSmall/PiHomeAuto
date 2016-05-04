@@ -83,11 +83,17 @@ def getPir(pirSensor, board, pirLight, buzzSensor, frame):
     BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
     return finValue
 
-def getLight(lightSensor, board, frame):
+def getLight(lightSensor, board, frame, lsLight):
     LSV = 0
     lval = L(lightSensor, board, LSV)
     value = lval.LSV
     sys.stdout.write("\033[K")
+    if value > 1500:
+        lsLightLabel = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=19,column=3,padx=5,pady=5)
+        l(lsLight, board).LedOn()
+    else:
+        lsLightLabel = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=19, column=3, padx=5, pady=5)
+        l(lsLight, board).LedOff()
     print ('### Light Sensor Value = ' + str(value))
     LightValue = Label(frame, text=(value), borderwidth=1)
     LightValue.grid(row=5, column=2, padx=5, pady=5)
@@ -106,6 +112,20 @@ def lightSwitch(fadeLed, lightButton, board, lightState,frame):
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
 
+def Doorbell(board, frame, buzzButton, buzzSensor):
+    while True:
+        if board.input(buzzButton) == False:
+            b(buzzSensor, board).buzzOn()
+            doorbell = Label(frame, text=(' ON '), borderwidth=1, fg='green')
+            doorbell.grid(row=16,column=3,padx=5,pady=5)
+        else:
+            b(buzzSensor, board).buzzOff()
+            doorbell = Label(frame, text=('OFF'), borderwidth=1, fg='red')
+            doorbell.grid(row=16, column=3, padx=5, pady=5)
+'''
+def lsLightMethod(board, frame):
+
+'''
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     if f <= lowTemp:
         l(ledBlue, board).LedOn()
