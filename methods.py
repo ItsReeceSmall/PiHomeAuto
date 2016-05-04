@@ -99,16 +99,16 @@ def getLight(lightSensor, board, frame, lsLight):
     LightValue.grid(row=5, column=2, padx=5, pady=5)
     return value
 
-def ButtonSwitch(fadeLed, lightButton, board, lightState,frame, buzzSensor, buzzButton):
+def ButtonSwitch(fadeLed, lightButton, board, lightState, frame, buzzSensor, buzzButton):
     while True:
         time.sleep(0.05)
         if board.input(lightButton) == False:
             if lightState == 'on':
-                lsta = Label(frame, text=('OFF'), borderwidth=1, fg=('red')).grid(row=14,column=3,padx=5,pady=5)
+                lsta = Label(frame, text=('OFF'), borderwidth=1, fg=('red')).grid(row=14,column=2,padx=5,pady=5)
                 l(fadeLed, board).LedOff()
                 lightState = 'off'
             elif lightState == 'off':
-                lsta = Label(frame, text=(' ON '), borderwidth=1, fg=('green')).grid(row=14, column=3, padx=5, pady=5)
+                lsta = Label(frame, text=(' ON '), borderwidth=1, fg=('green')).grid(row=14, column=2, padx=5, pady=5)
                 l(fadeLed, board).LedOn()
                 lightState = 'on'
         if board.input(buzzButton) == False:
