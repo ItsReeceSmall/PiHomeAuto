@@ -85,8 +85,8 @@ try:
     doAll.grid(row=1,column=3,padx=2,pady=5)
     p2lcd = Button(frame, text=('View Sensor Data'), borderwidth=1, command=lambda: getAll(1))
     p2lcd.grid(row=15, column=1,padx=5, pady=5)
-    startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
-    startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
+    #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
+    #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
     getAll(0) # Initial Run of the components
     root.mainloop()
