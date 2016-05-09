@@ -22,6 +22,43 @@ def tempSet():
     device_folder = glob.glob(base_dir + '28*')[0]
     device_file = device_folder + '/w1_slave'
 
+def createWidgets(frame, root):
+    ##################################################
+    #titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
+    ##################################################
+    for i in range(1,4):
+        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=2, column=i, padx=5, pady=5)
+    ##################################################
+    PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1).grid(row=3, column=1, padx=5, pady=5)
+    TempLabel = Label(frame, text=('Temperature: '), borderwidth=1).grid(row=4, column=1, padx=5, pady=5)
+    LightLabel = Label(frame, text=('Light Sensor Value: '), borderwidth=1).grid(row=5, column=1, padx=5, pady=5)
+    DistLabel = Label(frame, text=('Distance: '), borderwidth=1).grid(row=6, column=1, padx=5, pady=5)
+    BuzzerLabel = Label(frame, text=('Buzzer: '), borderwidth=1).grid(row=7, column=1, padx=5, pady=5)
+    ##################################################
+    line1lab = Label(frame, text=('LCD Line 1: '), fg='blue', borderwidth=1).grid(row=8,column=1,padx=5,pady=2)
+    line2lab = Label(frame, text=('LCD Line 2: '), fg='blue', borderwidth=1).grid(row=9, column=1, padx=5, pady=2)
+    ##################################
+    line1 = StringVar(frame, value='')
+    lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1).grid(row=8,column=2,padx=5,pady=2)
+    ##################################
+    line2 = StringVar(frame, value='')
+    lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2).grid(row=9, column=2, padx=5, pady=2)
+    ##################################
+    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=11, command=lambda: setLcd(line1, line2, frame)).grid(row=8, column=3, padx=5, pady=2)
+    lcdClearBut = Button(frame, text=('Clear LCD'), borderwidth=1, width=11, command=lambda: clearLcd(line1, line2, frame)).grid(row=9, column=3, padx=5, pady=2)
+    ##################################################
+    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=11, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
+    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
+    HelpButton = Button(frame, text=('Help'), fg=('black'), bg=('yellow'), borderwidth=1, command=lambda: helpscreen).grid(row=1,column=1,padx=5,pady=5)
+    ##################################################
+    for i in range(1,4):
+        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=11, column=i, padx=5, pady=5)
+    ##################################################
+    lcdLabel = Label(frame, text=('LCD State'),borderwidth=1).grid(row=12,column=1,padx=5,pady=5)
+    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
+    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
+    ##################################################
+
 def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     c, f = t.read_temp() # Get temp values
     f = round(f, 2)
@@ -181,44 +218,6 @@ def clearLcd(line1, line2, frame):
     lcd1Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
     lcd2Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     lcd.lcd_clear()
-
-def createWidgets(frame, root):
-    ##################################################
-    #titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
-    ##################################################
-    for i in range(1,4):
-        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=2, column=i, padx=5, pady=5)
-    ##################################################
-    PirLabel = Label(frame, text=('Pir Value: '), borderwidth=1).grid(row=3, column=1, padx=5, pady=5)
-    TempLabel = Label(frame, text=('Temperature: '), borderwidth=1).grid(row=4, column=1, padx=5, pady=5)
-    LightLabel = Label(frame, text=('Light Sensor Value: '), borderwidth=1).grid(row=5, column=1, padx=5, pady=5)
-    DistLabel = Label(frame, text=('Distance: '), borderwidth=1).grid(row=6, column=1, padx=5, pady=5)
-    BuzzerLabel = Label(frame, text=('Buzzer: '), borderwidth=1).grid(row=7, column=1, padx=5, pady=5)
-    ##################################################
-    line1lab = Label(frame, text=('LCD Line 1: '), fg='blue', borderwidth=1).grid(row=8,column=1,padx=5,pady=2)
-    line2lab = Label(frame, text=('LCD Line 2: '), fg='blue', borderwidth=1).grid(row=9, column=1, padx=5, pady=2)
-    ##################################
-    line1 = StringVar(frame, value='')
-    lcdLine1 = Entry(frame, bd =2, width=16, textvariable=line1).grid(row=8,column=2,padx=5,pady=2)
-    ##################################
-    line2 = StringVar(frame, value='')
-    lcdLine2 = Entry(frame, bd=2, width=16, textvariable=line2).grid(row=9, column=2, padx=5, pady=2)
-    ##################################
-    lcdBut = Button(frame, text=('Set Text'), borderwidth=1, width=11, command=lambda: setLcd(line1, line2, frame)).grid(row=8, column=3, padx=5, pady=2)
-    lcdClearBut = Button(frame, text=('Clear LCD'), borderwidth=1, width=11, command=lambda: clearLcd(line1, line2, frame)).grid(row=9, column=3, padx=5, pady=2)
-    ##################################################
-    BuzzButton = Button(frame, text=('Use Buzzer'), borderwidth=1, width=11, command=lambda: testBuzz(board, 35, frame)).grid(row=7,column=3,padx=5,pady=2)
-    CloseButton = Button(frame, text=('Quit'), fg=('red'), borderwidth=1, command=lambda: root.quit()).grid(row=1, column=2, padx=5, pady=5)
-    HelpButton = Button(frame, text=('Help'), fg=('black'), bg=('yellow'), borderwidth=1, command=lambda: helpscreen).grid(row=1,column=1,padx=5,pady=5)
-    ##################################################
-    for i in range(1,4):
-        sepLabel = Label(frame, text=('###########'), borderwidth=1).grid(row=11, column=i, padx=5, pady=5)
-    ##################################################
-    lcdLabel = Label(frame, text=('LCD State'),borderwidth=1).grid(row=12,column=1,padx=5,pady=5)
-    lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
-    lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
-    ##################################################
-
 
 def helpscreen():
     messagebox.showinfo("Help", "Welcome to the the Home Automation help screen.\n \nClick the buttons on the same row as the modules to recieve the sensor value manually.\n \nUsing the text box's, enter what you want to be displayed on the LCD Screen and press 'Set Text' to display it on screen.\n \n")
