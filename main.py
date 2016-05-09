@@ -72,7 +72,28 @@ try:
     lowTemp = 63
     lcdyon = 0
     print('')
-
+    ##################################################################################################################################
+    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=11, command=lambda: M.getPir(pirSensor, board, pirLight, buzzSensor, frame))
+    pirBut.grid(row=3, column=3, padx=5,pady=5)
+    tempBut = Button(frame, text=('Get Temperature'), borderwidth=1, width=11, command=lambda: M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp))
+    tempBut.grid(row=4, column=3, padx=5, pady=5)
+    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: M.getLight(lightSensor, board, frame, lsLight))
+    lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
+    distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
+    distBut.grid(row=6, column=3, padx=5, pady=5)
+    doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll(0))
+    doAll.grid(row=1,column=3,padx=2,pady=5)
+    p2lcd = Button(frame, text=('View Sensor Data'), borderwidth=1, command=lambda: getAll(1))
+    p2lcd.grid(row=15, column=1,padx=5, pady=5)
+    #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
+    #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
+    ##################################################################################################################################
+    getAll(0) # Initial Run of the components
+    root.mainloop()
+    print('\n \n### Exiting ###')
+    lcd.lcd_clear()
+    board.cleanup()
+    sys.exit()
 except (KeyboardInterrupt):
     print('\n \n \n \n### Exiting ###')
     root.destroy()
