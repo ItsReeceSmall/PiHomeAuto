@@ -36,16 +36,16 @@ def getText():
 @route('/setup', method='GET')
 def setup():
     notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
-    t = str(int(t))
+    t = str(t)
     ###
     p = M.getPir(pirSensor, pirLight, board, buzzSensor, frame)
     p = str(p)
     ###
     l = M.getLight(lightSensor, board, frame, lsLight)
-    l = str(int(l))
+    l = str(l)
     ###
     d = M.getDist(dtSensor, deSensor, board, frame)
-    d = str(int(d))
+    d = str(d)
     ##
     data = {}
     data['temp'] = t
