@@ -106,13 +106,12 @@ def getAll(lcdyon):
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
 
-
 try:
     M.tempSet()
     pisetup()
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
-    screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
+    #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
     M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 63
@@ -134,7 +133,6 @@ try:
     #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
-    getAll(0) # Initial Run of the components
     run(host='0.0.0.0', port=8080, reloader=True) # BOTTLE
     root.mainloop()
     print('\n \n### Exiting ###')
