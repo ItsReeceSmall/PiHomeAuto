@@ -77,7 +77,7 @@ root.title('Home Automation System by Reece Small')
 frame = Frame(root)
 frame.grid()
 
-def setup():
+def pisetup():
     split = '###########################################'
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
@@ -109,7 +109,7 @@ def getAll(lcdyon):
 
 try:
     M.tempSet()
-    setup()
+    pisetup()
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
