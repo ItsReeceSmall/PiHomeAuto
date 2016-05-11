@@ -1,0 +1,167 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"  media="screen,projection"/>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script>
+        $(document).ready(function() {
+
+            $.get("/setup", function(data, status){
+                var d = JSON.parse(data);
+                console.log(d);
+                document.getElementById("temp").innerHTML = d['temp'] + ' degrees centigrade';
+                document.getElementById("pressure").innerHTML = d['pressure'] + ' millibars';
+                document.getElementById("humidity").innerHTML = d['humidity'] + ' %';
+            });
+
+            $("#ledSwitch").change(function() {
+                getValues();
+            });
+
+            $('#textbutton').click( function () {
+              getText();
+            });
+        });
+
+        function getText() {
+          var text = $('#texttodisplay').val();
+          console.log('text = ' + text)
+
+          $.ajax({
+            url: '/text',
+            type: 'POST',
+            data:{texttodisplay:text}
+          });
+
+        }
+
+        function getValues() {
+            var rValue = $('#rSlider').val();
+            console.log('rValue = ' + rValue);
+            var gValue = $('#gSlider').val();
+            console.log('gValue = ' + gValue);
+            var bValue = $('#bSlider').val();
+            console.log('bValue = ' + bValue);
+            var isChecked = $("#ledSwitch").is(":checked") ? 1:0;
+            console.log('isChecked = ' + isChecked);
+
+            $.ajax({
+                url: '/led',
+                type: 'POST',
+                data: { rValue:rValue, gValue:gValue, bValue:bValue, buttonState:isChecked}
+            });
+        }
+
+    </script>
+
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <nav>
+          <div class="nav-wrapper purple lighten-3">
+            <a href="#" class="brand-logo right">Raspberry Pi Sense Hat</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              
+            </ul>
+          </div>
+        </nav>
+
+        <form>
+
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">LED Controls</span>
+                  <p>Use this form to control the LEDs on the Sense Hat</p>
+                </div>
+                <div class="card-action">
+                  <div class="row">
+                    <div class="switch">
+                      <h>LEDs</h>
+                      <label>
+                        off
+                        <input type="checkbox" name="ledSwitch" id="ledSwitch" />
+                        <span class="lever"></span>
+                        On
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h>Red</h>
+                    <p class="range-field">
+                      <input type="range" id="rSlider" name="rSlider" min="47" max="255" value="180" onchange="getValues()" />
+                    </p>
+                  </div>
+                  <div class="row">
+                    <h>Green</h>
+                    <p class="range-field">
+                      <input type="range" id="gSlider" name="gSlider" min="47" max="255" value="130" onchange="getValues()" />
+                    </p>
+                  </div>
+                    <div class="row">
+                    <h>Blue</h>
+                    <p class="range-field">
+                      <input type="range" id="bSlider" name="gSlider" min="47" max="255" value="47" onchange="getValues()" />
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col s12 m6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Sensors</span>
+                </div>
+                <div class="card-action">
+                  <div class="row">
+                    <h>Temperature</h>
+                    <p id="temp" name="temp"></p>
+                  </div>
+                  <div class="row">
+                    <h>Pressure</h>
+                    <p id="pressure" name="pressure"></p>
+                  </div>
+                  <div class="row">
+                    <h>Humidity</h>
+                    <p id="humidity" name="humidity"></p>
+                  </div>
+                </div>
+                </div>
+              </div>
+
+            <div class="col s12 m6">
+                <div class="card">
+                  <div class="card-content">
+                    <span class="card-title">Sensor Hat Text</span>
+                  </div>
+                  <div class="card-action">
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                      <input placeholder="Enter text to display" id="texttodisplay" type="text" class="validate">
+                      <label for="texttodisplay">Text to display on the Sensor Hat</label>
+                    </div>
+                    <div class="row">
+                      <button class="btn waves-effect waves-light" type="submit" id="textbutton" name="textbutton">Submit<i class="material-icons right">send</i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </form>
+
+
+    </body>
+  </html>
