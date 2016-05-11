@@ -54,6 +54,7 @@ def setup():
     data['distance'] = d
     json_data = json.dumps(data)
     return json_data
+
 #Pins
 tempSensor = 7
 tempLed = 23
