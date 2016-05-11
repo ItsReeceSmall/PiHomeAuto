@@ -3,10 +3,6 @@ from bottle import route, static_file, debug, run, get, redirect
 from bottle import post, request
 import os, inspect, json
 
-from sense_hat import SenseHat
-
-sense = SenseHat()
-sense.clear()
 s = [100,100,100]
 #enable bottle debug
 debug(True)
@@ -28,20 +24,31 @@ def html_file(filename):
 def getText():
     text = request.forms.get('texttodisplay')
     print('DEBGUG: text = ' + str(text))
-    sense.show_message(text)
+    lcd.lcd_string(text, lcd.LCD_LINE_1)
 
 @route('/setup', method='GET')
 def setup():
     t = sense.temp
     t = str(int(t))
+    ###
     p = sense.pressure
     p = str(int(p))
-    h = sense.humidity
-    h = str(int(h))
+    ###
+    l = sense.humidity
+    l = str(int(l))
+    ###
+    d = dist
+    d = str(int(d))
+    ###
+    b = buzz
+    b = str(b)
+    ##
     data = {}
     data['temp'] = t
-    data['pressure'] = p
-    data['humidity'] = h
+    data['pir'] = p
+    data['lightsensor'] = l
+    data['distance'] = d
+    data['buzzer'] = b
     json_data = json.dumps(data)
     return json_data
     #'temp:'+str(int(temp))+',pressure:'+str(int(pressure))+',humidity:'+str(int(humidity))

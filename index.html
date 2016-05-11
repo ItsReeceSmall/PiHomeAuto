@@ -16,8 +16,9 @@
                 var d = JSON.parse(data);
                 console.log(d);
                 document.getElementById("temp").innerHTML = d['temp'] + ' degrees centigrade';
-                document.getElementById("pressure").innerHTML = d['pressure'] + ' millibars';
-                document.getElementById("humidity").innerHTML = d['humidity'] + ' %';
+                document.getElementById("pressure").innerHTML = d['pir'] + ' - PIR Value';
+                document.getElementById("humidity").innerHTML = d['lightsensor'] + ' - Light Sensor Value';
+                document.getElementById("distance").innerHTML = d['distance'] + ' - Cm';
             });
 
             $("#ledSwitch").change(function() {
@@ -68,7 +69,7 @@
     <body>
         <nav>
           <div class="nav-wrapper purple lighten-3">
-            <a href="#" class="brand-logo right">Raspberry Pi Sense Hat</a>
+            <a href="#" class="brand-logo right">Raspberry Pi Home Automation System - By Reece Small</a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
               
             </ul>
@@ -129,12 +130,16 @@
                     <p id="temp" name="temp"></p>
                   </div>
                   <div class="row">
-                    <h>Pressure</h>
-                    <p id="pressure" name="pressure"></p>
+                    <h>Pir</h>
+                    <p id="pit" name="pir"></p>
                   </div>
                   <div class="row">
-                    <h>Humidity</h>
-                    <p id="humidity" name="humidity"></p>
+                    <h>Light Sensor</h>
+                    <p id="lightsensor" name="lightsensor"></p>
+                  </div>
+                  <div class="row">
+                    <h>Distance</h>
+                    <p id="distance" name="distance"></p>
                   </div>
                 </div>
                 </div>

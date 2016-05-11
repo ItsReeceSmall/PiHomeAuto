@@ -1,10 +1,59 @@
 import time, sys, threading, os, glob
+from bottle import *
+import json, inspect
 from board import Board
 import pins
 import methods as M # All methods stored here
 from lcd1602 import LCD1602
 from tkinter import *
 
+board = Board().board
+lcd = LCD1602(board)
+
+s = [100,100,100]
+#enable bottle debug
+debug(True)
+
+# WebApp route path
+routePath = '/bottle'
+# get directory of WebApp (bottleJQuery.py's dir)
+rootPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+
+@route(routePath)
+def rootHome():
+    return redirect(routePath+'/index.html')
+
+@route(routePath + '/<filename:re:.*\.html>')
+def html_file(filename):
+    return static_file(filename, root=rootPath)
+
+@route('/text', method='POST')
+def getText():
+    text = request.forms.get('texttodisplay')
+    print('DEBGUG: text = ' + str(text))
+    lcd.lcd_string(text, lcd.LCD_LINE_1)
+
+@route('/setup', method='GET')
+def setup():
+    notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
+    t = str(int(t))
+    ###
+    p = M.getPir(pirSensor, pirLight, board, buzzSensor, frame)
+    p = str(p)
+    ###
+    l = M.getLight(lightSensor, board, frame, lsLight)
+    l = str(int(l))
+    ###
+    d = M.getDist(dtSensor, deSensor, board, frame)
+    d = str(int(d))
+    ##
+    data = {}
+    data['temp'] = t
+    data['pir'] = p
+    data['lightsensor'] = l
+    data['distance'] = d
+    json_data = json.dumps(data)
+    return json_data
 #Pins
 tempSensor = 7
 tempLed = 23
@@ -21,9 +70,6 @@ ledGreen = 38
 ledBlue = 40
 buzzButton = 16
 lsLight = 12
-
-board = Board().board
-lcd = LCD1602(board) # Can use 'lcd' as a shortened way to access the lcd1602 class
 
 root = Tk()
 print('')
@@ -89,6 +135,7 @@ try:
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
     getAll(0) # Initial Run of the components
+    run(host='0.0.0.0', port=8080, reloader=True) # BOTTLE
     root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()
