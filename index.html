@@ -25,10 +25,10 @@
                 getValues();
             });
 
-            $("#textbutton").click(function () {
+            $("#textbutton").click(function() {
                 getText();
             });
-        });
+        }
 
         function getText() {
           var text = $('#texttodisplay1').val();
@@ -39,7 +39,7 @@
           $.ajax({
             url: '/text',
             type: 'POST',
-            data:{texttodisplay1:text1, texttodisplay2:text2}
+            data: { texttodisplay1:text1, texttodisplay2:text2}
           });
 
         }

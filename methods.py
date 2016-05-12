@@ -153,7 +153,7 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState, frame, buzzSensor, buz
             doorbell.grid(row=16, column=2, padx=5, pady=5)
             for i in range(1,6):
                 b(buzzSensor, board).buzzOn()
-                time.slee(0.1)
+                time.sleep(0.1)
                 b(buzzSensor, board).buzzOff()
             doorbell = Label(frame, text=('OFF'), borderwidth=1, fg=('red'))
             doorbell.grid(row=16, column=2, padx=5, pady=5)
