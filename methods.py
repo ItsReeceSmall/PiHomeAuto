@@ -11,7 +11,6 @@ from buzzerClass import Buzz as b
 from lcd1602 import LCD1602
 from tkinter import *
 from tkinter import messagebox
-#from bottle import *
 
 board = Board().board
 lcd = LCD1602(board)

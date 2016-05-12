@@ -35,6 +35,7 @@ def getText():
 
 @route('/setup', method='GET')
 def setup():
+    print('setup run')
     notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
     t = str(t)
     ###
@@ -79,6 +80,7 @@ frame = Frame(root)
 frame.grid()
 
 def pisetup():
+    print('pisetup running')
     split = '###########################################'
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
@@ -109,11 +111,14 @@ def getAll(lcdyon):
 
 try:
     M.tempSet()
+    print('DEBUG: M.tempSet() has run')
     pisetup()
+    print('DEBUG: pisetup() has run')
     lightState = 'on' # Current state of the light stored in a variable
     counter = 0 # Counter for pir light
     #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
     M.createWidgets(frame, root)
+    print('DEBUG: M.createWidgets() has run')
     highTemp = 68
     lowTemp = 63
     lcdyon = 0
@@ -135,6 +140,7 @@ try:
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
     run(host='0.0.0.0', port=8080, reloader=True) # BOTTLE
+    print('DEBUG: Bottle has started')
     root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()
