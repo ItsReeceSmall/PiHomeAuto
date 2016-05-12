@@ -23,6 +23,7 @@ class Pir:
                 print('Error PIR not functioning, aborting...')
                 self.board.cleanup()
                 #sys.exit()
+        self.pirState = str(self.pirState)
         return self.pirState
 
 if __name__ == "__main__":

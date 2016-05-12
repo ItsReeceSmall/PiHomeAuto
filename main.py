@@ -12,7 +12,7 @@ s = [100,100,100]
 debug(True)
 
 # WebApp route path
-routePath = '/bottle'
+routePath = ''
 # get directory of WebApp (bottleJQuery.py's dir)
 rootPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
@@ -39,8 +39,8 @@ def setup():
     notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
     t = str(t)
     ###
-    #p = M.getPir(pirSensor, pirLight, board, buzzSensor, frame)
-    #p = str(p)
+    p = M.getPir(pirSensor, pirLight, board, buzzSensor, frame)
+    p = str(p)
     ###
     l = M.getLight(lightSensor, board, frame, lsLight)
     l = str(l)
@@ -50,7 +50,7 @@ def setup():
     ##
     data = {}
     data['temp'] = t
-    #data['pir'] = p
+    data['pir'] = p
     data['lightsensor'] = l
     data['distance'] = d
     json_data = json.dumps(data)
