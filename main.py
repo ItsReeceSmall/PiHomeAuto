@@ -7,9 +7,6 @@ import methods as M # All methods stored here
 from lcd1602 import LCD1602
 from tkinter import *
 
-board = Board().board
-lcd = LCD1602(board)
-
 s = [100,100,100]
 #enable bottle debug
 debug(True)
@@ -27,6 +24,9 @@ def rootHome():
 def html_file(filename):
     return static_file(filename, root=rootPath)
 
+board = Board().board
+lcd = LCD1602(board)
+
 @route('/text', method='POST')
 def getText():
     text = request.forms.get('texttodisplay')
@@ -39,8 +39,8 @@ def setup():
     notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
     t = str(t)
     ###
-    p = M.getPir(pirSensor, pirLight, board, buzzSensor, frame)
-    p = str(p)
+    #p = M.getPir(pirSensor, pirLight, board, buzzSensor, frame)
+    #p = str(p)
     ###
     l = M.getLight(lightSensor, board, frame, lsLight)
     l = str(l)
@@ -50,7 +50,7 @@ def setup():
     ##
     data = {}
     data['temp'] = t
-    data['pir'] = p
+    #data['pir'] = p
     data['lightsensor'] = l
     data['distance'] = d
     json_data = json.dumps(data)
@@ -109,45 +109,42 @@ def getAll(lcdyon):
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
 
-M.tempSet()
-print('DEBUG: M.tempSet() has run')
-pisetup()
-print('DEBUG: pisetup() has run')
-lightState = 'on' # Current state of the light stored in a variable
-counter = 0 # Counter for pir light
-#screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
-M.createWidgets(frame, root)
-print('DEBUG: M.createWidgets() has run')
-highTemp = 68
-lowTemp = 63
-lcdyon = 0
-print('')
-##################################################################################################################################
-pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=11, command=lambda: M.getPir(pirSensor, board, pirLight, buzzSensor, frame))
-pirBut.grid(row=3, column=3, padx=5,pady=5)
-tempBut = Button(frame, text=('Get Temperature'), borderwidth=1, width=11, command=lambda: M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp))
-tempBut.grid(row=4, column=3, padx=5, pady=5)
-lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: M.getLight(lightSensor, board, frame, lsLight))
-lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
-distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
-distBut.grid(row=6, column=3, padx=5, pady=5)
-doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll(0))
-doAll.grid(row=1,column=3,padx=2,pady=5)
-p2lcd = Button(frame, text=('View Sensor Data'), borderwidth=1, command=lambda: getAll(1))
-p2lcd.grid(row=15, column=1,padx=5, pady=5)
+try:
+    M.tempSet()
+    pisetup()
+    lightState = 'on' # Current state of the light stored in a variable
+    counter = 0 # Counter for pir light
+    #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
+    M.createWidgets(frame, root)
+    highTemp = 68
+    lowTemp = 63
+    lcdyon = 0
+    print('')
+    ##################################################################################################################################
+    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=11, command=lambda: M.getPir(pirSensor, board, pirLight, buzzSensor, frame))
+    pirBut.grid(row=3, column=3, padx=5,pady=5)
+    tempBut = Button(frame, text=('Get Temperature'), borderwidth=1, width=11, command=lambda: M.getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp))
+    tempBut.grid(row=4, column=3, padx=5, pady=5)
+    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: M.getLight(lightSensor, board, frame, lsLight))
+    lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
+    distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: M.getDist(dtSensor, deSensor, board, frame))
+    distBut.grid(row=6, column=3, padx=5, pady=5)
+    doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll(0))
+    doAll.grid(row=1,column=3,padx=2,pady=5)
+    p2lcd = Button(frame, text=('View Sensor Data'), borderwidth=1, command=lambda: getAll(1))
+    p2lcd.grid(row=15, column=1,padx=5, pady=5)
     #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
-run(host='0.0.0.0', port=8080, reloader=False) # BOTTLE
-print('DEBUG: Bottle has started')
-#root.mainloop()
-print('\n \n### Exiting ###')
-lcd.lcd_clear()
-board.cleanup()
-sys.exit()
-#except (KeyboardInterrupt):
-#print('\n \n \n \n### Exiting ###')
-#root.destroy()
-#lcd.lcd_clear()
-#board.cleanup()
-#sys.exit()
+    run(host='0.0.0.0', port=8080, reloader=False) # BOTTLE
+    root.mainloop()
+    print('\n \n### Exiting ###')
+    lcd.lcd_clear()
+    board.cleanup()
+    sys.exit()
+except (KeyboardInterrupt):
+    print('\n \n \n \n### Exiting ###')
+    root.destroy()
+    lcd.lcd_clear()
+    board.cleanup()
+    sys.exit()
