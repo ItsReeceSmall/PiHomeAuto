@@ -29,9 +29,12 @@ lcd = LCD1602(board)
 
 @route('/text', method='POST')
 def getText():
-    text = request.forms.get('texttodisplay')
-    print('DEBGUG: text = ' + str(text))
-    lcd.lcd_string(text, lcd.LCD_LINE_1)
+    text1 = request.forms.get('texttodisplay1')
+    print('DEBGUG: text1 = ' + str(text1))
+    text2 = request.forms.get('texttodisplay2')
+    print('DEBGUG: text2 = ' + str(text2))
+    lcd.lcd_string(text1, lcd.LCD_LINE_1)
+    lcd.lcd_string(text2, lcd.LCD_LINE_2)
 
 @route('/setup', method='GET')
 def setup():
@@ -135,8 +138,10 @@ try:
     #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
-    run(host='0.0.0.0', port=8080, reloader=False) # BOTTLE
-    root.mainloop()
+    #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
+    #threading.Thread(target=root.mainloop().start())
+    run(host='0.0.0.0', port=8080, reloader=False)
+    #root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()
     board.cleanup()

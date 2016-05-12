@@ -31,13 +31,15 @@
         });
 
         function getText() {
-          var text = $('#texttodisplay').val();
-          console.log('text = ' + text)
+          var text = $('#texttodisplay1').val();
+          console.log('text1 = ' + text1);
+          var text = $('#texttodisplay2').val();
+          console.log('text2 = ' + text2);
 
           $.ajax({
             url: '/text',
             type: 'POST',
-            data:{texttodisplay:text}
+            data:{texttodisplay1:text1, texttodisplay2:text2}
           });
 
         }
@@ -154,11 +156,14 @@
                     <div class="row">
                     </div>
                     <div class="row">
-                      <input placeholder="Enter text to display" id="texttodisplay" type="text" class="validate">
-                      <label for="texttodisplay">Text to display on the LCD Screen</label>
+                      <input placeholder="Enter text to display on Line 1" id="texttodisplay1" type="text" class="validate">
                     </div>
                     <div class="row">
-                      <button class="btn waves-effect waves-light" type="submit" id="textbutton" name="textbutton">Submit<i class="material-icons right">send</i>
+                      <input placeholder="Enter text to display on Line 2" id="texttodisplay2" type="text" class="validate">
+                      <label for="texttodisplay2">Text to display on the LCD Screen</label>
+                    </div>
+                    <div class="row">
+                      <button class="btn waves-effect waves-light" type="submit" id="textbutton" name="textbutton">Submit Text<i class="material-icons right">send</i>
                       </button>
                     </div>
                   </div>
