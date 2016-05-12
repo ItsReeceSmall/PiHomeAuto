@@ -15,10 +15,10 @@
             $.get("/setup", function(data, status){
                 var d = JSON.parse(data);
                 console.log(d);
-                document.getElementById("temp").innerHTML = d['temp'] + ' degrees centigrade';
-                document.getElementById("pir").innerHTML = d['pir'] + ' - PIR Value';
-                document.getElementById("lightsensor").innerHTML = d['lightsensor'] + ' - Light Sensor Value';
-                document.getElementById("distance").innerHTML = d['distance'] + ' - Cm';
+                document.getElementById("temp").innerHTML = 'Temperature: ' + d['temp'] + ' degrees centigrade';
+                document.getElementById("pir").innerHTML = 'PIR Value: ' + d['pir'] + '';
+                document.getElementById("lightsensor").innerHTML = 'Light Sensor Value: ' + d['lightsensor'];
+                document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
             });
 
             $("#ledSwitch").change(function() {
@@ -126,20 +126,20 @@
                 </div>
                 <div class="card-action">
                   <div class="row">
-                    <h>Temperature</h>
                     <p id="temp" name="temp"></p>
                   </div>
                   <div class="row">
-                    <h>Pir</h>
                     <p id="pir" name="pir"></p>
                   </div>
                   <div class="row">
-                    <h>Light Sensor</h>
                     <p id="lightsensor" name="lightsensor"></p>
                   </div>
                   <div class="row">
-                    <h>Distance</h>
                     <p id="distance" name="distance"></p>
+                  </div>
+                  <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" id="textbutton" name="textbutton">Refresh Sensors<i class="material-icons right">send</i>
+                  </button>
                   </div>
                 </div>
                 </div>
@@ -148,14 +148,14 @@
             <div class="col s12 m6">
                 <div class="card">
                   <div class="card-content">
-                    <span class="card-title">Sensor Hat Text</span>
+                    <span class="card-title">LCD Screen Text</span>
                   </div>
                   <div class="card-action">
                     <div class="row">
                     </div>
                     <div class="row">
                       <input placeholder="Enter text to display" id="texttodisplay" type="text" class="validate">
-                      <label for="texttodisplay">Text to display on the Sensor Hat</label>
+                      <label for="texttodisplay">Text to display on the LCD Screen</label>
                     </div>
                     <div class="row">
                       <button class="btn waves-effect waves-light" type="submit" id="textbutton" name="textbutton">Submit<i class="material-icons right">send</i>
