@@ -16,8 +16,8 @@
                 var d = JSON.parse(data);
                 console.log(d);
                 document.getElementById("temp").innerHTML = d['temp'] + ' degrees centigrade';
-                document.getElementById("pressure").innerHTML = d['pir'] + ' - PIR Value';
-                document.getElementById("humidity").innerHTML = d['lightsensor'] + ' - Light Sensor Value';
+                document.getElementById("pir").innerHTML = d['pir'] + ' - PIR Value';
+                document.getElementById("lightsensor").innerHTML = d['lightsensor'] + ' - Light Sensor Value';
                 document.getElementById("distance").innerHTML = d['distance'] + ' - Cm';
             });
 
