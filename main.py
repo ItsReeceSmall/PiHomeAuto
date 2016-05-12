@@ -138,7 +138,7 @@ p2lcd.grid(row=15, column=1,padx=5, pady=5)
     #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
-run(host='0.0.0.0', port=8080, reloader=True) # BOTTLE
+run(host='0.0.0.0', port=8080, reloader=False) # BOTTLE
 print('DEBUG: Bottle has started')
 #root.mainloop()
 print('\n \n### Exiting ###')
