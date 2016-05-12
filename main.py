@@ -35,11 +35,10 @@ def getText():
 
 @route('/setup', method='GET')
 def setup():
-    print('setup run')
     notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
     t = str(t)
     ###
-    p = M.getPir(pirSensor, pirLight, board, buzzSensor, frame)
+    p = M.getPir(pirSensor, board, pirLight, buzzSensor, frame)
     p = str(p)
     ###
     l = M.getLight(lightSensor, board, frame, lsLight)
