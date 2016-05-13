@@ -28,6 +28,10 @@
             $("#textbutton").click(function() {
                 getText();
             });
+
+            $(#refreshbutton").click(function() {
+                location.reload();
+            });
         });
 
         function getText() {
@@ -41,7 +45,6 @@
                 type: 'POST',
                 data: { texttodisplay1:text1, texttodisplay2:text2}
             });
-
         }
 
         function getValues() {
@@ -140,7 +143,7 @@
                     <p id="distance" name="distance"></p>
                   </div>
                   <div class="row">
-                    <button class="btn waves-effect waves-light" type="submit" id="textbutton" name="textbutton">Refresh Sensors<i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light" type="submit" id="refreshbutton" name="refreshbutton">Refresh Sensors<i class="material-icons right">send</i>
                   </button>
                   </div>
                 </div>
