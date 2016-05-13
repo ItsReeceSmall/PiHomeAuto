@@ -136,9 +136,9 @@ try:
     #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
-    threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
+    #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
     #threading.Thread(target=root.mainloop().start())
-    #run(host='0.0.0.0', port=8080, reloader=False)
+    run(host='0.0.0.0', port=8080, reloader=False)
     root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()
