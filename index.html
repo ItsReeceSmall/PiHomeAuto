@@ -35,8 +35,6 @@
             console.log('text1 = ' + text1);
             var text2 = $('#texttodisplay2').val();
             console.log('text2 = ' + text2);
-            document.getElementById("line1").innerHTML = #texttodisplay1;
-            document.getElementById("line2").innerHTML = #texttodisplay2;
 
             $.ajax({
                 url: '/text',
@@ -171,27 +169,13 @@
                       <button class="btn waves-effect waves-light" onclick="getText();" type="submit" id="lcdtextbutton" name="lcdtextbutton">Submit Text<i class="material-icons right">send</i>
                       </button>
                     </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6">
-                <div class="card">
-                  <div class="card-content">
-                    <span class="card-title">LCD Screen Status</span>
-                  </div>
-                  <div class="card-action">
                       <div class="column">
-                          <p>LCD Line 1:</p>
-                      </div>
-                      <div class="column" style="background-color:#90CAF9; color:white">
-                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
                       </div>
                       <div class="column">
-                          <p>LCD Line 2:</p>
+                          <p id="line1" name="line1"></p>
                       </div>
-                      <div class="column" style="background-color:#90CAF9; color:white">
-                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
+                      <div class="column">
+                          <p id="line2" name="line2"></p>
                       </div>
                   </div>
                 </div>
