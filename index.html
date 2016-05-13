@@ -31,9 +31,9 @@
         });
 
         function getText() {
-            var text = $('#texttodisplay1').val();
+            var text1 = $('#texttodisplay1').val();
             console.log('text1 = ' + text1);
-            var text = $('#texttodisplay2').val();
+            var text2 = $('#texttodisplay2').val();
             console.log('text2 = ' + text2);
 
             $.ajax({
@@ -112,7 +112,7 @@
                     <div class="row">
                     <h>Blue</h>
                     <p class="range-field">
-                      <input type="range" id="bSlider" name="gSlider" min="47" max="255" value="47" onchange="getValues()" />
+                      <input type="range" id="bSlider" name="bSlider" min="47" max="255" value="47" onchange="getValues()" />
                     </p>
                   </div>
                 </div>
