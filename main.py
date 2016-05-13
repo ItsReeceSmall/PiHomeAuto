@@ -30,7 +30,7 @@ lcd = LCD1602(board)
 @route('/text', method='POST')
 def getText():
     text1 = request.forms.get('texttodisplay1')
-    #print('DEBGUG: text1 = ' + str(text1))
+    print('DEBGUG: text1 = ' + str(text1))
     text2 = request.forms.get('texttodisplay2')
     #print('DEBGUG: text2 = ' + str(text2))
     lcd.lcd_string(text1, lcd.LCD_LINE_1)
