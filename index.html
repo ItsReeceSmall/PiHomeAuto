@@ -19,6 +19,8 @@
                 document.getElementById("pir").innerHTML = 'PIR Value: ' + d['pir'] + '';
                 document.getElementById("lightsensor").innerHTML = 'Light Sensor Value: ' + d['lightsensor'];
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
+                document.getElementById("line1").innerHTML = d['line1'];
+                document.getElementById("line2").innerHTML = d['line2'];
             });
 
             $("#ledSwitch").change(function() {
@@ -41,6 +43,10 @@
                 type: 'POST',
                 data: { texttodisplay1:text1, texttodisplay2:text2}
             });
+        }
+
+        function reloadpage() {
+            location.reload();
         }
 
         function getValues() {
@@ -139,7 +145,7 @@
                     <p id="distance" name="distance"></p>
                   </div>
                   <div class="row">
-                    <button class="btn waves-effect waves-light" type="submit" id="textbutton" name="textbutton">Refresh Sensors<i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light" onclick="reloadpage();" type="submit" id="reloadpage" name="reloadpage">Refresh Sensors<i class="material-icons right">send</i>
                   </button>
                   </div>
                 </div>
@@ -165,6 +171,14 @@
                       <button class="btn waves-effect waves-light" onclick="getText();" type="submit" id="lcdtextbutton" name="lcdtextbutton">Submit Text<i class="material-icons right">send</i>
                       </button>
                     </div>
+                      <div class="column">
+                      </div>
+                      <div class="column">
+                          <p id="line1" name="line1"></p>
+                      </div>
+                      <div class="column">
+                          <p id="line2" name="line2"></p>
+                      </div>
                   </div>
                 </div>
             </div>

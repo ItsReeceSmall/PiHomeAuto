@@ -35,6 +35,10 @@ def getText():
     print('DEBGUG: text2 = ' + str(text2))
     lcd.lcd_string(text1, lcd.LCD_LINE_1)
     lcd.lcd_string(text2, lcd.LCD_LINE_2)
+    lcd1Label = Label(frame, text=(text1), borderwidth=1, width=17, fg='white', bg='blue', height=1,anchor=W, justify=LEFT)
+    lcd1Label.grid(row=13, column=1, padx=5, pady=5)  # Allignment on the grid
+    lcd2Label = Label(frame, text=(text2), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+    lcd2Label.grid(row=14, column=1, padx=5, pady=5)
 
 @route('/setup', method='GET')
 def setup():
@@ -49,12 +53,16 @@ def setup():
     ###
     d = M.getDist(dtSensor, deSensor, board, frame)
     d = str(d)
-    ##
+    ###
+    l1 = 'Lcd Line 1'
+    l2 = 'Lcd Line 2'
     data = {}
     data['temp'] = t
     data['pir'] = p
     data['lightsensor'] = l
     data['distance'] = d
+    data['line1'] = l1
+    data['line2'] = l2
     json_data = json.dumps(data)
     return json_data
 
