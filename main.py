@@ -30,9 +30,10 @@ lcd = LCD1602(board)
 @route('/text', method='POST')
 def getText():
     text1 = request.forms.get('texttodisplay1')
-    print('DEBGUG: text1 = ' + str(text1))
     text2 = request.forms.get('texttodisplay2')
-    #print('DEBGUG: text2 = ' + str(text2))
+    print('------------------------------------------------------------')
+    print('DEBGUG: text1 = ' + str(text1) + '\n' + 'DEBGUG: text2 = ' + str(text2))
+    print('------------------------------------------------------------')
     lcd.lcd_string(text1, lcd.LCD_LINE_1)
     lcd.lcd_string(text2, lcd.LCD_LINE_2)
     lcd1Label = Label(frame, text=(text1), borderwidth=1, width=17, fg='white', bg='blue', height=1,anchor=W, justify=LEFT)
@@ -42,6 +43,7 @@ def getText():
 
 @route('/setup', method='GET')
 def setup():
+    print('------------------------------------------------------------')
     notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
     t = str(t)
     ###
@@ -53,6 +55,7 @@ def setup():
     ###
     d = M.getDist(dtSensor, deSensor, board, frame)
     d = str(d)
+    print('------------------------------------------------------------')
     ###
     data = {}
     data['temp'] = t

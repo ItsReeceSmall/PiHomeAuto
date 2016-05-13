@@ -33,9 +33,9 @@
             var text2 = $('#texttodisplay2').val();
             console.log('text2 = ' + text2);
             var l1 = document.getElementById("line1")
-            l1.innerHTML = text1;
+            l1.innerHTML = [text1];
             var l2 = document.getElementById("line2")
-            l2.innerHTML = text2;
+            l2.innerHTML = [text2];
 
             $.ajax({
                 url: '/text',
@@ -192,13 +192,13 @@
                           <p>LCD Line 1:</p>
                       </div>
                       <div class="column" style="background-color:#90CAF9; color:white">
-                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line1" name="line1">sad</p>
+                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
                       </div>
                       <div class="column">
                           <p>LCD Line 2:</p>
                       </div>
                       <div class="column" style="background-color:#90CAF9; color:white">
-                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line2" name="line2">ads</p>
+                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
                       </div>
                   </div>
                 </div>
