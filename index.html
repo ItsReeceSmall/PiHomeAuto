@@ -25,9 +25,6 @@
                 getValues();
             });
 
-            $("#lcdtextbutton").click(function() {
-                getText();
-            });
         });
 
         function getText() {
@@ -35,6 +32,8 @@
             console.log('text1 = ' + text1);
             var text2 = $('#texttodisplay2').val();
             console.log('text2 = ' + text2);
+            document.getElementById("line1").innerHTML = text1;
+            document.getElementById("line2").innerHTML = text2;
 
             $.ajax({
                 url: '/text',
