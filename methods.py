@@ -14,14 +14,14 @@ from tkinter import messagebox
 
 board = Board().board
 lcd = LCD1602(board)
-
+##########################################################################################################
 def tempSet():
     os.system('modprobe w1-gpio')
     os.system('modprobe w1-therm')
     base_dir = '/sys/bus/w1/devices/'
     device_folder = glob.glob(base_dir + '28*')[0]
     device_file = device_folder + '/w1_slave'
-
+##########################################################################################################
 def createWidgets(frame, root):
     ##################################################
     #titleLabel = Label(frame, text=('Home\nAutomation\nSystem'), borderwidth=1).grid(row=1, column=1, padx=5, pady=5)
@@ -58,7 +58,7 @@ def createWidgets(frame, root):
     lcd1Label = Label(frame, text=(line1.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
     lcd2Label = Label(frame, text=(line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     ##################################################
-
+#####################################################
 def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     c, f = t.read_temp() # Get temp values
     f = round(f, 2)
@@ -80,7 +80,7 @@ def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
     c = round(c)
     return tempFin, c
-
+##########################################################################################################
 def getDist(dtSensor, deSensor, board, frame):
     dval = d(dtSensor, deSensor, board)
     value = (dval.distValue)
@@ -91,13 +91,8 @@ def getDist(dtSensor, deSensor, board, frame):
     DistValue = Label(frame, text=(str(value) + 'cm'), borderwidth=1)
     DistValue.grid(row=6, column=2, padx=5, pady=5)
     return value
-
+##########################################################################################################
 def getPir(pirSensor, board, pirLight, buzzSensor, frame):
-    '''
-    if counter >= 5:
-        l(pirLight, board).LedOff()
-        counter = 0
-    '''
     pval = p(pirSensor, board, frame)
     value = pval.pirState
     sys.stdout.write("\033[K")
@@ -105,8 +100,7 @@ def getPir(pirSensor, board, pirLight, buzzSensor, frame):
     if value == 1:
         finValue = 'ON '
         PirValue = Label(frame, text=(finValue), fg='green', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
-        l(pirLight, board).LedOn()
-        #counter = 0
+        l(pirLight, board).LedOn() # Turns PIR LIGHT ON
         BuzzValue = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
@@ -116,10 +110,9 @@ def getPir(pirSensor, board, pirLight, buzzSensor, frame):
     else:
         finValue = 'OFF'
         PirValue = Label(frame, text=(finValue), fg='red', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
-        #counter = (counter + 1)
     BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
     return finValue
-
+##########################################################################################################
 def getLight(lightSensor, board, frame, lsLight):
     LSV = 0
     lval = L(lightSensor, board, LSV)
@@ -135,7 +128,7 @@ def getLight(lightSensor, board, frame, lsLight):
     LightValue = Label(frame, text=(value), borderwidth=1)
     LightValue.grid(row=5, column=2, padx=5, pady=5)
     return value
-
+##########################################################################################################
 def ButtonSwitch(fadeLed, lightButton, board, lightState, frame, buzzSensor, buzzButton):
     while True:
         time.sleep(0.05)
@@ -157,12 +150,7 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState, frame, buzzSensor, buz
                 b(buzzSensor, board).buzzOff()
             doorbell = Label(frame, text=('OFF'), borderwidth=1, fg=('red'))
             doorbell.grid(row=16, column=2, padx=5, pady=5)
-
-
-'''
-def lsLightMethod(board, frame):
-
-'''
+##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     if f <= lowTemp:
         l(ledBlue, board).LedOn()
@@ -176,7 +164,7 @@ def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
         l(ledGreen, board).LedOn()
         l(ledRed, board).LedOff()
         l(ledBlue, board).LedOff()
-
+##########################################################################################################
 def Closeness(board, buzzSensor, dist):
     if dist <= 5:
         b(buzzSensor, board).buzzOn()
@@ -202,22 +190,23 @@ def Closeness(board, buzzSensor, dist):
         b(buzzSensor, board).buzzOn()
         time.sleep(0.03)
         b(buzzSensor, board).buzzOff()
-
+##########################################################################################################
 def setLcd(line1, line2, frame):
     lcd.lcd_string(str(line1.get()), lcd.LCD_LINE_1)
     lcd.lcd_string(str(line2.get()), lcd.LCD_LINE_2)
     lcd1Label = Label(frame, text=(' ' + line1.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
     lcd2Label = Label(frame, text=(' ' + line2.get()), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
-
+##########################################################################################################
 def testBuzz(board, buzzSensor, frame):
     BuzzValue = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
     b(buzzSensor, board).buzzTest()
     BuzzValue = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=7, column=2, padx=5, pady=5)
-
+##########################################################################################################
 def clearLcd(line1, line2, frame):
     lcd1Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=13,column=1,padx=5,pady=5)
     lcd2Label = Label(frame, text=(' '), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W, justify=LEFT).grid(row=14,column=1,padx=5,pady=5)
     lcd.lcd_clear()
-
+##########################################################################################################
 def helpscreen():
     messagebox.showinfo("Help", "Welcome to the the Home Automation help screen.\n \nClick the buttons on the same row as the modules to recieve the sensor value manually.\n \nUsing the text box's, enter what you want to be displayed on the LCD Screen and press 'Set Text' to display it on screen.\n \n")
+##########################################################################################################

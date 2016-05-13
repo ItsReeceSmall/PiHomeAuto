@@ -82,7 +82,6 @@ frame = Frame(root)
 frame.grid()
 
 def pisetup():
-    print('pisetup running')
     split = '###########################################'
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
@@ -115,8 +114,7 @@ try:
     M.tempSet()
     pisetup()
     lightState = 'on' # Current state of the light stored in a variable
-    counter = 0 # Counter for pir light
-    screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
+    #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
     M.createWidgets(frame, root)
     highTemp = 68
     lowTemp = 63
@@ -138,10 +136,10 @@ try:
     #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
     #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
     ##################################################################################################################################
-    #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
+    threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
     #threading.Thread(target=root.mainloop().start())
-    run(host='0.0.0.0', port=8080, reloader=False)
-    #root.mainloop()
+    #run(host='0.0.0.0', port=8080, reloader=False)
+    root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()
     board.cleanup()
