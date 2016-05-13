@@ -30,9 +30,9 @@ lcd = LCD1602(board)
 @route('/text', method='POST')
 def getText():
     text1 = request.forms.get('texttodisplay1')
-    print('DEBGUG: text1 = ' + str(text1))
+    #print('DEBGUG: text1 = ' + str(text1))
     text2 = request.forms.get('texttodisplay2')
-    print('DEBGUG: text2 = ' + str(text2))
+    #print('DEBGUG: text2 = ' + str(text2))
     lcd.lcd_string(text1, lcd.LCD_LINE_1)
     lcd.lcd_string(text2, lcd.LCD_LINE_2)
     lcd1Label = Label(frame, text=(text1), borderwidth=1, width=17, fg='white', bg='blue', height=1,anchor=W, justify=LEFT)
@@ -54,15 +54,11 @@ def setup():
     d = M.getDist(dtSensor, deSensor, board, frame)
     d = str(d)
     ###
-    l1 = 'Lcd Line 1'
-    l2 = 'Lcd Line 2'
     data = {}
     data['temp'] = t
     data['pir'] = p
     data['lightsensor'] = l
     data['distance'] = d
-    data['line1'] = l1
-    data['line2'] = l2
     json_data = json.dumps(data)
     return json_data
 
