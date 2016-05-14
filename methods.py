@@ -19,6 +19,7 @@ board = Board().board
 lcd = LCD1602(board)
 
 def pisetup():
+    tempSet()
     split = '###########################################'
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays

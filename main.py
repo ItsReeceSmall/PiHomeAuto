@@ -43,16 +43,16 @@ def getText():
 @route('/setup', method='GET')
 def setup():
     print('------------------------------------------------------------')
-    notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
+    notwanted, t = M.getTemp(frame, board, M.ledBlue, M.ledGreen, M.ledRed, highTemp, lowTemp)
     t = str(t)
     ###
-    p = M.getPir(pirSensor, board, pirLight, buzzSensor, frame)
+    p = M.getPir(M.pirSensor, board, M.pirLight, M.buzzSensor, frame)
     p = str(p)
     ###
-    l = M.getLight(lightSensor, board, frame, lsLight)
+    l = M.getLight(M.lightSensor, board, frame, M.lsLight)
     l = str(l)
     ###
-    d = M.getDist(dtSensor, deSensor, board, frame)
+    d = M.getDist(M.dtSensor, M.deSensor, board, frame)
     d = str(d)
     print('------------------------------------------------------------')
     ###
@@ -64,22 +64,19 @@ def setup():
     json_data = json.dumps(data)
     return json_data
 
-#Pins
-tempSensor = 7
-tempLed = 23
-dtSensor = 29
-deSensor = 31
-pirSensor = 32
-buzzSensor = 35
-fadeLed = 11
-lightButton = 22
-lightSensor = 18
-pirLight = 10
-ledRed = 36
-ledGreen = 38
-ledBlue = 40
-buzzButton = 16
-lsLight = 12
+@route('/buzz', method='POST')
+def BuzzerControl():
+    r = request.forms.get('buzzVal')
+    print('DEBUG: Buzz value = ' + str(r))
+    Buzzer = request.forms.get('buttonState')
+    print('DEBUG: Buzzer state = ' + str(Buzzer))
+
+    on = bool(int(Buzzer))
+    print('DEBUG: buttonState = ' + str(on))
+    if on:
+        M.b(M.buzzSensor, board).buzzOn()
+    else:
+        M.b(M.buzzSensor, board).buzzOff()
 
 highTemp = 68
 lowTemp = 63
@@ -91,7 +88,6 @@ frame = Frame(root)
 frame.grid()
 
 try:
-    M.tempSet()
     M.pisetup()
     #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
     M.createWidgets(frame, root)
