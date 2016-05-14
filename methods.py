@@ -261,64 +261,6 @@ def helpscreen():
     messagebox.showinfo("Help", "Welcome to the the Home Automation help screen.\n \nClick the buttons on the same row as the modules to recieve the sensor value manually.\n \nUsing the text box's, enter what you want to be displayed on the LCD Screen and press 'Set Text' to display it on screen.\n \n")
 ##########################################################################################################
 ##########################################################################################################
-def runme():
-    run(host='0.0.0.0', port=8080, reloader=False)
-##########################################################################################################
-
-s = [100,100,100]
-#enable bottle debug
-debug(True)
-
-# WebApp route path
-routePath = ''
-# get directory of WebApp (bottleJQuery.py's dir)
-rootPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-
-@route(routePath)
-def rootHome():
-    return redirect(routePath+'/index.html')
-
-@route(routePath + '/<filename:re:.*\.html>')
-def html_file(filename):
-    return static_file(filename, root=rootPath)
-
-@route('/text', method='POST')
-def getText(frame):
-    text1 = request.forms.get('texttodisplay1')
-    text2 = request.forms.get('texttodisplay2')
-    print('------------------------------------------------------------')
-    print('DEBGUG: text1 = ' + str(text1) + '\n' + 'DEBGUG: text2 = ' + str(text2))
-    print('------------------------------------------------------------')
-    lcd.lcd_string(text1, lcd.LCD_LINE_1)
-    lcd.lcd_string(text2, lcd.LCD_LINE_2)
-    lcd1Label = Label(frame, text=(text1), borderwidth=1, width=17, fg='white', bg='blue', height=1,anchor=W, justify=LEFT)
-    lcd1Label.grid(row=13, column=1, padx=5, pady=5)  # Allignment on the grid
-    lcd2Label = Label(frame, text=(text2), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
-    lcd2Label.grid(row=14, column=1, padx=5, pady=5)
-
-@route('/setup', method='GET')
-def setup(frame):
-    print('------------------------------------------------------------')
-    notwanted, t = getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
-    t = str(t)
-    ###
-    p = getPir(pirSensor, board, pirLight, buzzSensor, frame)
-    p = str(p)
-    ###
-    l = getLight(lightSensor, board, frame, lsLight)
-    l = str(l)
-    ###
-    d = getDist(dtSensor, deSensor, board, frame)
-    d = str(d)
-    print('------------------------------------------------------------')
-    ###
-    data = {}
-    data['temp'] = t
-    data['pir'] = p
-    data['lightsensor'] = l
-    data['distance'] = d
-    json_data = json.dumps(data)
-    return json_data
 
 #Pins
 tempSensor = 7
