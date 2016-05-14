@@ -27,7 +27,7 @@ def html_file(filename):
     return static_file(filename, root=rootPath)
 
 @route('/text', method='POST')
-def getText(frame):
+def getText():
     text1 = request.forms.get('texttodisplay1')
     text2 = request.forms.get('texttodisplay2')
     print('------------------------------------------------------------')
@@ -41,7 +41,7 @@ def getText(frame):
     lcd2Label.grid(row=14, column=1, padx=5, pady=5)
 
 @route('/setup', method='GET')
-def setup(frame):
+def setup():
     print('------------------------------------------------------------')
     notwanted, t = M.getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
     t = str(t)
