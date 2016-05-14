@@ -19,6 +19,10 @@
                 document.getElementById("pir").innerHTML = 'PIR Value: ' + d['pir'] + '';
                 document.getElementById("lightsensor").innerHTML = 'Light Sensor Value: ' + d['lightsensor'];
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
+                var l1 = document.getElementById("line1")
+                l1.innerHTML = 'C  PIR Dis Light';
+                var l2 = document.getElementById("line2")
+                l2.innerHTML = d[temp] + ' ' + d[pir] + ' ' + d[distance] + '  ' + d[lightsensor];
             });
 
             $("#ledSwitch").change(function() {
@@ -57,18 +61,7 @@
         }
 
         function val2screen() {
-            var t = $('temp').val();
-            console.log('t = ' + t);
-            var p = $('pir').val();
-            console.log('p = ' + p);
-            var l = $('lightsensor').val();
-            console.log('l = ' + l);
-            var d = $('distance').val();
-            console.log('d = ' + d);
-            var l1 = document.getElementById("line1")
-            l1.innerHTML = 'C  PIR Dis Light';
-            var l2 = document.getElementById("line2")
-            l2.innerHTML = [t] + ' ' + [p] + ' ' + [d] + '  ' + [l];
+            location.reload();
         }
 
         function reloadpage() {
@@ -216,8 +209,8 @@
                     <button class="btn waves-effect waves-light" onclick="reloadpage();" type="submit" id="reloadpage" name="reloadpage">Refresh Sensors<i class="material-icons right">send</i>
                   </button>
                   </div>
-                  <div onsumbit="return False;" onclick="return false;">
-                    <button class="btn waves-effect waves-light" id="val2screen" name="val2screen">Print Values to LCD<i class="material-icons right">send</i>
+                  <div>
+                    <button class="btn waves-effect waves-light" onclick="val2screen();" type="submit" id="val2screen" name="val2screen">Print Values to LCD<i class="material-icons right">send</i>
                   </button>
                   </div>
                 </div>
