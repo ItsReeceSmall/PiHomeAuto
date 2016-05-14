@@ -57,18 +57,18 @@
         }
 
         function val2screen() {
-            var temp = $('#temp').val();
-            console.log('temp = ' + temp);
-            var pir = $('#pir').val();
-            console.log('pir = ' + pir);
-            var lightsensor = $('#lightsensor').val();
-            console.log('lightsensor = ' + lightsensor);
-            var distance = $('#distance').val();
-            console.log('distance = ' + distance);
+            var t = $('#temp').val();
+            console.log('t = ' + t);
+            var p = $('#pir').val();
+            console.log('p = ' + p);
+            var l = $('#lightsensor').val();
+            console.log('l = ' + l);
+            var d = $('#distance').val();
+            console.log('d = ' + d);
             var l1 = document.getElementById("line1")
             l1.innerHTML = 'C  PIR Dis Light';
             var l2 = document.getElementById("line2")
-            l2.innerHTML = [temp] + ' ' + [pir] + ' ' + [distance] + '  ' + [lightsensor];
+            l2.innerHTML = ['t'] + ' ' + ['p'] + ' ' + ['d'] + '  ' + ['l'];
         }
 
         function reloadpage() {
