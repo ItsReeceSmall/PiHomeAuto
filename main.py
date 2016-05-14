@@ -67,7 +67,6 @@ def setup():
 @route('/buzz', method='POST')
 def BuzzerControl():
     r = request.forms.get('buzzVal')
-    print('DEBUG: Buzz value = ' + str(r))
     Buzzer = request.forms.get('buttonState')
     print('DEBUG: Buzzer state = ' + str(Buzzer))
 

@@ -235,6 +235,102 @@
                   </div>
                 </div>
               </div>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">LED Controls</span>
+                  <p>Use this form to control the LEDs on the Sense Hat</p>
+                </div>
+                <div class="card-action">
+                  <div class="row">
+                    <div class="switch">
+                      <h>LEDs</h>
+                      <label>
+                        off
+                        <input type="checkbox" name="ledSwitch" id="ledSwitch" />
+                        <span class="lever"></span>
+                        On
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h>Red</h>
+                    <p class="range-field">
+                      <input type="range" id="rSlider" name="rSlider" min="47" max="255" value="180" onchange="getValues()" />
+                    </p>
+                  </div>
+                  <div class="row">
+                    <h>Green</h>
+                    <p class="range-field">
+                      <input type="range" id="gSlider" name="gSlider" min="47" max="255" value="130" onchange="getValues()" />
+                    </p>
+                  </div>
+                    <div class="row">
+                    <h>Blue</h>
+                    <p class="range-field">
+                      <input type="range" id="bSlider" name="bSlider" min="47" max="255" value="47" onchange="getValues()" />
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Buzzer Controls</span>
+                  <p>Use this form to control the Buzzer on the Home Automation System</p>
+                </div>
+                <div class="card-action">
+                  <div class="row">
+                    <div class="switch">
+                      <h>Buzzer</h>
+                      <label>
+                        off
+                        <input type="checkbox" name="BuzzSwitch" id="BuzzSwitch" />
+                        <span class="lever"></span>
+                        On
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h>Red</h>
+                    <p class="range-field">
+                      <input type="range" id="BuzzSlider" name="BuzzSlider" min="1" max="100" value="1" onchange="BuzzerControl()" />
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">Sensors</span>
+                </div>
+                <div class="card-action">
+                  <div class="row">
+                    <p id="temp" name="temp"></p>
+                  </div>
+                  <div class="row">
+                    <p id="pir" name="pir"></p>
+                  </div>
+                  <div class="row">
+                    <p id="lightsensor" name="lightsensor"></p>
+                  </div>
+                  <div class="row">
+                    <p id="distance" name="distance"></p>
+                  </div>
+                  <div class="row">
+                    <button class="btn waves-effect waves-light" onclick="reloadpage();" type="submit" id="reloadpage" name="reloadpage">Refresh Sensors<i class="material-icons right">send</i>
+                  </button>
+                  </div>
+                </div>
+                </div>
+              </div>
             </div>
         </form>
 
