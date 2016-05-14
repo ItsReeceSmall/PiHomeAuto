@@ -19,10 +19,8 @@
                 document.getElementById("pir").innerHTML = 'PIR Value: ' + d['pir'] + '';
                 document.getElementById("lightsensor").innerHTML = 'Light Sensor Value: ' + d['lightsensor'];
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
-                var l1 = document.getElementById("line1")
-                l1.innerHTML = 'C  PIR Dis Light';
-                var l2 = document.getElementById("line2")
-                l2.innerHTML = d[temp] + ' ' + d[pir] + ' ' + d[distance] + '  ' + d[lightsensor];
+                document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
+                document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
             });
 
             $("#ledSwitch").change(function() {
