@@ -22,16 +22,16 @@
             });
 
             $("#ledSwitch").change(function() {
-                getValues();
+                M.getValues();
             });
 
             $("#lcdtextbutton").click(function() {
-                getText();
+                M.getText();
             });
 
         });
 
-        function getText() {
+        function M.getText() {
             var text1 = $('#texttodisplay1').val();
             console.log('text1 = ' + text1);
             var text2 = $('#texttodisplay2').val();
@@ -52,7 +52,7 @@
             location.reload();
         }
 
-        function getValues() {
+        function M.getValues() {
             var rValue = $('#rSlider').val();
             console.log('rValue = ' + rValue);
             var gValue = $('#gSlider').val();

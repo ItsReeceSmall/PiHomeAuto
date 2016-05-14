@@ -11,9 +11,59 @@ from buzzerClass import Buzz as b
 from lcd1602 import LCD1602
 from tkinter import *
 from tkinter import messagebox
+from bottle import *
+import json, inspect
+from pins import Pins
 
 board = Board().board
 lcd = LCD1602(board)
+
+def pisetup():
+    split = '###########################################'
+    board.setmode(board.BOARD)    #set GPIO up
+    inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
+    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed, lsLight]
+    buttons = [lightButton, buzzButton]
+    print(split)
+    print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
+    Pins(inputs, outputs, buttons, board, time)    #Set up pins from a class
+    print('### ALL THE PINS ARE IMPORTED AND SETUP ###')
+    print(split)
+    print('### RUNNING HOME AUTOMATION IN GUI MODE ###')
+    print(split)
+    board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
+
+def mainWidgets(frame):
+##################################################################################################################################
+    pirBut = Button(frame, text=('Get Pir'), borderwidth=1, width=11, command=lambda: getPir(pirSensor, board, pirLight, buzzSensor, frame))
+    pirBut.grid(row=3, column=3, padx=5,pady=5)
+    tempBut = Button(frame, text=('Get Temperature'), borderwidth=1, width=11, command=lambda: getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp))
+    tempBut.grid(row=4, column=3, padx=5, pady=5)
+    lightSenseBut = Button(frame, text=('Get Light Val'), borderwidth=1, width=11, command=lambda: getLight(lightSensor, board, frame, lsLight))
+    lightSenseBut.grid(row=5, column=3, padx=5, pady=5)
+    distBut = Button(frame, text=('Get Distance'), borderwidth=1, width=11, command=lambda: getDist(dtSensor, deSensor, board, frame))
+    distBut.grid(row=6, column=3, padx=5, pady=5)
+    doAll = Button(frame, text=('Get All Values'), borderwidth=1, width=11, command=lambda: getAll(0, frame))
+    doAll.grid(row=1,column=3,padx=2,pady=5)
+    p2lcd = Button(frame, text=('View Sensor Data'), borderwidth=1, command=lambda: getAll(1, frame))
+    p2lcd.grid(row=15, column=1,padx=5, pady=5)
+    #startAuto = Button(frame, text=('Start Automation'), borderwidth=1, command=lambda: runAuto(1)).grid(row=16,column=1,padx=5,pady=5)
+    #startAuto1 = Button(frame, text=('Stop Automation'), borderwidth=1, command=lambda: runAuto(2)).grid(row=16,column=2,padx=5, pady=5)
+    ##################################################################################################################################
+##########################################################################################################
+def getAll(lcdyon, frame):
+    pir = getPir(pirSensor, board, pirLight, buzzSensor, frame)                   #
+    list, c = getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
+    light = getLight(lightSensor, board, frame, lsLight)                                   #
+    dist = getDist(dtSensor, deSensor, board, frame)                              #
+    theString = (str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light)) # String for the LCD screen
+    if lcdyon == 1:
+        lcd1Label = Label(frame, text=('C  PIR Dis Light'), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+        lcd1Label.grid(row=13, column=1, padx=5, pady=5) # Allignment on the grid
+        lcd2Label = Label(frame, text=(theString), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+        lcd2Label.grid(row=14, column=1, padx=5, pady=5)
+        lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
+        lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
 ##########################################################################################################
 def tempSet():
     os.system('modprobe w1-gpio')
@@ -210,3 +260,84 @@ def clearLcd(line1, line2, frame):
 def helpscreen():
     messagebox.showinfo("Help", "Welcome to the the Home Automation help screen.\n \nClick the buttons on the same row as the modules to recieve the sensor value manually.\n \nUsing the text box's, enter what you want to be displayed on the LCD Screen and press 'Set Text' to display it on screen.\n \n")
 ##########################################################################################################
+##########################################################################################################
+def runme():
+    run(host='0.0.0.0', port=8080, reloader=False)
+##########################################################################################################
+
+s = [100,100,100]
+#enable bottle debug
+debug(True)
+
+# WebApp route path
+routePath = ''
+# get directory of WebApp (bottleJQuery.py's dir)
+rootPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+
+@route(routePath)
+def rootHome():
+    return redirect(routePath+'/index.html')
+
+@route(routePath + '/<filename:re:.*\.html>')
+def html_file(filename):
+    return static_file(filename, root=rootPath)
+
+@route('/text', method='POST')
+def getText(frame):
+    text1 = request.forms.get('texttodisplay1')
+    text2 = request.forms.get('texttodisplay2')
+    print('------------------------------------------------------------')
+    print('DEBGUG: text1 = ' + str(text1) + '\n' + 'DEBGUG: text2 = ' + str(text2))
+    print('------------------------------------------------------------')
+    lcd.lcd_string(text1, lcd.LCD_LINE_1)
+    lcd.lcd_string(text2, lcd.LCD_LINE_2)
+    lcd1Label = Label(frame, text=(text1), borderwidth=1, width=17, fg='white', bg='blue', height=1,anchor=W, justify=LEFT)
+    lcd1Label.grid(row=13, column=1, padx=5, pady=5)  # Allignment on the grid
+    lcd2Label = Label(frame, text=(text2), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+    lcd2Label.grid(row=14, column=1, padx=5, pady=5)
+
+@route('/setup', method='GET')
+def setup(frame):
+    print('------------------------------------------------------------')
+    notwanted, t = getTemp(frame, board, ledBlue, ledGreen, ledRed, highTemp, lowTemp)
+    t = str(t)
+    ###
+    p = getPir(pirSensor, board, pirLight, buzzSensor, frame)
+    p = str(p)
+    ###
+    l = getLight(lightSensor, board, frame, lsLight)
+    l = str(l)
+    ###
+    d = getDist(dtSensor, deSensor, board, frame)
+    d = str(d)
+    print('------------------------------------------------------------')
+    ###
+    data = {}
+    data['temp'] = t
+    data['pir'] = p
+    data['lightsensor'] = l
+    data['distance'] = d
+    json_data = json.dumps(data)
+    return json_data
+
+#Pins
+tempSensor = 7
+tempLed = 23
+dtSensor = 29
+deSensor = 31
+pirSensor = 32
+buzzSensor = 35
+fadeLed = 11
+lightButton = 22
+lightSensor = 18
+pirLight = 10
+ledRed = 36
+ledGreen = 38
+ledBlue = 40
+buzzButton = 16
+lsLight = 12
+# Required Variables
+highTemp = 68
+lowTemp = 63
+lightState = 'on' # Current state of the light stored in a variable
+lcdyon = 0
