@@ -57,14 +57,16 @@ def getAll(lcdyon, frame):
     list, c = getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
     light = getLight(lightSensor, board, frame, lsLight)                                   #
     dist = getDist(dtSensor, deSensor, board, frame)                              #
+    layoutString = ('C  PIR Dis Light')
     theString = (str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light)) # String for the LCD screen
     if lcdyon == 1:
-        lcd1Label = Label(frame, text=('C  PIR Dis Light'), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
+        lcd1Label = Label(frame, text=(layoutString), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
         lcd1Label.grid(row=13, column=1, padx=5, pady=5) # Allignment on the grid
         lcd2Label = Label(frame, text=(theString), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
         lcd2Label.grid(row=14, column=1, padx=5, pady=5)
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
+    return layoutString, theString
 ##########################################################################################################
 def tempSet():
     os.system('modprobe w1-gpio')
