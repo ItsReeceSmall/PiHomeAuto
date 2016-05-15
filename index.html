@@ -50,6 +50,7 @@
             });
 
             $(".button-collapse").sideNav();
+            $(".dropdown-button").dropdown();
 
         });
 
@@ -122,16 +123,19 @@
 
     <body>
       <a id="top"></a>
-      <nav>
+      <ul id="navdropdown" class="dropdown-content">
+          <li><a href="#sensorcard">Sensors</a></li>
+          <li><a href="#ledcard">LED Controls</a></li>
+          <li><a href="#buzzcard">Buzzer Controls</a></li>
+          <li><a href="#lcdcard">LCD Screen</a></li>
+          <li><a href="#ledread">LED Readings</a></li>
+      </ul>
+        <nav>
           <div class="nav-wrapper red lighten-1">
             <a href="index.html" class="brand-logo">Home Automation Controller</a>
             <a href="index.html" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li><a href="#ledcard">LED Controls</a></li>
-              <li><a href="#buzzcard">Buzzer Controls</a></li>
-              <li><a href="#sensorcard">Sensors</a></li>
-              <li><a href="#lcdcard">LCD Screen</a></li>
-              <li><a href="#ledread">LED Readings</a></li>
+              <li><a class="dropdown-button" href="#!" data-activates="navdropdown">Sensor Control<i class="material-icons right">arrow_drop_down</i></a></li>
               <li><a href="#bottom">Go to the bottom</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
@@ -267,7 +271,7 @@
                 </div>
               </div>
 
-            <div class="col s12 m4" id="lcdcard" onsubmit="return false;" onclick="return false;">
+            <div class="col s12 m4" id="lcdcard">
                 <div class="card">
                   <div class="card-content">
                     <span class="card-title">LCD Screen Text</span>
@@ -290,13 +294,13 @@
                           <p>LCD Line 1:</p>
                       </div>
                       <div class="column" style="background-color:#90CAF9; color:white">
-                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
+                          <p style="font-size: 30px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
                       </div>
                       <div class="column">
                           <p>LCD Line 2:</p>
                       </div>
                       <div class="column" style="background-color:#90CAF9; color:white">
-                          <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
+                          <p style="font-size: 30px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
                       </div>
                   </div>
                 </div>
@@ -318,6 +322,8 @@
                   <li><a class="grey-text text-lighten-3" href="http://bottlepy.org/docs/dev/index.html">Python Bottle</a></li>
                   <li><a class="grey-text text-lighten-3" href="https://www.python.org/downloads/release/python-351/">Python 3</a></li>
                   <li><a class="grey-text text-lighten-3" href="http://materializecss.com/">CSS used - Materialize CSS</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://docs.python.org/3/library/tk.html">TKinter for Python 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.google.co.uk/">Google</a></li>
                 </ul>
               </div>
               <div class="col m3 s12">
