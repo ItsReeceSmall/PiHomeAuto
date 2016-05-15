@@ -98,7 +98,7 @@
             location.reload();
         }
 
-        function lightSwitches()    {
+        function lightSwitches()  {
             var VLB = $('#VarLightBrightness').val();
             console.log('VLB = ' + VLB);
             var VLS = $("#VarLightSwitch").is(":checked") ? 1:0;
@@ -266,7 +266,7 @@
                       <input placeholder="Enter text to display on Line 2" id="texttodisplay2" type="text" class="validate">
                       <label for="texttodisplay2">Text to display on the LCD Screen</label>
                     </div>
-                    <div class="row">
+                    <div class="row" onsubmit="return false;" onclick="return false;">
                       <button class="btn waves-effect waves-light" id="lcdtextbutton" name="lcdtextbutton">Submit Text<i class="material-icons right" onsubmit="return false;" onclick="return false;">send</i>
                       </button>
                     </div>
