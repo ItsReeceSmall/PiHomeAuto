@@ -18,6 +18,18 @@ routePath = ''
 # get directory of WebApp (bottleJQuery.py's dir)
 rootPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
+@route('/about', method='GET')
+def about():
+    data = {}
+    data['abouttext'] = M.abouttext
+    data['toggle'] = M.toggle
+    data['slider'] = M.slider
+    data['button'] = M.button
+    data['txt'] = M.txt
+    data['label'] = M.label
+    json_data = json.dumps(data)
+    return json_data
+
 @route(routePath)
 def rootHome():
     return redirect(routePath+'/index.html')
