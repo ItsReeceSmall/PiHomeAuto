@@ -38,15 +38,15 @@
             });
 
             $("#VarLightSwitch").change(function() {
-                lightSwitches();
+                VLS();
             });
 
             $("#PIRSwitch").change(function() {
-                lightSwitches();
+                PIRS();
             });
 
             $("#LSLSwitch").change(function() {
-                lightSwitches();
+                LSLS();
             });
 
             $("#lcdtextbutton").click(function() {
@@ -98,23 +98,36 @@
             location.reload();
         }
 
-        function lightSwitches() {
+        function VLS() {
             var VLB = $('#VarLightBrightness').val();
             console.log('VLB = ' + VLB);
             var isChecked = $("#VarLightSwitch").is(":checked") ? 1:0;
             console.log('isChecked = ' + isChecked);
-            var VLS = 'isChecked';
-            var isChecked = $("#PIRSwitch").is(":checked") ? 1:0;
-            console.log('isChecked = ' + isChecked);
-            var PIRS = 'isChecked';
-            var isChecked = $("#LSLSwitch").is(":checked") ? 1:0;
-            console.log('isChecked = ' + isChecked);
-            var LSLS = 'isChecked';
 
             $.ajax({
-                url: '/ledcontrol',
+                url: '/vls',
                 type: 'POST',
-                data: { VLB:VLB, VLS:isChecked, PIRS:isChecked, LSLS:isChecked}
+                data: { VLB:VLB, buttonState:isChecked}
+            });
+
+        function PIRS() {
+            var isChecked = $("#PIRSwitch").is(":checked") ? 1:0;
+            console.log('isChecked = ' + isChecked);
+
+            $.ajax({
+                url: '/pirs',
+                type: 'POST',
+                data: { buttonState:isChecked}
+            });
+
+        function LSLS() {
+            var isChecked = $("#LSLSwitch").is(":checked") ? 1:0;
+            console.log('isChecked = ' + isChecked);
+
+            $.ajax({
+                url: '/lsls',
+                type: 'POST',
+                data: { buttonState:isChecked}
             });
         }
 
@@ -350,7 +363,7 @@
                       <h>Variable Light</h>
                       <label>
                         Off
-                        <input type="checkbox" name="VarLightSwitch" id="VarLightSwitch" onchange="lightSwitches()"/>
+                        <input type="checkbox" name="VarLightSwitch" id="VarLightSwitch" onchange="VLS()"/>
                         <span class="lever"></span>
                         On
                       </label>
@@ -359,7 +372,7 @@
                   <div class="row">
                     <h>Brightness</h>
                     <p class="range-field">
-                      <input type="range" id="VarLightBrightness" name="VarLightBrightness" min="1" max="100" value="80" onchange="lightSwitches()" />
+                      <input type="range" id="VarLightBrightness" name="VarLightBrightness" min="1" max="100" value="80" onchange="VLS()" />
                     </p>
                   </div>
                   <div class="card-action"></div>
@@ -368,7 +381,7 @@
                       <h>PIR Light</h>
                       <label>
                         Off
-                        <input type="checkbox" name="PIRSwitch" id="PIRSwitch" onchange="lightSwitches()"/>
+                        <input type="checkbox" name="PIRSwitch" id="PIRSwitch" onchange="PIRS()"/>
                         <span class="lever"></span>
                         On
                       </label>
@@ -379,7 +392,7 @@
                       <h>Light Sensor Light</h>
                       <label>
                         Off
-                        <input type="checkbox" name="LSLSwitch" id="LSLSwitch" onchange="lightSwitches()"/>
+                        <input type="checkbox" name="LSLSwitch" id="LSLSwitch" onchange="LSLS()"/>
                         <span class="lever"></span>
                         On
                       </label>
