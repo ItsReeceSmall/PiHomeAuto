@@ -76,7 +76,7 @@ def ringbuzzer():
     M.b(M.buzzSensor, board).buzzTest()
 
 @route('/vls', method='POST')
-def lightSwitches():
+def vls():
     brightness = request.forms.get('VLB')
     VLS = request.forms.get('VLS')
     print('DEBUG: VLS state = ' + str(VLS))
@@ -89,7 +89,7 @@ def lightSwitches():
         M.l(M.fadeLed, board).LedOff()
 
 @route('/pirs', method='POST')
-def lightSwitches():
+def pirs():
     PIRS = request.forms.get('PIRS')
     print('DEBUG: PIRS state = ' + str(PIRS))
     on = bool(int(PIRS))
@@ -100,7 +100,7 @@ def lightSwitches():
         M.l(M.pirLight, board).LedOff()
 
 @route('/lsls', method='POST')
-def lightSwitches():
+def lsls():
     LSLS = request.forms.get('LSLS')
     print('DEBUG: LSLS state = ' + str(LSLS))
     on = bool(int(LSLS))
