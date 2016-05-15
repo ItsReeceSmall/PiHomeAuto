@@ -101,12 +101,15 @@
         function lightSwitches() {
             var VLB = $('#VarLightBrightness').val();
             console.log('VLB = ' + VLB);
-            var VLS = $("#VarLightSwitch").is(":checked") ? 1:0;
-            console.log('VLS = ' + VLS);
-            var PIRS = $("#PIRSwitch").is(":checked") ? 1:0;
-            console.log('PIRS = ' + PIRS);
-            var LSLS = $("#LSLSwitch").is(":checked") ? 1:0;
-            console.log('LSLS = ' + LSLS);
+            var isChecked = $("#VarLightSwitch").is(":checked") ? 1:0;
+            console.log('isChecked = ' + isChecked);
+            var VLS = 'isChecked';
+            var isChecked = $("#PIRSwitch").is(":checked") ? 1:0;
+            console.log('isChecked = ' + isChecked);
+            var PIRS = 'isChecked';
+            var isChecked = $("#LSLSwitch").is(":checked") ? 1:0;
+            console.log('isChecked = ' + isChecked);
+            var LSLS = 'isChecked';
 
             $.ajax({
                 url: '/ledcontrol',
