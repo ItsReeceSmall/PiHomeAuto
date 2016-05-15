@@ -78,7 +78,7 @@ def ringbuzzer():
 @route('/vls', method='POST')
 def vls():
     brightness = request.forms.get('VLB')
-    VLS = request.forms.get('VLS')
+    VLS = request.forms.get('buttonState')
     print('DEBUG: VLS state = ' + str(VLS))
     print('DEBUG: Brightness Slider = ' + str(brightness))
     on = bool(int(VLS))
@@ -90,7 +90,7 @@ def vls():
 
 @route('/pirs', method='POST')
 def pirs():
-    PIRS = request.forms.get('PIRS')
+    PIRS = request.forms.get('buttonState')
     print('DEBUG: PIRS state = ' + str(PIRS))
     on = bool(int(PIRS))
     print('DEBUG: buttonState = ' + str(on))
@@ -101,7 +101,7 @@ def pirs():
 
 @route('/lsls', method='POST')
 def lsls():
-    LSLS = request.forms.get('LSLS')
+    LSLS = request.forms.get('buttonState')
     print('DEBUG: LSLS state = ' + str(LSLS))
     on = bool(int(LSLS))
     print('DEBUG: buttonState = ' + str(on))
