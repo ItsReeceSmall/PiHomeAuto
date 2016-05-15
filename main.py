@@ -75,6 +75,36 @@ def ringbuzzer():
     print('DEBUG: Ringing Doorbell')
     M.b(M.buzzSensor, board).buzzTest()
 
+@route('/ledcontrol', method='POST')
+def lightSwitches():
+    brightness = request.forms.get('VLB')
+    VLS = request.forms.get('VLS')
+    PIRS = request.forms.get('PIRS')
+    LSLS = request.forms.get('LSLS')
+    print('DEBUG: VLS state = ' + str(VLS))
+    print('DEBUG: Brightness Slider = ' + str(brightness))
+    print('DEBUG: PIRS state = ' + str(PIRS))
+    print('DEBUG: LSLS state = ' + str(LSLS))
+    onVLS = bool(int(VLS))
+    onPIRS = bool(int(PIRS))
+    onLSLS = bool(int(LSLS))
+    print('DEBUG: buttonState = ' + str(onVLS))
+    print('DEBUG: buttonState = ' + str(onPIRS))
+    print('DEBUG: buttonState = ' + str(onLSLS))
+    if onVLS:
+        M.l(M.fadeLed, board).LedOn()
+    else:
+        M.l(M.fadeLed, board).LedOff()
+    if PIRS:
+        M.l(M.pirLight, board).LedOn()
+    else:
+        M.l(M.pirLight, board).LedOff()
+    if LSLS:
+        M.l(M.lsLight, board).LedOn()
+    else:
+        M.l(M.lsLight, board).LedOff()
+
+
 highTemp = 68
 lowTemp = 63
 
