@@ -22,7 +22,7 @@ class Buzz:
 
     def buzzTest(self):
         self.board.output(self.buzzSensor, self.board.HIGH)
-        time.sleep(0.5)
+        time.sleep(0.7)
         self.board.output(self.buzzSensor, self.board.LOW)
 
 if __name__ == "__main__":

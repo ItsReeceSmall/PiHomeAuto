@@ -53,8 +53,8 @@ def mainWidgets(frame):
     ##################################################################################################################################
 ##########################################################################################################
 def getAll(lcdyon, frame):
-    pir = getPir(pirSensor, board, pirLight, buzzSensor, frame)                   #
     list, c = getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
+    pir = getPir(pirSensor, board, pirLight, buzzSensor, frame)                   #
     light = getLight(lightSensor, board, frame, lsLight)                                   #
     dist = getDist(dtSensor, deSensor, board, frame)                              #
     layoutString = ('C  PIR Dis Light')
@@ -66,7 +66,7 @@ def getAll(lcdyon, frame):
         lcd2Label.grid(row=14, column=1, padx=5, pady=5)
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
-    return layoutString, theString
+    return c, pir, light, dist
 ##########################################################################################################
 def tempSet():
     os.system('modprobe w1-gpio')

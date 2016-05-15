@@ -43,16 +43,10 @@ def getText():
 @route('/setup', method='GET')
 def setup():
     print('------------------------------------------------------------')
-    notwanted, t = M.getTemp(frame, board, M.ledBlue, M.ledGreen, M.ledRed, highTemp, lowTemp)
+    t, p, l, d = M.getAll(0, frame)
     t = str(t)
-    ###
-    p = M.getPir(M.pirSensor, board, M.pirLight, M.buzzSensor, frame)
     p = str(p)
-    ###
-    l = M.getLight(M.lightSensor, board, frame, M.lsLight)
     l = str(l)
-    ###
-    d = M.getDist(M.dtSensor, M.deSensor, board, frame)
     d = str(d)
     print('------------------------------------------------------------')
     ###
@@ -75,7 +69,11 @@ def BuzzerControl():
         M.b(M.buzzSensor, board).buzzOn()
     else:
         M.b(M.buzzSensor, board).buzzOff()
-    
+
+@route('/ring', method='POST')
+def ringbuzzer():
+    print('DEBUG: Ringing Doorbell')
+    M.b(M.buzzSensor, board).buzzTest()
 
 highTemp = 68
 lowTemp = 63
