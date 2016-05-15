@@ -61,6 +61,10 @@
                 ringbuzzer();
             });
 
+            $("#exit").click(function() {
+                exit();
+            });
+
             $(".button-collapse").sideNav();
             $(".dropdown-button").dropdown();
 
@@ -158,6 +162,13 @@
                 url: '/buzz',
                 type: 'POST',
                 data: { buttonState:isChecked}
+            });
+        }
+
+        function exit() {
+            $.ajax({
+                url: '/exit',
+                type: 'POST',
             });
         }
 
@@ -442,6 +453,14 @@
                   <li><a href="https://twitter.com/ItsReeceSmall" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @ItsReeceSmall</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
                   <li><a class="github-button" href="https://github.com/ItsReeceSmall" data-style="mega" data-count-href="/ItsReeceSmall/followers" data-count-api="/users/ItsReeceSmall#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @ItsReeceSmall on GitHub">Follow @ItsReeceSmall</a></li>
                   <li><span class="ig-follow" data-id="142449076" data-handle="itsreecesmall" data-count="true" data-size="large" data-username="true"></span></li>
+                </ul>
+              </div>
+              <div class="col m3 s12">
+                <h5 class="white-text">User Tools</h5>
+                <ul>
+                    <li><button class="btn waves-effect waves-light" onsubmit="return false;" onclick="return false;" type="submit" id="exit" name="exit">Shutdown<i class="material-icons right">send</i>
+                  </button>
+                  </li>
                 </ul>
               </div>
             </div>

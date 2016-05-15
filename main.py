@@ -122,6 +122,11 @@ def lsls():
     else:
         M.l(M.lsLight, board).LedOff()
 
+@route('/exit', method='POST')
+def exit():
+    lcd.lcd_clear()
+    board.cleanup()
+    sys.exit()
 
 highTemp = 68
 lowTemp = 63
