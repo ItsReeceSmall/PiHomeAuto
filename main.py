@@ -124,6 +124,7 @@ def lsls():
 
 @route('/exit', method='POST')
 def exit():
+    sys.stderr.close()
     lcd.lcd_clear()
     board.cleanup()
     sys.exit()
@@ -146,7 +147,7 @@ try:
     #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
     #threading.Thread(target=root.mainloop().start())
     run(host='0.0.0.0', port=8080, reloader=False)
-    root.mainloop()
+    #root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()
     board.cleanup()
