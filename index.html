@@ -2,6 +2,7 @@
   <!DOCTYPE html>
   <html>
     <head>
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -9,6 +10,7 @@
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script>(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//x.instagramfollowbutton.com/follow.js";s.parentNode.insertBefore(g,s);}(document,"script"));</script>
       <script>
         $(document).ready(function() {
 
@@ -38,6 +40,8 @@
             $("#BuzzSwitch").change(function() {
                 BuzzerControl();
             });
+
+            $(".button-collapse").sideNav();
 
         });
 
@@ -104,37 +108,34 @@
     </head>
 
     <body>
-        <nav>
-          <div class="nav-wrapper blue lighten-3">
-            <a href="index.html" class="brand-logo right">Raspberry Pi Home Automation System - By Reece Small</a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-              
-            </ul>
-          </div>
-        </nav>
 
-        <nav>
-          <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <div class="navbar-fixed">
+      <nav>
+          <div class="nav-wrapper red lighten-1">
+            <a href="index.html" class="brand-logo center">Home Automation Control Panel</a>
+            <a href="index.html" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li><a href="sass.html">Sass</a></li>
-              <li><a href="badges.html">Components</a></li>
-              <li><a href="collapsible.html">Javascript</a></li>
-              <li><a href="mobile.html">Mobile</a></li>
+              <li><a href="#ledcard">LED Controls</a></li>
+              <li><a href="#buzzcard">Buzzer Controls</a></li>
+              <li><a href="#sensorcard">Sensors</a></li>
+              <li><a href="#lcdcard">LCD Screen</a></li>
+              <li><a href="#bottom">Go to the bottom</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-              <li><a href="sass.html">Sass</a></li>
-              <li><a href="badges.html">Components</a></li>
-              <li><a href="collapsible.html">Javascript</a></li>
-              <li><a href="mobile.html">Mobile</a></li>
+              <li><a href="#ledcard">LED Controls</a></li>
+              <li><a href="#buzzcard">Buzzer Controls</a></li>
+              <li><a href="#sensorcard">Sensors</a></li>
+              <li><a href="#lcdcard">LCD Screen</a></li>
+              <li><a href="#bottom">Go to the bottom</a></li>
             </ul>
           </div>
         </nav>
+      </div>
 
         <form>
+          <a id="top"></a>
           <div class="row">
-            <div class="col s12 m3">
+            <div class="col s12 m4" id="ledcard">
               <div class="card">
                 <div class="card-content">
                   <span class="card-title">LED Controls</span>
@@ -145,7 +146,7 @@
                     <div class="switch">
                       <h>LEDs</h>
                       <label>
-                        off
+                        Off
                         <input type="checkbox" name="ledSwitch" id="ledSwitch" />
                         <span class="lever"></span>
                         On
@@ -175,7 +176,7 @@
               </div>
             </div>
 
-            <div class="col s12 m3">
+            <div class="col s12 m4" id="buzzcard">
               <div class="card">
                 <div class="card-content">
                   <span class="card-title">Buzzer Controls</span>
@@ -186,7 +187,7 @@
                     <div class="switch">
                       <h>Buzzer</h>
                       <label>
-                        off
+                        Off
                         <input type="checkbox" name="BuzzSwitch" id="BuzzSwitch" />
                         <span class="lever"></span>
                         On
@@ -204,7 +205,7 @@
               </div>
             </div>
 
-            <div class="col s12 m3">
+            <div class="col s12 m4" id="sensorcard">
               <div class="card">
                 <div class="card-content">
                   <span class="card-title">Sensors</span>
@@ -234,7 +235,7 @@
                 </div>
               </div>
 
-            <div class="col s12 m3" onsubmit="return false;" onclick="return false;">
+            <div class="col s12 m4" id="lcdcard" onsubmit="return false;" onclick="return false;">
                 <div class="card">
                   <div class="card-content">
                     <span class="card-title">LCD Screen Text</span>
@@ -270,6 +271,47 @@
               </div>
             </div>
         </form>
+
+        <footer class="page-footer red lighten-1">
+          <a id="bottom"></a>
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m12">
+                <h5 class="white-text">Raspberry Pi Home Automation System</h5>
+                <p class="grey-text text-lighten-4">By Reece Small</p>
+              </div>
+              <div class="col m3 s12">
+                <h5 class="white-text">Resources</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="http://bottlepy.org/docs/dev/index.html">Python Bottle</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.python.org/downloads/release/python-351/">Python 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="http://materializecss.com/">CSS used - Materialize CSS</a></li>
+                </ul>
+              </div>
+              <div class="col m3 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/ItsReeceSmall">Reece Small's GitHub</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/ItsReeceSmall/PiHomeAuto">This Projects Repository on GitHub</a></li>
+                  <li><a class="github-button" href="https://github.com/ItsReeceSmall/PiHomeAuto" data-icon="octicon-star" data-style="mega" data-count-href="/ItsReeceSmall/PiHomeAuto/stargazers" data-count-api="/repos/ItsReeceSmall/PiHomeAuto#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star ItsReeceSmall/PiHomeAuto on GitHub">Star</a></li>
+                </ul>
+              </div>
+              <div class="col m3 s12">
+                <h5 class="white-text">Follow Me</h5>
+                <ul>
+                  <li><a href="https://twitter.com/ItsReeceSmall" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @ItsReeceSmall</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+                  <li><a class="github-button" href="https://github.com/ItsReeceSmall" data-style="mega" data-count-href="/ItsReeceSmall/followers" data-count-api="/users/ItsReeceSmall#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @ItsReeceSmall on GitHub">Follow @ItsReeceSmall</a></li>
+                  <li><span class="ig-follow" data-id="142449076" data-handle="itsreecesmall" data-count="true" data-size="large" data-username="true"></span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">Copyright © 2016 Reece Small
+            <a class="grey-text text-lighten-4 right" href="#top">Go to the top</a>
+            </div>
+          </div>
+        </footer>
 
     </body>
   </html>

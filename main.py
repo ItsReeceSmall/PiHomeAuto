@@ -69,13 +69,13 @@ def BuzzerControl():
     r = request.forms.get('buzzVal')
     Buzzer = request.forms.get('buttonState')
     print('DEBUG: Buzzer state = ' + str(Buzzer))
-
     on = bool(int(Buzzer))
     print('DEBUG: buttonState = ' + str(on))
     if on:
         M.b(M.buzzSensor, board).buzzOn()
     else:
         M.b(M.buzzSensor, board).buzzOff()
+    
 
 highTemp = 68
 lowTemp = 63
