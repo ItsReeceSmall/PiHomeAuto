@@ -33,6 +33,10 @@
                 getValues();
             });
 
+            $("#BuzzSwitch").change(function() {
+                BuzzerControl();
+            });
+
             $("#lcdtextbutton").click(function() {
                 getText();
             });
@@ -117,8 +121,7 @@
     </head>
 
     <body>
-    <a id="top"></a>
-    <div class="navbar-fixed">
+      <a id="top"></a>
       <nav>
           <div class="nav-wrapper red lighten-1">
             <a href="index.html" class="brand-logo">Home Automation Controller</a>
@@ -141,7 +144,6 @@
             </ul>
           </div>
         </nav>
-      </div>
 
         <form>
           <div class="row">
