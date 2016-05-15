@@ -23,6 +23,10 @@
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
                 document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
                 document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
+                document.getElementById("temprgb").innerHTML = d['temprgbStat']
+                document.getElementById("pirlight").innerHTML = d['pirLightStat']
+                document.getElementById("lightsensorlight").innerHTML = d['lightSensorLightStat']
+                document.getElementById("varLight").innerHTML = d['varLightStat']
             });
 
             $("#ledSwitch").change(function() {
@@ -117,7 +121,7 @@
     <div class="navbar-fixed">
       <nav>
           <div class="nav-wrapper red lighten-1">
-            <a href="index.html" class="brand-logo center">Home Automation Controller</a>
+            <a href="index.html" class="brand-logo">Home Automation Controller</a>
             <a href="index.html" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
               <li><a href="#ledcard">LED Controls</a></li>
@@ -231,13 +235,35 @@
                     </div>
                   </div>
                   <div class="row">
-                    <button class="btn waves-effect waves-light" onclick="ringbuzzer();" type="submit" id="doorbell" name="doorbell">Ring Buzzer<i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light" onsubmit="return false;" onclick="return false;" type="submit" id="doorbell" name="doorbell">Ring Buzzer<i class="material-icons right">send</i>
                   </button>
                   </div>
                 </div>
 
               </div>
             </div>
+
+            <div class="col s12 m4" id="ledread">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">LED Readings</span>
+                </div>
+                <div class="card-action">
+                  <div class="row">
+                    <p id="temprgb" name="temprgb"></p>
+                  </div>
+                  <div class="row">
+                    <p id="pirlight" name="pirlight"></p>
+                  </div>
+                  <div class="row">
+                    <p id="lightsensorlight" name="lightsensorlight"></p>
+                  </div>
+                  <div class="row">
+                    <p id="varLight" name="varLight"></p>
+                  </div>
+                </div>
+                </div>
+              </div>
 
             <div class="col s12 m4" id="lcdcard" onsubmit="return false;" onclick="return false;">
                 <div class="card">
@@ -271,28 +297,6 @@
                           <p style="padding: 1%; font-size: 30px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
                       </div>
                   </div>
-                </div>
-              </div>
-
-            <div class="col s12 m4" id="ledread">
-              <div class="card">
-                <div class="card-content">
-                  <span class="card-title">LED Readings</span>
-                </div>
-                <div class="card-action">
-                  <div class="row">
-                    <p id="temprgb" name="temprgb"></p>
-                  </div>
-                  <div class="row">
-                    <p id="pirlight" name="pirlight"></p>
-                  </div>
-                  <div class="row">
-                    <p id="lightsensorlight" name="lightsensorlight"></p>
-                  </div>
-                  <div class="row">
-                    <p id="varLight" name="varLight"></p>
-                  </div>
-                </div>
                 </div>
               </div>
           </div>
