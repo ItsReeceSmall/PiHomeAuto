@@ -73,7 +73,7 @@
         function tutTextbox() {
             var text = $('#tutorialTxtBox').val();
             console.log('text = ' + text);
-            document.getElementById("textBoxtext").innerHTML = 'You typed: ' + ['text'];
+            document.getElementById("textBoxText").innerHTML = 'You typed: ' + ['text'];
         }
     </script>
 
@@ -118,8 +118,8 @@
 
         <form>
           <div id="About" class="row">
-            <div id="aboutcard" class="col s12 m12 l6">
-                <div class="card medium">
+            <div id="aboutcard" class="col s12 m12 l12">
+                <div class="card">
                     <div class="card-content">
                         <span class="card-title">About & How To Use!</span>
                     </div>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </div>
-            <div id="togglecard" class="col s12 m4 l3">
+            <div id="togglecard" class="col s12 m6 l3">
                 <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">Toggle Buttons</span>
@@ -191,8 +191,8 @@
                     </div>
                 </div>
             </div>
-            <div id="textboxcard" class="col s12 m4 l3">
-                <div class="card medium">
+            <div id="textboxcard" class="col s12 m6 l6">
+                <div class="card large">
                     <div class="card-content">
                         <span class="card-title">Text Box's</span>
                     </div>
@@ -209,12 +209,12 @@
                             </button>
                         </div>
                         <div class="row">
-                            <p id="textBoxtext"></p>
+                            <p id="textBoxText" name="textBoxText"></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="labelcard" class="col s12 m4 l3">
+            <div id="labelcard" class="col s12 m6 l3">
                 <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">Text Labels</span>
