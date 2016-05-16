@@ -98,6 +98,7 @@ def vls():
     light = board.PWM(M.fadeLed, 100)
     light.start(100)
     if on:
+        time.sleep(0.2)
         light.ChangeDutyCycle(int(brightness))
     else:
         light.ChangeDutyCycle(0)
