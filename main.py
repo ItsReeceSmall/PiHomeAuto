@@ -96,9 +96,9 @@ def vls():
     on = bool(int(VLS))
     print('DEBUG: buttonState = ' + str(on))
     if VLS == '1':
-        M.light.ChangeDutyCycle(int(brightness))
+        light.ChangeDutyCycle(int(brightness))
     else:
-        M.light.ChangeDutyCycle(0)
+        light.ChangeDutyCycle(0)
 
 @route('/pirs', method='POST')
 def pirs():
@@ -144,6 +144,8 @@ try:
     M.createWidgets(frame, root)
     M.mainWidgets(frame)
     print('')
+    light = board.PWM(M.fadeLed, 100)
+    light.start(100)  # Starts the light connected to the variable resistor
     #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
     #threading.Thread(target=root.mainloop().start())
     run(host='0.0.0.0', port=8080, reloader=False)
