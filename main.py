@@ -96,8 +96,9 @@ def vls():
     on = bool(int(VLS))
     print('DEBUG: buttonState = ' + str(on))
     light = board.PWM(M.fadeLed, 100)
+    light.start(100)
     if on:
-        light.start(int(brightness))
+        light.ChangeDutyCycle(int(brightness))
     else:
         light.ChangeDutyCycle(0)
 
