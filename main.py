@@ -93,10 +93,14 @@ def vls():
     VLS = request.forms.get('buttonState')
     print('DEBUG: VLS state = ' + str(VLS))
     print('DEBUG: Brightness Slider = ' + str(brightness))
+    on = bool(int(VLS))
+    print('DEBUG: buttonState = ' + str(on))
     light = board.PWM(M.fadeLed, 100)
     light.start(100)
-    if VLS == '1':
+    if VLS == 1:
+        time.sleep(0.2)
         light.ChangeDutyCycle(int(brightness))
+        time.sleep(3)
     else:
         light.ChangeDutyCycle(0)
 
