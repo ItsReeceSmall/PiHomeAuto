@@ -140,10 +140,16 @@
         function getValues() {
             var rValue = $('#rSlider').val();
             console.log('rValue = ' + rValue);
+            var r = document.getElementById("rsv")
+            r.innerHTML = [rValue];
             var gValue = $('#gSlider').val();
             console.log('gValue = ' + gValue);
+            var g = document.getElementById("gsv")
+            g.innerHTML = [gValue];
             var bValue = $('#bSlider').val();
             console.log('bValue = ' + bValue);
+            var b = document.getElementById("bsv")
+            b.innerHTML = [bValue];
             var isChecked = $("#ledSwitch").is(":checked") ? 1:0;
             console.log('isChecked = ' + isChecked);
 
@@ -191,7 +197,7 @@
       </ul>
         <nav>
           <div class="nav-wrapper red lighten-1">
-            <a href="index.html" class="brand-logo">Home Automation Controller</a>
+            <a style="padding-left: 20px" href="index.html" class="brand-logo">Home Automation Controller</a>
             <a style="padding-left: 20px" href="index.html" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
               <li><a href="index.html">Home</a></li>
@@ -216,9 +222,10 @@
         <form>
           <div class="row">
             <div class="col s12 m6 l4" id="sensorcard">
-              <div class="card small">
+              <div class="card medium">
                 <div class="card-content">
                   <span class="card-title">Sensors</span>
+                  <p>Below are the returned values from the sensors.</p>
                 </div>
                 <div class="card-action">
                   <div class="row">
@@ -244,11 +251,11 @@
                     </div>
                   </div>
                 </div>
-                </div>
+              </div>
             </div>
 
             <div class="col s12 m6 l4" id="buzzcard">
-              <div class="card small">
+              <div class="card medium">
                 <div class="card-content">
                   <span class="card-title">Buzzer Controls</span>
                   <p>Use this form to control the Buzzer on the Home Automation System</p>
@@ -270,12 +277,11 @@
                   </button>
                   </div>
                 </div>
-
               </div>
             </div>
 
             <div class="col s12 m6 l4" id="ledread">
-              <div class="card small">
+              <div class="card medium">
                 <div class="card-content">
                   <span class="card-title">LED Readings</span>
                   <p>In this form, the readings of the LED Lights are displayed and reasons why.</p>
@@ -298,7 +304,7 @@
             </div>
 
             <div class="col s12 m6 l4" id="ledcard">
-              <div class="card large">
+              <div style="height: 400px" class="card">
                 <div class="card-content">
                   <span class="card-title">RGB LED Controls</span>
                   <p>Use this form to control the RGB LED Light Bulb</p>
@@ -316,25 +322,45 @@
                     </div>
                   </div>
                   <div class="row">
-                    <h>Red</h>
-                    <p class="range-field">
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h>Red</h>
+                    </div>
+                    <div class="col s8 m8 l8">
+                      <p class="range-field">
                       <input type="range" id="rSlider" name="rSlider" min="47" max="255" value="180" onchange="getValues()" />
-                    </p>
+                      </p>
+                    </div>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h id="rsv"></h>
+                    </div>
                   </div>
                   <div class="row">
-                    <h>Green</h>
-                    <p class="range-field">
-                      <input type="range" id="gSlider" name="gSlider" min="47" max="255" value="130" onchange="getValues()" />
-                    </p>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h>Green</h>
+                    </div>
+                    <div class="col s8 m8 l8">
+                      <p class="range-field">
+                      <input type="range" id="gSlider" name="gSlider" min="47" max="255" value="180" onchange="getValues()" />
+                      </p>
+                    </div>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h id="gsv"></h>
+                    </div>
                   </div>
-                    <div class="row">
-                    <h>Blue</h>
-                    <p class="range-field">
-                      <input type="range" id="bSlider" name="bSlider" min="47" max="255" value="47" onchange="getValues()" />
-                    </p>
+                  <div class="row">
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h>Blue</h>
+                    </div>
+                    <div class="col s8 m8 l8">
+                      <p class="range-field">
+                      <input type="range" id="bSlider" name="bSlider" min="47" max="255" value="180" onchange="getValues()" />
+                      </p>
+                    </div>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h id="bsv"></h>
+                    </div>
                   </div>
                 </div>
-
               </div>
             </div>
 
@@ -358,19 +384,19 @@
                       </button>
                     </div>
                     <div class="row">
-                      <div class="col s12 m4 l3">
-                        <p style="padding-top: 12px">LCD Line 1:</p>
+                      <div class="col s3 m4 l3">
+                        <p style="padding-top: 12px">Line 1:</p>
                       </div>
-                      <div class="col s12 m8 l9">
-                        <p style="background-color:#90CAF9; color:white; font-size: 22px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
+                      <div class="col s9 m8 l9">
+                        <p style="background-color:#90CAF9; color:white; font-size: 18px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col s12 m4 l3">
-                        <p style="padding-top: 12px">LCD Line 2:</p>
+                      <div class="col s3 m4 l3">
+                        <p style="padding-top: 12px">Line 2:</p>
                       </div>
-                      <div class="col s12 m8 l9">
-                        <p style="background-color:#90CAF9; color:white; font-size: 22px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
+                      <div class="col s9 m8 l9">
+                        <p style="background-color:#90CAF9; color:white; font-size: 18px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
                       </div>
                     </div>
                   </div>
@@ -378,7 +404,7 @@
             </div>
 
             <div class="col s12 m6 l4" id="ledcontrolcard">
-              <div class="card large">
+              <div class="card medium">
                 <div class="card-content">
                   <span class="card-title">LED Controls</span>
                   <p>Use this form to control the single colour LED's on the Home Automation System</p>
