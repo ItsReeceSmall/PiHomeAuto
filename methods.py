@@ -55,7 +55,7 @@ def mainWidgets(frame):
 def getAll(lcdyon, frame):
     list, c = getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
     pir = getPir(pirSensor, board, pirLight, buzzSensor, frame)                   #
-    light = getLight(lightSensor, board, frame, lsLight)                                   #
+    light, ls = getLight(lightSensor, board, frame, lsLight)                                   #
     dist = getDist(dtSensor, deSensor, board, frame)                              #
     layoutString = ('C  PIR Dis Light')
     theString = (str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light)) # String for the LCD screen
@@ -151,7 +151,7 @@ def getPir(pirSensor, board, pirLight, buzzSensor, frame):
     sys.stdout.write("\033[K")
     print ('### PIR Value = ' + str(value) + ' // 1 = on // 0 = off')
     if value == 1:
-        finValue = 'ON '
+        finValue = 'ON'
         PirValue = Label(frame, text=(finValue), fg='green', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
         l(pirLight, board).LedOn() # Turns PIR LIGHT ON
         BuzzValue = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
@@ -174,13 +174,15 @@ def getLight(lightSensor, board, frame, lsLight):
     if value > 1500:
         lsLightLabel = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=19,column=3,padx=5,pady=5)
         l(lsLight, board).LedOn()
+        finValue = 'ON'
     else:
         lsLightLabel = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=19, column=3, padx=5, pady=5)
         l(lsLight, board).LedOff()
+        finValue = 'OFF'
     print ('### Light Sensor Value = ' + str(value))
     LightValue = Label(frame, text=(value), borderwidth=1)
     LightValue.grid(row=5, column=2, padx=5, pady=5)
-    return value
+    return value, finValue
 ##########################################################################################################
 def ButtonSwitch(fadeLed, lightButton, board, lightState, frame, buzzSensor, buzzButton):
     while True:
