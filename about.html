@@ -17,7 +17,7 @@
             $.get("/about", function(data, status){
                 var d = JSON.parse(data);
                 console.log(d);
-                document.getElementById("abouttext").innerHTML = d['abouttext']';
+                document.getElementById("abouttext").innerHTML = d['abouttext'];
                 document.getElementById("toggle").innerHTML = d['toggle'];
                 document.getElementById("slider").innerHTML = d['slider'];
                 document.getElementById("button").innerHTML = d['button'];
@@ -43,6 +43,10 @@
 
             $(".button-collapse").sideNav();
             $(".dropdown-button").dropdown();
+
+            $("#exit").click(function() {
+                exit();
+            });
 
         });
 
