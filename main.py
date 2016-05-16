@@ -100,6 +100,7 @@ def vls():
     if on:
         time.sleep(0.2)
         light.ChangeDutyCycle(int(brightness))
+        time.sleep(3)
     else:
         light.ChangeDutyCycle(0)
 
