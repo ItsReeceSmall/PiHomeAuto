@@ -53,7 +53,7 @@
         function tutToggle() {
             var isChecked = $("#tutorialToggle").is(":checked") ? 1:0;
             console.log('isChecked = ' + isChecked);
-            document.getElementById("tutTogText").innerHTML = 'The value of the toggle is: ' + ['tutTogText'];
+            document.getElementById("tutTogText").innerHTML = 'The value of the toggle is: ' + ['buttonState'];
         }
 
         function reloadpage() {
@@ -62,6 +62,7 @@
 
         function tutSlide() {
             var slideVal = $('#tutorialSlider').val();
+            console.log('slideVal = ' + slideVal);
             document.getElementById("slideVal").innerHTML = 'The value of the slider is: ' + ['slideVal'];
         }
 
@@ -97,7 +98,7 @@
             <a href="index.html" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
               <li><a href="index.html">Home</a></li>
-              <li><a href="#About">About</a></li>
+              <li><a href="about.html">About</a></li>
               <li><a class="dropdown-button" href="#!" data-activates="navdropdown">Sensor Control<i class="material-icons right">arrow_drop_down</i></a></li>
               <li><a href="#bottom">Go to the bottom</a></li>
             </ul>
@@ -118,7 +119,7 @@
         <form>
           <div id="About" class="row">
             <div id="aboutcard" class="col s12 m12 l6">
-                <div class="card">
+                <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">About & How To Use!</span>
                     </div>
@@ -130,7 +131,7 @@
                 </div>
             </div>
             <div id="togglecard" class="col s12 m4 l3">
-                <div class="card">
+                <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">Toggle Buttons</span>
                     </div>
@@ -154,7 +155,7 @@
                 </div>
             </div>
             <div id="slidercard" class="col s12 m4 l3">
-                <div class="card">
+                <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">Sliders</span>
                     </div>
@@ -172,7 +173,7 @@
                 </div>
             </div>
             <div id="buttoncard" class="col s12 m4 l3">
-                <div class="card">
+                <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">Buttons</span>
                     </div>
@@ -191,7 +192,7 @@
                 </div>
             </div>
             <div id="textboxcard" class="col s12 m4 l3">
-                <div class="card">
+                <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">Text Box's</span>
                     </div>
@@ -214,7 +215,7 @@
                 </div>
             </div>
             <div id="labelcard" class="col s12 m4 l3">
-                <div class="card">
+                <div class="card medium">
                     <div class="card-content">
                         <span class="card-title">Text Labels</span>
                     </div>
