@@ -53,7 +53,7 @@
         function tutToggle() {
             var isChecked = $("#tutorialToggle").is(":checked") ? 1:0;
             console.log('isChecked = ' + isChecked);
-            document.getElementById("tutTogText").innerHTML = 'The value of the toggle is: ' + ['buttonState'];
+            document.getElementById("tutTogText").innerHTML = 'The value of the toggle is: ' + [buttonState];
         }
 
         function reloadpage() {
@@ -63,7 +63,7 @@
         function tutSlide() {
             var slideVal = $('#tutorialSlider').val();
             console.log('slideVal = ' + slideVal);
-            document.getElementById("slideVal").innerHTML = 'The value of the slider is: ' + ['slideVal'];
+            document.getElementById("slideVal").innerHTML = 'The value of the slider is: ' + [slideVal];
         }
 
         function tutButton() {
@@ -73,7 +73,7 @@
         function tutTextbox() {
             var text = $('#tutorialTxtBox').val();
             console.log('text = ' + text);
-            document.getElementById("textBoxText").innerHTML = 'You typed: ' + ['text'];
+            document.getElementById("textBoxText").innerHTML = 'You typed: ' + [text];
         }
     </script>
 

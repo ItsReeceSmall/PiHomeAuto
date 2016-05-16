@@ -215,7 +215,7 @@
 
         <form>
           <div class="row">
-            <div class="col s12 m4 l6" id="sensorcard">
+            <div class="col s12 m6 l4" id="sensorcard">
               <div class="card large">
                 <div class="card-content">
                   <span class="card-title">Sensors</span>
@@ -234,18 +234,20 @@
                     <p id="distance" name="distance"></p>
                   </div>
                   <div class="row">
-                    <button class="btn waves-effect waves-light" onclick="reloadpage();" type="submit" id="reloadpage" name="reloadpage">Refresh Sensors<i class="material-icons right">send</i>
-                  </button>
-                  </div>
-                  <div>
-                    <button class="btn waves-effect waves-light" onclick="val2screen();" type="submit" id="val2screen" name="val2screen">Print Values to LCD<i class="material-icons right">send</i>
-                  </button>
+                    <div class="col s12 m5 l5">
+                      <button class="btn waves-effect waves-light" onclick="reloadpage();" type="submit" id="reloadpage" name="reloadpage">Refresh Sensors<i class="material-icons right">send</i>
+                      </button>
+                    </div>
+                    <div class="col s12 m7 l7">
+                      <button class="btn waves-effect waves-light" onclick="val2screen();" type="submit" id="val2screen" name="val2screen">Show on LCD<i class="material-icons right">send</i>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 </div>
               </div>
 
-            <div class="col s12 m4 l6" id="ledcard">
+            <div class="col s12 m6 l4" id="ledcard">
               <div class="card large">
                 <div class="card-content">
                   <span class="card-title">RGB LED Controls</span>
@@ -286,40 +288,49 @@
               </div>
             </div>
 
-            <div class="col s12 m4 l6" id="lcdcard">
+            <div class="col s12 m6 l4" id="lcdcard">
                 <div class="card large">
                   <div class="card-content">
                     <span class="card-title">LCD Screen Text</span>
+                    <p>Use this form to control the LCD Screen by entering values into the text box's below.</p>
                   </div>
                   <div class="card-action">
                     <div class="row">
-                      <input placeholder="Enter text to display on Line 1" id="texttodisplay1" type="text" class="validate">
-                    </div>
-                    <div class="row">
-                      <input placeholder="Enter text to display on Line 2" id="texttodisplay2" type="text" class="validate">
-                      <label for="texttodisplay2">Text to display on the LCD Screen</label>
+                      <div class="col s12 m6 l6">
+                        <p>Line 1:</p>
+                        <input placeholder="Enter text to display on Line 1" id="texttodisplay1" type="text" class="validate">
+                      </div>
+                      <div class="col s12 m6 l6">
+                        <p>Line 2:</p>
+                        <input placeholder="Enter text to display on Line 2" id="texttodisplay2" type="text" class="validate">
+                        <label for="texttodisplay2">Text to display on the LCD Screen</label>
+                      </div>
                     </div>
                     <div class="row" onsubmit="return false;" onclick="return false;">
                       <button class="btn waves-effect waves-light" id="lcdtextbutton" name="lcdtextbutton">Submit Text<i class="material-icons right" onsubmit="return false;" onclick="return false;">send</i>
                       </button>
                     </div>
                     <div class="row">
-                          <p>LCD Line 1:</p>
+                      <div class="col s12 m4 l3">
+                        <p style="padding-top: 12px">LCD Line 1:</p>
                       </div>
-                      <div class="row" style="background-color:#90CAF9; color:white">
-                          <p style="font-size: 30px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
+                      <div class="col s12 m8 l9">
+                        <p style="background-color:#90CAF9; color:white; font-size: 22px; font-family: OCR-A, monospace" id="line1" name="line1"></p>
                       </div>
-                      <div class="row">
-                          <p>LCD Line 2:</p>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m4 l3">
+                        <p style="padding-top: 12px">LCD Line 2:</p>
                       </div>
-                      <div class="row" style="background-color:#90CAF9; color:white">
-                          <p style="font-size: 30px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
+                      <div class="col s12 m8 l9">
+                        <p style="background-color:#90CAF9; color:white; font-size: 22px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-            <div class="col s12 m4 l6" id="buzzcard">
+            <div class="col s12 m6 l4" id="buzzcard">
               <div class="card large">
                 <div class="card-content">
                   <span class="card-title">Buzzer Controls</span>
@@ -346,7 +357,7 @@
               </div>
             </div>
 
-            <div class="col s12 m4 l6" id="ledread">
+            <div class="col s12 m6 l4" id="ledread">
               <div class="card large">
                 <div class="card-content">
                   <span class="card-title">LED Readings</span>
@@ -368,7 +379,7 @@
                 </div>
               </div>
 
-            <div class="col s12 m4 l6" id="ledcontrolcard">
+            <div class="col s12 m6 l4" id="ledcontrolcard">
               <div class="card large">
                 <div class="card-content">
                   <span class="card-title">LED Controls</span>
@@ -392,7 +403,6 @@
                       <input type="range" id="VarLightBrightness" name="VarLightBrightness" min="1" max="100" value="80" onchange="VLS()" />
                     </p>
                   </div>
-                  <div class="card-action"></div>
                   <div class="row">
                     <div class="switch">
                       <h>PIR Light</h>
