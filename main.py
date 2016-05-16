@@ -95,14 +95,10 @@ def vls():
     print('DEBUG: Brightness Slider = ' + str(brightness))
     on = bool(int(VLS))
     print('DEBUG: buttonState = ' + str(on))
-    light = board.PWM(M.fadeLed, 100)
-    light.start(100)
-    if VLS == 1:
-        time.sleep(0.2)
-        light.ChangeDutyCycle(int(brightness))
-        time.sleep(3)
+    if VLS == '1':
+        M.light.ChangeDutyCycle(int(brightness))
     else:
-        light.ChangeDutyCycle(0)
+        M.light.ChangeDutyCycle(0)
 
 @route('/pirs', method='POST')
 def pirs():

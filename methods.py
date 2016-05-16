@@ -32,7 +32,6 @@ def pisetup():
     print(split)
     print('### RUNNING HOME AUTOMATION IN GUI MODE ###')
     print(split)
-    board.output(fadeLed, board.HIGH) # Starts the light connected to the variable resistor
 
 def mainWidgets(frame):
 ##################################################################################################################################
@@ -296,3 +295,6 @@ slider = ("A slider is an object that allows a range to be selected from by the 
 button = ("Buttons are multi-purpose interactive objects in which do something when they are clicked if they are programmed to do so. Buttons on this system generally send values to some of the sensors and pull values from the rest to recieve an output, Buttons on this system are also used for pinging the buzzer to act as a doorbell and ring. Click the button below to see what happenes when it is clicked.")
 txt = ("Text box's are used to enter strings of data which can be used in a number of ways, in this program, the text box's are used to enter what will be printed to the LCD screen by the user, the LCD screen has a maximum limit of 16 characters per row. Type below and click the button to print the text.")
 label = ("Labels are strings which can be modified through the CSS, HTML and other forms of programming, in this program everything readable is a string and some solid blocks of colour are filled text lines to present a colour coded meaning such as green is on and red is off, below are just some examples of lables.")
+
+light = board.PWM(fadeLed, 100)
+light.start(100) # Starts the light connected to the variable resistor
