@@ -14,31 +14,10 @@
       <script>
         $(document).ready(function() {
 
-            $.get("/about", function(data, status){
+            $.get("/routedirectory", function(data, status){
                 var d = JSON.parse(data);
                 console.log(d);
-                document.getElementById("abouttext").innerHTML = d['abouttext'];
-                document.getElementById("toggle").innerHTML = d['toggle'];
-                document.getElementById("slider").innerHTML = d['slider'];
-                document.getElementById("button").innerHTML = d['button'];
-                document.getElementById("txt").innerHTML = d['txt'];
-                document.getElementById("label").innerHTML = d['label'];
-            });
-
-            $("#tutorialSlider").change(function() {
-                tutSlide();
-            });
-
-            $("#tutorialToggle").change(function() {
-                tutToggle();
-            });
-
-            $("#tutorialButton").click(function() {
-                tutButton();
-            });
-
-            $("#tutorialTxtBoxBut").click(function() {
-                tutTextBox();
+                document.getElementById("htmldivitem").innerHTML = d['itemfromjson'];
             });
 
             $(".button-collapse").sideNav();
@@ -49,33 +28,6 @@
             });
 
         });
-
-        function tutToggle() {
-            var isChecked = $("#tutorialToggle").is(":checked") ? 1:0;
-            console.log('isChecked = ' + isChecked);
-            document.getElementById("tutTogText").innerHTML = 'The value of the toggle is: ' + [isChecked];
-        }
-
-        function reloadpage() {
-            location.reload();
-        }
-
-        function tutSlide() {
-            var sVal = $('#tutorialSlider').val();
-            console.log('sVal = ' + sVal);
-            document.getElementById("sliderVal").innerHTML = 'The value of the slider is: ' + [sVal];
-        }
-
-        function tutButton() {
-            document.getElementById("buttonText").innerHTML = 'You have pressed the button, Well Done!';
-        }
-
-        function tutTextBox() {
-            var text1 = $('#tutorialTxtBox').val();
-            console.log('text1 = ' + text1);
-            var val = document.getElementById("textBoxText")
-            val.innerHTML = 'The value of the textbox is: ' + [text1]
-        }
     </script>
 
 
@@ -118,116 +70,7 @@
         </nav>
 
         <form>
-          <div id="About" class="row">
-            <div id="aboutcard" class="col s12 m12 l12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">About & How To Use!</span>
-                    </div>
-                    <div class="card-action">
-                        <div class="row">
-                           <p id="abouttext"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="togglecard" class="col s12 m6 l3">
-                <div class="card medium">
-                    <div class="card-content">
-                        <span class="card-title">Toggle Buttons</span>
-                    </div>
-                    <div class="card-action">
-                        <div class="row">
-                            <p id="toggle" name="toggle"></p>
-                        </div>
-                        <div class="switch">
-                            <h>Toggle Me</h>
-                            <label>
-                                Off
-                                <input type="checkbox" name="tutorialToggle" id="tutorialToggle" onchange="tutToggle()"/>
-                                <span class="lever"></span>
-                                On
-                            </label>
-                        </div>
-                        <div class="row">
-                        <p id="tutTogText" name="tutTogText"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="slidercard" class="col s12 m6 l3">
-                <div class="card medium">
-                    <div class="card-content">
-                        <span class="card-title">Sliders</span>
-                    </div>
-                    <div class="card-action">
-                        <div class="row">
-                           <p id="slider" name="slider"></p>
-                           <p class="range-field">
-                           <input type="range" id="tutorialSlider" name="tutorialSlider" min="0" max="100" value="50" onchange="tutSlide()" />
-                           </p>
-                        </div>
-                        <div class="row">
-                            <p id="sliderVal"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="textboxcard" class="col s12 m6 l6">
-                <div class="card medium">
-                    <div class="card-content">
-                        <span class="card-title">Text Box's</span>
-                    </div>
-                    <div class="card-action">
-                        <div class="row">
-                            <p id="txt" name="txt"></p>
-                        </div>
-                        <div class="row">
-                            <input placeholder="Enter text" id="tutorialTxtBox" type="text" class="validate">
-                            <label for="tutorialTxtBox">Type in to the text box to display what you type on the caption below</label>
-                        </div>
-                        <div class="row" onsubmit="return false;" onclick="return false;">
-                            <button class="btn waves-effect waves-light" id="tutorialTxtBoxBut" name="tutorialTxtBoxBut">Click here<i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                        <div class="row">
-                            <p id="textBoxText" name="textBoxText"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttoncard" class="col s12 m6 l3">
-                <div class="card medium">
-                    <div class="card-content">
-                        <span class="card-title">Buttons</span>
-                    </div>
-                    <div class="card-action">
-                        <div class="row">
-                           <p id="button" name="button"></p>
-                        </div>
-                        <div class="row" onsubmit="return false;" onclick="return false;">
-                            <button class="btn waves-effect waves-light" id="tutorialButton" name="tutorialButton">Click Me<i class="material-icons right" onsubmit="return false;" onclick="return false;">send</i>
-                            </button>
-                        </div>
-                        <div class="row">
-                            <p id="buttonText"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="labelcard" class="col s12 m6 l3">
-                <div class="card medium">
-                    <div class="card-content">
-                        <span class="card-title">Text Labels</span>
-                    </div>
-                    <div class="card-action">
-                        <div class="row">
-                            <p id="label" name="label"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+
         </form>
 
         <footer class="page-footer red lighten-1">
