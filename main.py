@@ -45,13 +45,13 @@ def lcdclear():
 @route('/led', method='POST')
 def action():
     r = request.forms.get('rValue')
-    r = r / 2.55
+    r = float(r) / 2.55
     print('DEBUG: red value = ' + str(r))
     g = request.forms.get('gValue')
-    g = g / 2.55
+    g = float(g) / 2.55
     print('DEBUG: green value = ' + str(g))
     b = request.forms.get('bValue')
-    b = b / 2.55
+    b = float(b) / 2.55
     print('DEBUG: blue value = ' + str(b))
     led = request.forms.get('buttonState')
     print('DEBUG: led state = ' + str(led))
