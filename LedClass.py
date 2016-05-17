@@ -1,8 +1,8 @@
 class Led:
-    def __init__(self, ledPin, board, brightness):
+    def __init__(self, ledPin, board, pwmval):
         self.board = board
         self.__ledPin = ledPin
-        self.brightness = brightness
+        self.pwmval = int(pwmval)
         self.i = self.board.PWM(self.__ledPin, 100).start(0)
 
     
@@ -20,7 +20,7 @@ class Led:
         self.board.output(self.__ledPin, self.board.LOW)
 
     def PWMLED(self):
-        self.i.ChangeDutyCycle(self.brightness)
+        self.i.ChangeDutyCycle(self.pwmval)
 
 import time, sys, os
 from board import Board
