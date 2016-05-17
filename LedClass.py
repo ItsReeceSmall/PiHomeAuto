@@ -20,6 +20,7 @@ class Led:
     def PWMLED(self):
         i = self.board.PWM(self.__ledPin, 100)
         i.start(0)
+        time.sleep(0.1)
         i.ChangeDutyCycle(self.pwmval)
 
 import time, sys, os

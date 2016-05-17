@@ -60,15 +60,14 @@ def action():
     print('DEBUG: led state = ' + str(led))
     on = bool(int(led))
     print('DEBUG: buttonState = ' + str(on))
-    if on:
+    if led == 1:
         R = M.l(M.rgbR, board, int(r)).PWMLED()
         G = M.l(M.rgbG, board, int(g)).PWMLED()
         B = M.l(M.rgbB, board, int(b)).PWMLED()
     else:
-        pwmval = 0
-        R = M.l(M.rgbR, board, pwmval).PWMLED()
-        G = M.l(M.rgbG, board, pwmval).PWMLED()
-        B = M.l(M.rgbB, board, pwmval).PWMLED()
+        R = M.l(M.rgbR, board, 0).PWMLED()
+        G = M.l(M.rgbG, board, 0).PWMLED()
+        B = M.l(M.rgbB, board, 0).PWMLED()
 
 @route('/text', method='POST')
 def getText():
