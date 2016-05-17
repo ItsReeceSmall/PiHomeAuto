@@ -52,7 +52,7 @@ def mainWidgets(frame):
     ##################################################################################################################################
 ##########################################################################################################
 def getAll(lcdyon, frame):
-    list, c = getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
+    list, c, temprgb = getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
     pir = getPir(pirSensor, board, pirLight, buzzSensor, frame)                   #
     light, ls = getLight(lightSensor, board, frame, lsLight)                                   #
     dist = getDist(dtSensor, deSensor, board, frame)                              #
@@ -65,7 +65,7 @@ def getAll(lcdyon, frame):
         lcd2Label.grid(row=14, column=1, padx=5, pady=5)
         lcd.lcd_string('C  PIR Dis Light',lcd.LCD_LINE_1)
         lcd.lcd_string(str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light),lcd.LCD_LINE_2)
-    return c, pir, light, dist
+    return c, pir, light, dist, temprgb, ls
 ##########################################################################################################
 def tempSet():
     os.system('modprobe w1-gpio')
@@ -124,14 +124,17 @@ def getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     gui = (str(c) + ' C ' + str(f) + ' F')
     TempValue = Label(frame, text=('              '), borderwidth=1).grid(row=4,column=2,padx=5,pady=5)
     if f <= lowTemp:
+        temprgb = 'blue'
         TempValue = Label(frame, text=(gui), fg='blue', borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
     elif f >= highTemp:
+        temprgb = 'red'
         TempValue = Label(frame, text=(gui), fg='red', borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
     else:
+        temprgb = 'green'
         TempValue = Label(frame, text=(gui), fg='green', borderwidth=1).grid(row=4, column=2, padx=5, pady=5)
     tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp)
     c = round(c)
-    return tempFin, c
+    return tempFin, c, temprgb
 ##########################################################################################################
 def getDist(dtSensor, deSensor, board, frame):
     dval = d(dtSensor, deSensor, board)

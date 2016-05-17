@@ -23,10 +23,49 @@
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
                 document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
                 document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
-                document.getElementById("temprgb").innerHTML = '_';
-                document.getElementById("pirlight").innerHTML = '_';
-                document.getElementById("lightsensorlight").innerHTML = '_';
-                document.getElementById("varLight").innerHTML = '_';
+                if (d['temprgb'] === 'blue') {
+                    document.getElementById("temprgb").innerHTML = '_';
+                    document.getElementById("temprgb").color = 'blue';
+                    document.getElementById("temprgb").backgroundColor = 'blue';
+                } else if (d['temprgb'] === 'red') {
+                    document.getElementById("temprgb").innerHTML = '_';
+                    document.getElementById("temprgb").color = 'red';
+                    document.getElementById("temprgb").backgroundColor = 'red';
+                } else if (d['temprgb'] === 'green') {
+                    document.getElementById("temprgb").innerHTML = '_';
+                    document.getElementById("temprgb").color = 'green';
+                    document.getElementById("temprgb").backgroundColor = 'green';
+                } else {
+                    document.getElementById("temprgb").innerHTML = 'null';
+                    document.getElementById("temprgb").color = 'black';
+                    document.getElementById("temprgb").backgroundColor = 'white';
+                }
+                if (d['pir'] === 'ON') {
+                    document.getElementById("pirlight").style.color = 'green';
+                    document.getElementById("pirlight").style.backgroundColor = 'green';
+                } else if (d['pir'] === 'OFF') {
+                    document.getElementById("pirlight").style.color = 'red';
+                    document.getElementById("pirlight").style.backgroundColor = 'red';
+                } else {
+                    document.getElementById("pirlight").style.color = 'black';
+                    document.getElementById("pirlight").style.backgroundColor = 'white';
+                    document.getElementById("pirlight").innerHTML = 'null';
+                }
+                if (d['lslight'] === 'ON') {
+                    document.getElementById("lightsensorlight").style.color = 'black';
+                    document.getElementById("lightsensorlight").style.backgroundColor = 'white';
+                    document.getElementById("lightsensorlight").innerHTML = 'LIGHT ON';
+                } else if (d['lslight'] === 'OFF') {
+                    document.getElementById("lightsensorlight").style.color = 'white';
+                    document.getElementById("lightsensorlight").style.backgroundColor = 'black';
+                    document.getElementById("lightsensorlight").innerHTML = 'LIGHT OFF';
+                } else {
+                    document.getElementById("lightsensorlight").style.color = 'black';
+                    document.getElementById("lightsensorlight").style.backgroundColor = 'white';
+                    document.getElementById("lightsensorlight").innerHTML = 'null';
+                }
+
+
             });
 
             $("#ledSwitch").change(function() {
@@ -116,12 +155,12 @@
         }
 
         function PIRS() {
-            var isChecked = $("#PIRSwitch").is(":checked") ? 1:0;
-            console.log('isChecked = ' + isChecked);
-            if (isChecked = 1) {
+            var pirtag = $("#PIRSwitch").is(":checked") ? 1:0;
+            console.log('pirtag = ' + pirtag);
+            if (pirtag === 1) {
                 document.getElementById("pirlight").style.color = 'green';
                 document.getElementById("pirlight").style.backgroundColor = 'green';
-            } else if (isChecked = 0) {
+            } else if (pirtag === 0) {
                 document.getElementById("pirlight").style.color = 'red';
                 document.getElementById("pirlight").style.backgroundColor = 'red';
             } else {
@@ -132,18 +171,27 @@
             $.ajax({
                 url: '/pirs',
                 type: 'POST',
-                data: { buttonState:isChecked}
+                data: { buttonState:pirtag}
             });
         }
 
         function LSLS() {
-            var isChecked = $("#LSLSwitch").is(":checked") ? 1:0;
-            console.log('isChecked = ' + isChecked);
+            var lsltag = $("#LSLSwitch").is(":checked") ? 1:0;
+            console.log('lsltag = ' + lsltag);
+            if (lsltag === 1) {
+                document.getElementById("lightsensorlight").style.color = 'black';
+                document.getElementById("lightsensorlight").style.backgroundColor = 'white';
+                document.getElementById("lightsensorlight").innerHTML = 'LIGHT ON';
+            } else {
+                document.getElementById("lightsensorlight").style.color = 'white';
+                document.getElementById("lightsensorlight").style.backgroundColor = 'black';
+                document.getElementById("lightsensorlight").innerHTML = 'LIGHT OFF';
+            }
 
             $.ajax({
                 url: '/lsls',
                 type: 'POST',
-                data: { buttonState:isChecked}
+                data: { buttonState:lsltag}
             });
         }
 
@@ -258,13 +306,13 @@
                   </div>
                   <div class="col s6 m6 l6">
                     <div class="row">
-                    <p id="temprgb" name="temprgb">____</p>
+                    <p id="temprgb" name="temprgb">_</p>
                     </div>
                     <div class="row">
-                    <p id="pirlight" name="pirlight">____</p>
+                    <p id="pirlight" name="pirlight">_</p>
                     </div>
                     <div class="row">
-                    <p id="lightsensorlight" name="lightsensorlight">____</p>
+                    <p style="text-align: center" id="lightsensorlight" name="lightsensorlight">_</p>
                     </div>
                     <div class="row">
                     <p id="i" name="i">N/A</p>
