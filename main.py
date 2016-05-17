@@ -52,12 +52,9 @@ def action():
     on = bool(int(led))
     print('DEBUG: buttonState = ' + str(on))
     if on:
-        pwmval = r
-        R = M.l(M.rgbR, board, pwmval).PWMLED()
-        pwmval = g
-        G = M.l(M.rgbG, board, pwmval).PWMLED()
-        pwmval = b
-        B = M.l(M.rgbB, board, pwmval).PWMLED()
+        R = M.l(M.rgbR, board, int(r)).PWMLED()
+        G = M.l(M.rgbG, board, ing(g)).PWMLED()
+        B = M.l(M.rgbB, board, int(b)).PWMLED()
     else:
         pwmval = 0
         R = M.l(M.rgbR, board, pwmval).PWMLED()
@@ -137,9 +134,9 @@ def pirs():
     on = bool(int(PIRS))
     print('DEBUG: buttonState = ' + str(on))
     if on:
-        M.l(M.pirLight, board).LedOn()
+        M.l(M.pirLight, board, 0).LedOn()
     else:
-        M.l(M.pirLight, board).LedOff()
+        M.l(M.pirLight, board, 0).LedOff()
 
 @route('/lsls', method='POST')
 def lsls():
@@ -148,9 +145,9 @@ def lsls():
     on = bool(int(LSLS))
     print('DEBUG: buttonState = ' + str(on))
     if on:
-        M.l(M.lsLight, board).LedOn()
+        M.l(M.lsLight, board, 0).LedOn()
     else:
-        M.l(M.lsLight, board).LedOff()
+        M.l(M.lsLight, board, 0).LedOff()
 
 @route('/exit', method='POST')
 def exit():

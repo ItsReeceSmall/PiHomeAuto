@@ -210,17 +210,17 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState, frame, buzzSensor, buz
 ##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     if f <= lowTemp:
-        l(ledBlue, board).LedOn()
-        l(ledGreen, board).LedOff()
-        l(ledRed, board).LedOff()
+        l(ledBlue, board, 0).LedOn()
+        l(ledGreen, board, 0).LedOff()
+        l(ledRed, board, 0).LedOff()
     elif f >= highTemp:
-        l(ledRed, board).LedOn()
-        l(ledGreen, board).LedOff()
-        l(ledBlue, board).LedOff()
+        l(ledRed, board, 0).LedOn()
+        l(ledGreen, board, 0).LedOff()
+        l(ledBlue, board, 0).LedOff()
     else:
-        l(ledGreen, board).LedOn()
-        l(ledRed, board).LedOff()
-        l(ledBlue, board).LedOff()
+        l(ledGreen, board, 0).LedOn()
+        l(ledRed, board, 0).LedOff()
+        l(ledBlue, board, 0).LedOff()
 ##########################################################################################################
 def Closeness(board, buzzSensor, dist):
     if dist <= 5:
