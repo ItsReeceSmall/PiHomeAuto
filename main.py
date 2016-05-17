@@ -82,15 +82,11 @@ def getText():
     print('------------------------------------------------------------')
     lcd.lcd_string(text1, lcd.LCD_LINE_1)
     lcd.lcd_string(text2, lcd.LCD_LINE_2)
-    lcd1Label = Label(frame, text=(text1), borderwidth=1, width=17, fg='white', bg='blue', height=1,anchor=W, justify=LEFT)
-    lcd1Label.grid(row=13, column=1, padx=5, pady=5)  # Allignment on the grid
-    lcd2Label = Label(frame, text=(text2), borderwidth=1, width=17, fg='white', bg='blue', height=1, anchor=W,justify=LEFT)
-    lcd2Label.grid(row=14, column=1, padx=5, pady=5)
 
 @route('/setup', method='GET')
 def setup():
     print('------------------------------------------------------------')
-    t, p, l, d, trgb, lslight = M.getAll(0, frame)
+    t, p, l, d, trgb, lslight = M.getAll(0)
     t = str(t)
     p = str(p)
     l = str(l)
@@ -173,7 +169,7 @@ lowTemp = 63
 
 try:
     M.pisetup()
-    #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
+    #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, buzzButton, buzzSensor)).start()
     print('')
     light = M.l(M.fadeLed, board, 100).PWMLED()  # Starts the light connected to the variable resistor
     #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE

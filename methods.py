@@ -33,7 +33,7 @@ def pisetup():
     print(split)
 
 ##########################################################################################################
-def getAll(lcdyon, frame):
+def getAll(lcdyon):
     list, c, temprgb = getTemp(board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
     pir = getPir(pirSensor, board, pirLight, buzzSensor)                   #
     light, ls = getLight(lightSensor, board, lsLight)                                   #
