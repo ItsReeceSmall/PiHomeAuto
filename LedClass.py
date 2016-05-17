@@ -4,7 +4,8 @@ class Led:
         self.__ledPin = ledPin
         self.pwmval = int(pwmval)
         print ('debug: normal led setup done')
-        self.i = self.board.PWM(self.__ledPin, 100).start(0)
+        self.i = self.board.PWM(self.__ledPin, 100)
+        self.i.start(0)
         print (type(self.i))
 
     
