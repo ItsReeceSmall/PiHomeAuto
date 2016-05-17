@@ -23,15 +23,16 @@
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
                 document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
                 document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
-                if (d['trgb'] === 'blue') {
+
+                if (d['trgb'] == 'blue') {
                     document.getElementById("temprgb").innerHTML = '_';
                     document.getElementById("temprgb").color = 'blue';
                     document.getElementById("temprgb").backgroundColor = 'blue';
-                } else if (d['trgb'] === 'red') {
+                } else if (d['trgb'] == 'red') {
                     document.getElementById("temprgb").innerHTML = '_';
                     document.getElementById("temprgb").color = 'red';
                     document.getElementById("temprgb").backgroundColor = 'red';
-                } else if (d['trgb'] === 'green') {
+                } else if (d['trgb'] == 'green') {
                     document.getElementById("temprgb").innerHTML = '_';
                     document.getElementById("temprgb").color = 'green';
                     document.getElementById("temprgb").backgroundColor = 'green';
@@ -43,11 +44,11 @@
                 if (d['pir'] === 'ON') {
                     document.getElementById("pirlight").style.color = 'black';
                     document.getElementById("pirlight").style.backgroundColor = 'green';
-                    document.getElementById("pirlight").innerHTML = 'Active';
+                    document.getElementById("pirlight").innerHTML = 'ACTIVE';
                 } else if (d['pir'] === 'OFF') {
                     document.getElementById("pirlight").style.color = 'white';
                     document.getElementById("pirlight").style.backgroundColor = 'red';
-                    document.getElementById("pirlight").innerHTML = 'Inactive';
+                    document.getElementById("pirlight").innerHTML = 'INACTIVE';
                 } else {
                     document.getElementById("pirlight").style.color = 'black';
                     document.getElementById("pirlight").style.backgroundColor = 'white';
@@ -308,16 +309,16 @@
                   </div>
                   <div class="col s6 m6 l6">
                     <div class="row">
-                    <p id="temprgb" name="temprgb">_</p>
+                    <p style="text-align: center" id="temprgb" name="temprgb">_</p>
                     </div>
                     <div class="row">
-                    <p id="pirlight" name="pirlight">_</p>
+                    <p style="text-align: center" id="pirlight" name="pirlight">_</p>
                     </div>
                     <div class="row">
                     <p style="text-align: center" id="lightsensorlight" name="lightsensorlight">_</p>
                     </div>
                     <div class="row">
-                    <p id="i" name="i">N/A</p>
+                    <p style="text-align: center" id="i" name="i">N/A</p>
                     </div>
                     <div class="row">
                     <div>
