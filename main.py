@@ -66,15 +66,13 @@ def action():
     print (type(led))
     if led == '0':
         print('off')
-        R = M.P(M.rgbR, board, 0).PWMLED()
-        G = M.P(M.rgbG, board, 0).PWMLED()
-        B = M.P(M.rgbB, board, 0).PWMLED()
-        return
+        rpwm.ChangeDutyCycle(0)
+        gpwm.ChangeDutyCycle(0)
+        bpwm.ChangeDutyCycle(0)
     if led == '1':
-        print('on')
-        R = M.P(M.rgbR, board, int(r)).PWMLED()
-        G = M.P(M.rgbG, board, int(g)).PWMLED()
-        B = M.P(M.rgbB, board, int(b)).PWMLED()
+        rpwm.ChangeDutyCycle(r)
+        gpwm.ChangeDutyCycle(g)
+        bpwm.ChangeDutyCycle(b)
     else:
         print('error')
 
@@ -136,9 +134,9 @@ def vls():
     on = bool(int(VLS))
     print('DEBUG: buttonState = ' + str(on))
     if VLS == '1':
-        light = M.P(M.fadeLed, board, int(brightness)).PWMLED()
+        vpwm.ChangeDutyCycle(int(brightness))
     else:
-        light = M.P(M.fadeLed, board, 0).PWMLED()
+        vpwm.ChangeDutyCycle(0)
 
 @route('/pirs', method='POST')
 def pirs():
@@ -174,10 +172,9 @@ lowTemp = 63
 
 try:
     M.pisetup()
+    rpwm, gpwm, bpwm, vpwm = M.pwmpins()
     #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, buzzButton, buzzSensor)).start()
     print('')
-    light = M.l(M.fadeLed, board, 100).PWMLED()  # Starts the light connected to the variable resistor
-    #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
     run(host='0.0.0.0', port=8080, reloader=False)
     print('\n \n### Exiting ###')
     lcd.lcd_clear()

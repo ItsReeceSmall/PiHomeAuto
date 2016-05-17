@@ -32,6 +32,16 @@ def pisetup():
     print('### RUNNING HOME AUTOMATION IN GUI MODE ###')
     print(split)
 
+def pwmpins():
+    rpwm = board.PWM(rgbR, 100)
+    rpwm.start(0)
+    gpwm = board.PWM(rgbG, 100)
+    gpwm.start(0)
+    bpwm = board.PWM(rgbB, 100)
+    bpwm.start(0)
+    vpwm = board.PWM(fadeLed, 100)
+    vpwm.start(100)
+    return rpwm, gpwm, bpwm, vpwm
 ##########################################################################################################
 def getAll(lcdyon):
     list, c, temprgb = getTemp(board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
