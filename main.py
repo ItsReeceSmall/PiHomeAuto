@@ -53,7 +53,7 @@ def action():
     print('DEBUG: buttonState = ' + str(on))
     if on:
         R = M.l(M.rgbR, board, int(r)).PWMLED()
-        G = M.l(M.rgbG, board, ing(g)).PWMLED()
+        G = M.l(M.rgbG, board, int(g)).PWMLED()
         B = M.l(M.rgbB, board, int(b)).PWMLED()
     else:
         pwmval = 0
