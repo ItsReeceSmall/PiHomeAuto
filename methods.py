@@ -34,10 +34,10 @@ def pisetup():
 
 ##########################################################################################################
 def getAll(lcdyon, frame):
-    list, c, temprgb = getTemp(frame, board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
-    pir = getPir(pirSensor, board, pirLight, buzzSensor, frame)                   #
-    light, ls = getLight(lightSensor, board, frame, lsLight)                                   #
-    dist = getDist(dtSensor, deSensor, board, frame)                              #
+    list, c, temprgb = getTemp(board, ledRed, ledGreen, ledBlue, highTemp, lowTemp) # Gets the values needed for the print of values
+    pir = getPir(pirSensor, board, pirLight, buzzSensor)                   #
+    light, ls = getLight(lightSensor, board, lsLight)                                   #
+    dist = getDist(dtSensor, deSensor, board)                              #
     layoutString = ('C  PIR Dis Light')
     theString = (str(c) + ' ' + str(pir) + ' ' + str(dist) + '  ' + str(light)) # String for the LCD screen
     if lcdyon == 1:
