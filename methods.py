@@ -175,11 +175,11 @@ def getLight(lightSensor, board, frame, lsLight):
     sys.stdout.write("\033[K")
     if value > 1500:
         lsLightLabel = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=19,column=3,padx=5,pady=5)
-        l(lsLight, board).LedOn()
+        l(lsLight, board, 0).LedOn()
         finValue = 'ON'
     else:
         lsLightLabel = Label(frame, text=('OFF'), fg='red', borderwidth=1).grid(row=19, column=3, padx=5, pady=5)
-        l(lsLight, board).LedOff()
+        l(lsLight, board, 0).LedOff()
         finValue = 'OFF'
     print ('### Light Sensor Value = ' + str(value))
     LightValue = Label(frame, text=(value), borderwidth=1)
@@ -192,11 +192,11 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState, frame, buzzSensor, buz
         if board.input(lightButton) == False:
             if lightState == 'on':
                 lsta = Label(frame, text=('OFF'), borderwidth=1, fg=('red')).grid(row=14,column=2,padx=5,pady=5)
-                l(fadeLed, board).LedOff()
+                l(fadeLed, board, 0).LedOff()
                 lightState = 'off'
             elif lightState == 'off':
                 lsta = Label(frame, text=(' ON '), borderwidth=1, fg=('green')).grid(row=14, column=2, padx=5, pady=5)
-                l(fadeLed, board).LedOn()
+                l(fadeLed, board, 0).LedOn()
                 lightState = 'on'
         if board.input(buzzButton) == False:
             doorbell = Label(frame, text=(' ON '), borderwidth=1, fg=('green'))
