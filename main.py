@@ -45,35 +45,31 @@ def lcdclear():
 def action():
     r = request.forms.get('rValue')
     r = float(r) / 2.55
-    round(r)
+    round(r,1)
     print('DEBUG: red value = ' + str(r))
     ################################
     g = request.forms.get('gValue')
     g = float(g) / 2.55
-    round(g)
+    round(g,1)
     print('DEBUG: green value = ' + str(g))
     ################################
     b = request.forms.get('bValue')
     b = float(b) / 2.55
-    round(b)
+    round(b,1)
     print('DEBUG: blue value = ' + str(b))
     ################################
     led = request.forms.get('buttonState')
     print('DEBUG: led state = ' + str(led))
     on = bool(int(led))
     print('DEBUG: buttonState = ' + str(on))
-    print (type(led))
-    if led == '0':
-        print('off')
-        rpwm.ChangeDutyCycle(0)
-        gpwm.ChangeDutyCycle(0)
-        bpwm.ChangeDutyCycle(0)
     if led == '1':
         rpwm.ChangeDutyCycle(r)
         gpwm.ChangeDutyCycle(g)
         bpwm.ChangeDutyCycle(b)
     else:
-        print('error')
+        rpwm.ChangeDutyCycle(0)
+        gpwm.ChangeDutyCycle(0)
+        bpwm.ChangeDutyCycle(0)
 
 @route('/text', method='POST')
 def getText():
