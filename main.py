@@ -46,15 +46,15 @@ def lcdclear():
 def action():
     r = request.forms.get('rValue')
     r = float(r) / 2.55
-    round(r, 0)
+    int(round(r))
     print('DEBUG: red value = ' + str(r))
     g = request.forms.get('gValue')
     g = float(g) / 2.55
-    round(g, 0)
+    int(round(g))
     print('DEBUG: green value = ' + str(g))
     b = request.forms.get('bValue')
     b = float(b) / 2.55
-    round(b, 0)
+    int(round(b))
     print('DEBUG: blue value = ' + str(b))
     led = request.forms.get('buttonState')
     print('DEBUG: led state = ' + str(led))

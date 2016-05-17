@@ -19,9 +19,8 @@ class Led:
         self.board.output(self.__ledPin, self.board.LOW)
 
     def PWMLED(self):
-        self.i = self.board.PWM(self.__ledPin, 100)
-        self.i.start(0)
-        self.i.ChangeDutyCycle(self.pwmval)
+        self.i = self.board.PWM(self.__ledPin, 100).start(self.pwmval)
+        #self.i.ChangeDutyCycle(self.pwmval)
 
 import time, sys, os
 from board import Board
