@@ -52,13 +52,13 @@ def action():
     on = bool(int(led))
     print('DEBUG: buttonState = ' + str(on))
     if on:
-        R = M.l(M.rgbR, board, int(r))
-        G = M.l(M.rgbG, board, int(g))
-        B = M.l(M.rgbB, board, int(b))
+        R = M.l(M.rgbR, board, int(r)).PWMLED()
+        G = M.l(M.rgbG, board, int(g)).PWMLED()
+        B = M.l(M.rgbB, board, int(b)).PWMLED()
     else:
-        R = M.l(M.rgbR, board, 0)
-        G = M.l(M.rgbG, board, 0)
-        B = M.l(M.rgbB, board, 0)
+        R = M.l(M.rgbR, board, 0).PWMLED()
+        G = M.l(M.rgbG, board, 0).PWMLED()
+        B = M.l(M.rgbB, board, 0).PWMLED()
 
 @route('/text', method='POST')
 def getText():
@@ -122,9 +122,9 @@ def vls():
     on = bool(int(VLS))
     print('DEBUG: buttonState = ' + str(on))
     if VLS == '1':
-        light = M.l(M.fadeLed, board, int(brightness))
+        light = M.l(M.fadeLed, board, int(brightness)).PWMLED()
     else:
-        light = M.l(M.fadeLed, board, 0)
+        light = M.l(M.fadeLed, board, 0).PWMLED()
 
 @route('/pirs', method='POST')
 def pirs():
