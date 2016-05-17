@@ -95,6 +95,10 @@
                 getText();
             });
 
+            $("#lcdtextclear").click(function() {
+                lcdtextclear();
+            });
+
             $("#val2screen").click(function() {
                 val2screen();
             });
@@ -126,6 +130,18 @@
                 url: '/text',
                 type: 'POST',
                 data: { texttodisplay1:text1, texttodisplay2:text2}
+            });
+        }
+
+        function lcdtextclear() {
+            document.getElementById('texttodisplay1').value = '';
+            document.getElementById('texttodisplay2').value = '';
+            document.getElementById('line1').innerHTML = '';
+            document.getElementById('line2').innerHTML = '';
+
+            $.ajax({
+                url: '/lcdclear',
+                type: 'POST',
             });
         }
 
@@ -470,22 +486,14 @@
 
             <div class="col s12 m12 l8" id="lcdcard">
                 <div class="card medium">
-                  <div class="col s6 m8 l8">
+                  <div class="col s12 m12 l12">
                     <div class="card-content">
                       <span class="card-title">LCD Screen Text</span>
                       <p>Use this form to control the LCD</p>
                     </div>
                   </div>
-                  <div class="col s6 m4 l4">
-                    <div class="card-content">
-                      <div style="padding-top: 20px; padding-left: 15%" class="row" onsubmit="return false;" onclick="return false;">
-                        <button class="btn waves-effect waves-light" id="lcdtextbutton" name="lcdtextbutton">Submit Text<i class="material-icons right" onsubmit="return false;" onclick="return false;">send</i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
                   <div class="card-action">
-                    <div class="col s12 m6 l6">
+                    <div class="col s9 m4 l4">
                       <div class="row">
                         <div class="col s12 m6 l6">
                           <input placeholder="Line 1" id="texttodisplay1" type="text" class="validate">
@@ -495,7 +503,13 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col s12 m6 l6">
+                    <div class="col s3 m2 l2">
+                      <div style="padding-top: 20px;" class="row" onsubmit="return false;" onclick="return false;">
+                        <button class="btn waves-effect waves-light" id="lcdtextbutton" name="lcdtextbutton">Submit Text<i class="material-icons right" onsubmit="return false;" onclick="return false;">send</i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col s9 m4 l4">
                       <div class="row">
                         <div class="col s3 m4 l3">
                           <p style="padding-top: 10px">Line 1:</p>
@@ -511,6 +525,12 @@
                         <div class="col s9 m8 l9">
                           <p style="background-color:#90CAF9; color:white; font-size: 18px; font-family: OCR-A, monospace" id="line2" name="line2"></p>
                         </div>
+                      </div>
+                    </div>
+                    <div class="col s3 m2 l2">
+                      <div style="padding-top: 20px;" class="row" onsubmit="return false;" onclick="return false;">
+                        <button class="btn waves-effect waves-light" id="lcdtextclear" name="lcdtextclear">Clear LCD<i class="material-icons right" onsubmit="return false;" onclick="return false;">send</i>
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -38,6 +38,9 @@ def rootHome():
 def html_file(filename):
     return static_file(filename, root=rootPath)
 
+@route('/lcdclear', method='POST')
+def lcdclear():
+    lcd.lcd_clear()
 
 @route('/led', method='POST')
 def action():
