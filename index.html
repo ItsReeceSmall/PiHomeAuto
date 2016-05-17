@@ -23,8 +23,6 @@
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
                 document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
                 document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
-                trgb = 'blue';
-
                 if (d['trgb'] === 'blue') {
                     document.getElementById("temprgb").innerHTML = 'TO COLD';
                     document.getElementById("temprgb").style.color = 'white';
@@ -228,13 +226,18 @@
             console.log('bValue = ' + bValue);
             var b = document.getElementById("bsv")
             b.innerHTML = [bValue];
+            var brightness = $('#brightnessSlider').val();
+            console.log('brightness = ' + brightness);
+            var B = document.getElementById("Bsv")
+            B.innerHTML = [brightness];
             var isChecked = $("#ledSwitch").is(":checked") ? 1:0;
             console.log('isChecked = ' + isChecked);
+            document.getElementById("RGBVAL").style.backgroundColor = 'rgb(r, g, b)';
 
             $.ajax({
                 url: '/led',
                 type: 'POST',
-                data: { rValue:rValue, gValue:gValue, bValue:bValue, buttonState:isChecked}
+                data: { rValue:rValue, gValue:gValue, bValue:bValue, brightness:brightness, buttonState:isChecked}
             });
         }
 
@@ -348,62 +351,27 @@
               </div>
             </div>
 
-            <div class="col s12 m6 l4" id="ledcard">
-              <div style="height: 400px" class="card">
+            <div class="col s12 m6 l4" id="buzzcard">
+              <div class="card medium">
                 <div class="card-content">
-                  <span class="card-title">RGB LED Controls</span>
-                  <p>Use this form to control the RGB LED Light Bulb</p>
+                  <span class="card-title">Buzzer Controls</span>
+                  <p>Use this form to control the Buzzer on the Home Automation System</p>
                 </div>
                 <div class="card-action">
                   <div class="row">
                     <div class="switch">
-                      <h>RGB LED Light</h>
+                      <h>Buzzer</h>
                       <label>
                         Off
-                        <input type="checkbox" name="ledSwitch" id="ledSwitch" />
+                        <input type="checkbox" name="BuzzSwitch" id="BuzzSwitch" />
                         <span class="lever"></span>
                         On
                       </label>
                     </div>
                   </div>
                   <div class="row">
-                    <div style="padding-top: 22px;" class="col s2 m2 l2">
-                      <h>Red</h>
-                    </div>
-                    <div class="col s8 m8 l8">
-                      <p class="range-field">
-                      <input type="range" id="rSlider" name="rSlider" min="1" max="100" value="100" onchange="getValues()" />
-                      </p>
-                    </div>
-                    <div style="padding-top: 22px;" class="col s2 m2 l2">
-                      <h id="rsv"></h>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div style="padding-top: 22px;" class="col s2 m2 l2">
-                      <h>Green</h>
-                    </div>
-                    <div class="col s8 m8 l8">
-                      <p class="range-field">
-                      <input type="range" id="gSlider" name="gSlider" min="1" max="100" value="100" onchange="getValues()" />
-                      </p>
-                    </div>
-                    <div style="padding-top: 22px;" class="col s2 m2 l2">
-                      <h id="gsv"></h>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div style="padding-top: 22px;" class="col s2 m2 l2">
-                      <h>Blue</h>
-                    </div>
-                    <div class="col s8 m8 l8">
-                      <p class="range-field">
-                      <input type="range" id="bSlider" name="bSlider" min="1" max="100" value="100" onchange="getValues()" />
-                      </p>
-                    </div>
-                    <div style="padding-top: 22px;" class="col s2 m2 l2">
-                      <h id="bsv"></h>
-                    </div>
+                    <button class="btn waves-effect waves-light" onsubmit="return false;" onclick="return false;" type="submit" id="doorbell" name="doorbell">Ring Buzzer<i class="material-icons right">send</i>
+                  </button>
                   </div>
                 </div>
               </div>
@@ -459,34 +427,85 @@
                 </div>
             </div>
 
-            <div class="col s12 m6 l4" id="buzzcard">
-              <div class="card medium">
+            <div class="col s12 m6 l4" id="ledcard">
+              <div class="card large">
                 <div class="card-content">
-                  <span class="card-title">Buzzer Controls</span>
-                  <p>Use this form to control the Buzzer on the Home Automation System</p>
+                  <span class="card-title">RGB LED Controls</span>
+                  <p>Use this form to control the RGB LED Light Bulb</p>
                 </div>
                 <div class="card-action">
                   <div class="row">
                     <div class="switch">
-                      <h>Buzzer</h>
+                      <h>RGB LED Light</h>
                       <label>
                         Off
-                        <input type="checkbox" name="BuzzSwitch" id="BuzzSwitch" />
+                        <input type="checkbox" name="ledSwitch" id="ledSwitch" />
                         <span class="lever"></span>
                         On
                       </label>
                     </div>
                   </div>
                   <div class="row">
-                    <button class="btn waves-effect waves-light" onsubmit="return false;" onclick="return false;" type="submit" id="doorbell" name="doorbell">Ring Buzzer<i class="material-icons right">send</i>
-                  </button>
+                    <p id="RGBVAL">__</p>
+                  </div>
+                  <div class="row">
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h>Red</h>
+                    </div>
+                    <div class="col s8 m8 l8">
+                      <p class="range-field">
+                      <input type="range" id="rSlider" name="rSlider" min="2.55" max="255" value="100" onchange="getValues()" />
+                      </p>
+                    </div>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h id="rsv"></h>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h>Green</h>
+                    </div>
+                    <div class="col s8 m8 l8">
+                      <p class="range-field">
+                      <input type="range" id="gSlider" name="gSlider" min="2.55" max="255" value="100" onchange="getValues()" />
+                      </p>
+                    </div>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h id="gsv"></h>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h>Blue</h>
+                    </div>
+                    <div class="col s8 m8 l8">
+                      <p class="range-field">
+                      <input type="range" id="bSlider" name="bSlider" min="2.55" max="255" value="100" onchange="getValues()" />
+                      </p>
+                    </div>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h id="bsv"></h>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h>Brightness</h>
+                    </div>
+                    <div class="col s8 m8 l8">
+                      <p class="range-field">
+                      <input type="range" id="brightnessSlider" name="brightnessSlider" min="1" max="100" value="100" onchange="getValues()" />
+                      </p>
+                    </div>
+                    <div style="padding-top: 22px;" class="col s2 m2 l2">
+                      <h id="Bsv"></h>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="col s12 m12 l8" id="lcdcard">
-                <div class="card medium">
+                <div class="card large">
                   <div class="col s12 m12 l12">
                     <div class="card-content">
                       <span class="card-title">LCD Screen Text</span>
