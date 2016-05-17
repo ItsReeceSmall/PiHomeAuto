@@ -23,23 +23,24 @@
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
                 document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
                 document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
+                trgb = 'blue';
 
-                if (d['trgb'] == 'blue') {
-                    document.getElementById("temprgb").innerHTML = '_';
-                    document.getElementById("temprgb").color = 'blue';
-                    document.getElementById("temprgb").backgroundColor = 'blue';
-                } else if (d['trgb'] == 'red') {
-                    document.getElementById("temprgb").innerHTML = '_';
-                    document.getElementById("temprgb").color = 'red';
-                    document.getElementById("temprgb").backgroundColor = 'red';
-                } else if (d['trgb'] == 'green') {
-                    document.getElementById("temprgb").innerHTML = '_';
-                    document.getElementById("temprgb").color = 'green';
-                    document.getElementById("temprgb").backgroundColor = 'green';
+                if (d['trgb'] === 'blue') {
+                    document.getElementById("temprgb").innerHTML = 'TO COLD';
+                    document.getElementById("temprgb").style.color = 'white';
+                    document.getElementById("temprgb").style.backgroundColor = 'blue';
+                } else if (d['trgb'] === 'red') {
+                    document.getElementById("temprgb").innerHTML = 'TO HOT';
+                    document.getElementById("temprgb").style.color = 'white';
+                    document.getElementById("temprgb").style.backgroundColor = 'red';
+                } else if (d['trgb'] === 'green') {
+                    document.getElementById("temprgb").innerHTML = '';
+                    document.getElementById("temprgb").style.color = 'white';
+                    document.getElementById("temprgb").style.backgroundColor = 'green';
                 } else {
                     document.getElementById("temprgb").innerHTML = 'null';
-                    document.getElementById("temprgb").color = 'black';
-                    document.getElementById("temprgb").backgroundColor = 'white';
+                    document.getElementById("temprgb").style.color = 'black';
+                    document.getElementById("temprgb").style.backgroundColor = 'white';
                 }
                 if (d['pir'] === 'ON') {
                     document.getElementById("pirlight").style.color = 'black';
@@ -334,7 +335,7 @@
                     <p style="text-align: center" id="lightsensorlight" name="lightsensorlight">_</p>
                     </div>
                     <div class="row">
-                    <p style="text-align: center" id="i" name="i">N/A</p>
+                    <p style="color: white; text-align: center" id="i" name="i">_</p>
                     </div>
                     <div class="row">
                     <div>
