@@ -171,19 +171,30 @@ def exit():
 highTemp = 68
 lowTemp = 63
 
+root = Tk()
+print('')
+root.title('Home Automation System by Reece Small')
+frame = Frame(root)
+frame.grid()
+
 try:
     M.pisetup()
     #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, frame, buzzButton, buzzSensor)).start()
+    M.createWidgets(frame, root)
+    M.mainWidgets(frame)
     print('')
     light = M.l(M.fadeLed, board, 100).PWMLED()  # Starts the light connected to the variable resistor
     #threading.Thread(target=run(host='0.0.0.0', port=8080, reloader=False).start()) # BOTTLE
+    #threading.Thread(target=root.mainloop().start())
     run(host='0.0.0.0', port=8080, reloader=False)
+    #root.mainloop()
     print('\n \n### Exiting ###')
     lcd.lcd_clear()
     board.cleanup()
     sys.exit()
 except (KeyboardInterrupt):
     print('\n \n \n \n### Exiting ###')
+    root.destroy()
     lcd.lcd_clear()
     board.cleanup()
     sys.exit()

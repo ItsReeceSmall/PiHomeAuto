@@ -2,7 +2,8 @@ import RPi.GPIO as gpio
 import time
 
 class Pir:
-    def __init__(self, pirSensor, board):
+    def __init__(self, pirSensor, board, frame):
+        self.frame = frame
         self.time = time
         self.board = board
         self.pirSensor = 32
