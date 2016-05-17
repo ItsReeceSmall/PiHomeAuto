@@ -5,7 +5,6 @@ from board import Board
 import pins
 import methods as M # All methods stored here
 from lcd1602 import LCD1602
-from tkinter import *
 
 board = Board().board
 lcd = LCD1602(board)

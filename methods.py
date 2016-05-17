@@ -4,7 +4,6 @@ import time, os, sys, glob, threading
 from board import Board
 from lightClass import Light as L
 from LedClass import Led as l
-from PWMClass import PWM as P
 from tempClass import Temp as t
 from distClass import Dist as d
 from pirClass import Pir as p
