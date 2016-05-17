@@ -228,7 +228,8 @@
             b.innerHTML = [bValue];
             var isChecked = $("#ledSwitch").is(":checked") ? 1:0;
             console.log('isChecked = ' + isChecked);
-            document.getElementById("RGBVAL").style.backgroundColor = 'rgb(' + ['rValue'] + ',' + ['gValue'] + ',' + ['bValue'] + ')';
+            val rgbvalchange = document.getElementById("RGBVAL")
+            rgbvalchange.style.backgroundColor = 'rgb(' + [rValue] + ',' + [gValue] + ',' + [bValue] + ')';
 
             $.ajax({
                 url: '/led',
