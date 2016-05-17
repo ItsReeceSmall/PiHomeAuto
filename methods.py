@@ -23,7 +23,7 @@ def pisetup():
     split = '###########################################'
     board.setmode(board.BOARD)    #set GPIO up
     inputs = [tempSensor, pirSensor, deSensor]   # Set there categories in arrays
-    outputs = [pirLight, tempLed, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed, lsLight]
+    outputs = [pirLight, dtSensor, buzzSensor, fadeLed, lightSensor, ledBlue, ledGreen, ledRed, lsLight, rgbR, rgbG, rgbB]
     buttons = [lightButton, buzzButton]
     print(split)
     print('### ATTEMPTING TO IMPORT AND SETUP PINS ###')
@@ -271,7 +271,6 @@ def helpscreen():
 
 #Pins
 tempSensor = 7
-tempLed = 23
 dtSensor = 29
 deSensor = 31
 pirSensor = 32
@@ -285,6 +284,9 @@ ledGreen = 38
 ledBlue = 40
 buzzButton = 16
 lsLight = 12
+rgbR = 19
+rgbG = 21
+rgbB = 23
 # Required Variables
 highTemp = 68
 lowTemp = 63
