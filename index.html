@@ -23,15 +23,15 @@
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
                 document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
                 document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
-                if (d['temprgb'] === 'blue') {
+                if (d['trgb'] === 'blue') {
                     document.getElementById("temprgb").innerHTML = '_';
                     document.getElementById("temprgb").color = 'blue';
                     document.getElementById("temprgb").backgroundColor = 'blue';
-                } else if (d['temprgb'] === 'red') {
+                } else if (d['trgb'] === 'red') {
                     document.getElementById("temprgb").innerHTML = '_';
                     document.getElementById("temprgb").color = 'red';
                     document.getElementById("temprgb").backgroundColor = 'red';
-                } else if (d['temprgb'] === 'green') {
+                } else if (d['trgb'] === 'green') {
                     document.getElementById("temprgb").innerHTML = '_';
                     document.getElementById("temprgb").color = 'green';
                     document.getElementById("temprgb").backgroundColor = 'green';
@@ -41,11 +41,13 @@
                     document.getElementById("temprgb").backgroundColor = 'white';
                 }
                 if (d['pir'] === 'ON') {
-                    document.getElementById("pirlight").style.color = 'green';
+                    document.getElementById("pirlight").style.color = 'black';
                     document.getElementById("pirlight").style.backgroundColor = 'green';
+                    document.getElementById("pirlight").innerHTML = 'Active';
                 } else if (d['pir'] === 'OFF') {
-                    document.getElementById("pirlight").style.color = 'red';
+                    document.getElementById("pirlight").style.color = 'white';
                     document.getElementById("pirlight").style.backgroundColor = 'red';
+                    document.getElementById("pirlight").innerHTML = 'Inactive';
                 } else {
                     document.getElementById("pirlight").style.color = 'black';
                     document.getElementById("pirlight").style.backgroundColor = 'white';

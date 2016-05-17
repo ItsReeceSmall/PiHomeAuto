@@ -55,12 +55,12 @@ def getText():
 @route('/setup', method='GET')
 def setup():
     print('------------------------------------------------------------')
-    t, p, l, d, temprgb, lslight = M.getAll(0, frame)
+    t, p, l, d, trgb, lslight = M.getAll(0, frame)
     t = str(t)
     p = str(p)
     l = str(l)
     d = str(d)
-    temprgb = str(temprgb)
+    trgb = str(trgb)
     lslight = str(lslight)
     print('------------------------------------------------------------')
     ###
@@ -69,7 +69,7 @@ def setup():
     data['pir'] = p
     data['lightsensor'] = l
     data['distance'] = d
-    data['temprgb'] = temprgb
+    data['trgb'] = trgb
     data['lslight'] = lslight
     json_data = json.dumps(data)
     return json_data
