@@ -60,7 +60,8 @@ def action():
     print('DEBUG: led state = ' + str(led))
     on = bool(int(led))
     print('DEBUG: buttonState = ' + str(on))
-    if led == 1:
+    print(led)
+    if led == '1':
         R = M.P(M.rgbR, board, int(r)).PWMLED()
         G = M.P(M.rgbG, board, int(g)).PWMLED()
         B = M.P(M.rgbB, board, int(b)).PWMLED()
