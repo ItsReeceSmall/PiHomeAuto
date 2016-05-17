@@ -17,16 +17,16 @@
             $.get("/setup", function(data, status){
                 var d = JSON.parse(data);
                 console.log(d);
-                document.getElementById("temp").innerHTML = 'Temperature: ' + d['temp'] + ' degrees centigrade';
+                document.getElementById("temp").innerHTML = 'Temperature: ' + d['temp'] + ' C';
                 document.getElementById("pir").innerHTML = 'PIR Value: ' + d['pir'] + '';
-                document.getElementById("lightsensor").innerHTML = 'Light Sensor Value: ' + d['lightsensor'];
+                document.getElementById("lightsensor").innerHTML = 'Light Level: ' + d['lightsensor'];
                 document.getElementById("distance").innerHTML = 'Distance: ' + d['distance'] + ' Cm';
                 document.getElementById("line1").innerHTML = 'C  PIR Dis Light';
                 document.getElementById("line2").innerHTML = d['temp'] + ' ' + d['pir'] + ' ' + d['distance'] + '  ' + d['lightsensor'];
-                document.getElementById("temprgb").innerHTML = d['temprgbStat']
-                document.getElementById("pirlight").innerHTML = d['pirLightStat']
-                document.getElementById("lightsensorlight").innerHTML = d['lightSensorLightStat']
-                document.getElementById("varLight").innerHTML = d['varLightStat']
+                document.getElementById("temprgb").innerHTML = '_';
+                document.getElementById("pirlight").innerHTML = '_';
+                document.getElementById("lightsensorlight").innerHTML = '_';
+                document.getElementById("varLight").innerHTML = '_';
             });
 
             $("#ledSwitch").change(function() {
@@ -118,6 +118,16 @@
         function PIRS() {
             var isChecked = $("#PIRSwitch").is(":checked") ? 1:0;
             console.log('isChecked = ' + isChecked);
+            if (isChecked = 1) {
+                document.getElementById("pirlight").style.color = 'green';
+                document.getElementById("pirlight").style.backgroundColor = 'green';
+            } else if (isChecked = 0) {
+                document.getElementById("pirlight").style.color = 'red';
+                document.getElementById("pirlight").style.backgroundColor = 'red';
+            } else {
+                document.getElementById("pirlight").style.color = 'red';
+                document.getElementById("pirlight").style.backgroundColor = 'red';
+            }
 
             $.ajax({
                 url: '/pirs',
@@ -226,26 +236,44 @@
                   <p>Below are the returned values from the sensors.</p>
                 </div>
                 <div class="card-action">
-                  <div class="row">
+                  <div class="col s6 m6 l6">
+                    <div class="row">
                     <p id="temp" name="temp"></p>
-                  </div>
-                  <div class="row">
+                    </div>
+                    <div class="row">
                     <p id="pir" name="pir"></p>
-                  </div>
-                  <div class="row">
+                    </div>
+                    <div class="row">
                     <p id="lightsensor" name="lightsensor"></p>
-                  </div>
-                  <div class="row">
+                    </div>
+                    <div class="row">
                     <p id="distance" name="distance"></p>
-                  </div>
-                  <div class="row">
-                    <div style="padding-top: 15px" class="col s12 m5 l5">
+                    </div>
+                    <div class="row">
+                    <div>
                       <button class="btn waves-effect waves-light" onclick="reloadpage();" type="submit" id="reloadpage" name="reloadpage">Refresh Sensors<i class="material-icons right">send</i>
                       </button>
                     </div>
-                    <div style="padding-top: 15px" class="col s12 m7 l7">
+                    </div>
+                  </div>
+                  <div class="col s6 m6 l6">
+                    <div class="row">
+                    <p id="temprgb" name="temprgb">____</p>
+                    </div>
+                    <div class="row">
+                    <p id="pirlight" name="pirlight">____</p>
+                    </div>
+                    <div class="row">
+                    <p id="lightsensorlight" name="lightsensorlight">____</p>
+                    </div>
+                    <div class="row">
+                    <p id="i" name="i">N/A</p>
+                    </div>
+                    <div class="row">
+                    <div>
                       <button class="btn waves-effect waves-light" onclick="val2screen();" type="submit" id="val2screen" name="val2screen">Show on LCD<i class="material-icons right">send</i>
                       </button>
+                    </div>
                     </div>
                   </div>
                 </div>
