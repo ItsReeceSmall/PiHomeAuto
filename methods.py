@@ -155,7 +155,7 @@ def getPir(pirSensor, board, pirLight, buzzSensor, frame):
     if value == 1:
         finValue = 'ON'
         PirValue = Label(frame, text=(finValue), fg='green', borderwidth=1).grid(row=3, column=2, padx=5, pady=5)
-        l(pirLight, board).LedOn() # Turns PIR LIGHT ON
+        l(pirLight, board, 0).LedOn() # Turns PIR LIGHT ON
         BuzzValue = Label(frame, text=(' ON '), fg='green', borderwidth=1).grid(row=7,column=2,padx=5,pady=5)
         b(buzzSensor, board).buzzOn()
         time.sleep(0.4)
