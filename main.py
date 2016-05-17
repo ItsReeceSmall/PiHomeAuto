@@ -38,6 +38,28 @@ def rootHome():
 def html_file(filename):
     return static_file(filename, root=rootPath)
 
+
+@route('/led', method='POST')
+def action():
+    r = request.forms.get('rValue')
+    print('DEBUG: red value = ' + str(r))
+    g = request.forms.get('gValue')
+    print('DEBUG: green value = ' + str(g))
+    b = request.forms.get('bValue')
+    print('DEBUG: blue value = ' + str(b))
+    led = request.forms.get('buttonState')
+    print('DEBUG: led state = ' + str(led))
+    on = bool(int(led))
+    print('DEBUG: buttonState = ' + str(on))
+    if on:
+        R = M.l(M.rgbR, board, int(r))
+        G = M.l(M.rgbG, board, int(g))
+        B = M.l(M.rgbB, board, int(b))
+    else:
+        R = M.l(M.rgbR, board, 0)
+        G = M.l(M.rgbG, board, 0)
+        B = M.l(M.rgbB, board, 0)
+
 @route('/text', method='POST')
 def getText():
     text1 = request.forms.get('texttodisplay1')
