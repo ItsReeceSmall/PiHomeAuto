@@ -46,27 +46,32 @@ def lcdclear():
 def action():
     r = request.forms.get('rValue')
     r = float(r) / 2.55
-    int(round(r))
+    int(round(r),0)
     print('DEBUG: red value = ' + str(r))
+    ################################
     g = request.forms.get('gValue')
     g = float(g) / 2.55
-    int(round(g))
+    int(round(g),0)
     print('DEBUG: green value = ' + str(g))
+    ################################
     b = request.forms.get('bValue')
     b = float(b) / 2.55
-    int(round(b))
+    int(round(b),0)
     print('DEBUG: blue value = ' + str(b))
+    ################################
     led = request.forms.get('buttonState')
     print('DEBUG: led state = ' + str(led))
     on = bool(int(led))
     print('DEBUG: buttonState = ' + str(on))
     print (type(led))
     if led == '0':
+        print('off')
         R = M.P(M.rgbR, board, 0).PWMLED()
         G = M.P(M.rgbG, board, 0).PWMLED()
         B = M.P(M.rgbB, board, 0).PWMLED()
         return
     if led == '1':
+        print('on')
         R = M.P(M.rgbR, board, int(r)).PWMLED()
         G = M.P(M.rgbG, board, int(g)).PWMLED()
         B = M.P(M.rgbB, board, int(b)).PWMLED()
