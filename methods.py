@@ -127,11 +127,9 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState):
             if lightState == 'on':
                 l(fadeLed, board, 0).LedOff()
                 lightState = 'off'
-                pass
             elif lightState == 'off':
                 l(fadeLed, board, 0).LedOn()
                 lightState = 'on'
-                pass
         else:
             pass
 '''
