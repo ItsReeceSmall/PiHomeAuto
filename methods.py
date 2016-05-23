@@ -125,12 +125,16 @@ def ButtonSwitch(fadeLed, lightButton, board, buzzSensor, buzzButton):
         time.sleep(0.05)
         if board.input(lightButton) == False:
             l(fadeLed, board, 0).LedOff()
+            print('led off')
         else:
             l(fadeLed, board, 0).LedOn()
+            print('led on')
         if board.input(buzzButton) == False:
             b(buzzSensor, board).buzzOn()
+            print('b on')
         else:
             b(buzzSensor, board).buzzOff()
+            print('b off')
 
 ##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
