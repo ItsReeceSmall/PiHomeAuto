@@ -127,18 +127,15 @@ def ButtonSwitch(lightButton, board, lightState, vpwm):
             if lightState == 'on':
                 vpwm.ChangeDutyCycle(0)
                 lightState = 'off'
-                print('off')
             elif lightState == 'off':
                 vpwm.ChangeDutyCycle(100)
                 lightState = 'on'
-                print('on')
         else:
             pass
-'''
+
 def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
     while True:
-        time.sleep(2)
-        if board.input(buzzButton):
+        if board.input(buzzButton) == 0:
             print(board.input(buzzButton))
             print('buzz supposedly on')
             b(buzzSensor, board).buzzOn()
@@ -146,8 +143,7 @@ def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
             print(board.input(buzzButton))
             print('buzz supposedly off')
             b(buzzSensor, board).buzzOff()
-        print('========================')
-'''
+
 ##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
     if f <= lowTemp:
