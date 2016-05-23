@@ -124,16 +124,24 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState):
     while True:
         time.sleep(0.05)
         if board.input(lightButton):
+            print(board.input(lightButton))
+            print('light supposedly off')
             l(fadeLed, board, 0).LedOff()
         else:
+            print(board.input(lightButton))
+            print('light supposedly on')
             l(fadeLed, board, 0).LedOn()
 
 def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
     while True:
         time.sleep(0.05)
         if board.input(buzzButton):
+            print(board.input(buzzButton))
+            print('buzz supposedly off')
             b(buzzSensor, board).buzzOff()
         else:
+            print(board.input(buzzButton))
+            print('buzz supposedly on')
             b(buzzSensor, board).buzzOn()
 
 ##########################################################################################################
