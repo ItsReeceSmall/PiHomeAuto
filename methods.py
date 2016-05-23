@@ -123,7 +123,7 @@ def getLight(lightSensor, board, lsLight):
 def ButtonSwitch(fadeLed, lightButton, board, lightState):
     while True:
         time.sleep(0.1)
-        if board.input(lightButton):
+        if board.input(lightButton) == 0:
             print('pressed')
             if lightState == 'on':
                 l(fadeLed, board, 0).LedOff()
