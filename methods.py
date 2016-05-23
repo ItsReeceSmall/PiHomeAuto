@@ -122,7 +122,7 @@ def getLight(lightSensor, board, lsLight):
 ##########################################################################################################
 def ButtonSwitch(fadeLed, lightButton, board, lightState):
     while True:
-        time.sleep(0.05)
+        time.sleep(0.5)
         if board.input(lightButton):
             print(board.input(lightButton))
             print('light supposedly off')
@@ -131,10 +131,11 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState):
             print(board.input(lightButton))
             print('light supposedly on')
             l(fadeLed, board, 0).LedOn()
+        print('========================')
 
 def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
     while True:
-        time.sleep(0.05)
+        time.sleep(0.5)
         if board.input(buzzButton):
             print(board.input(buzzButton))
             print('buzz supposedly off')
@@ -143,6 +144,7 @@ def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
             print(board.input(buzzButton))
             print('buzz supposedly on')
             b(buzzSensor, board).buzzOn()
+        print('========================')
 
 ##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
