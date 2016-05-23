@@ -124,12 +124,15 @@ def ButtonSwitch(fadeLed, lightButton, board, lightState):
     while True:
         time.sleep(0.1)
         if board.input(lightButton):
+            print('pressed')
             if lightState == 'on':
                 l(fadeLed, board, 0).LedOff()
                 lightState = 'off'
+                print('off')
             elif lightState == 'off':
                 l(fadeLed, board, 0).LedOn()
                 lightState = 'on'
+                print('on')
         else:
             pass
 '''
