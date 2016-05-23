@@ -138,12 +138,12 @@ def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
         time.sleep(2)
         if board.input(buzzButton):
             print(board.input(buzzButton))
-            print('buzz supposedly off')
-            b(buzzSensor, board).buzzOff()
-        else:
-            print(board.input(buzzButton))
             print('buzz supposedly on')
             b(buzzSensor, board).buzzOn()
+        else:
+            print(board.input(buzzButton))
+            print('buzz supposedly off')
+            b(buzzSensor, board).buzzOff()
         print('========================')
 
 ##########################################################################################################
