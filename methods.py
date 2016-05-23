@@ -120,21 +120,21 @@ def getLight(lightSensor, board, lsLight):
     print ('### Light Sensor Value = ' + str(value))
     return value, finValue
 ##########################################################################################################
-def ButtonSwitch(fadeLed, lightButton, board, buzzSensor, buzzButton):
+def ButtonSwitch(fadeLed, lightButton, board, lightState, buzzSensor, buzzButton, buzzState):
     while True:
         time.sleep(0.05)
         if board.input(lightButton) == False:
-            l(fadeLed, board, 0).LedOff()
-            print('led off')
-        else:
+            if lightState == 'on':
+                l(fadeLed, board, 0).LedOff()
+                lightState = 'off'
+            lightState = 'on'
             l(fadeLed, board, 0).LedOn()
-            print('led on')
         if board.input(buzzButton) == False:
+            if buzzState == 'on':
+                b(buzzSensor, board).buzzOff()
+                buzzState = 'off'
+            buzzState = 'on'
             b(buzzSensor, board).buzzOn()
-            print('b on')
-        else:
-            b(buzzSensor, board).buzzOff()
-            print('b off')
 
 ##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
@@ -210,6 +210,7 @@ rgbB = 23
 highTemp = 68
 lowTemp = 63
 lightState = 'on' # Current state of the light stored in a variable
+buzzState = 'off'
 lcdyon = 0
 
 ### ABOUT STRINGS ###
