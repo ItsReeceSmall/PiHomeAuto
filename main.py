@@ -1,5 +1,4 @@
-import time, sys, threading, os, glob
-import math
+import time, os, sys, glob, math, threading
 from bottle import *
 import json, inspect
 from board import Board
@@ -169,7 +168,7 @@ lowTemp = 63
 try:
     M.pisetup()
     rpwm, gpwm, bpwm, vpwm = M.pwmpins()
-    #screen = threading.Thread(target=M.ButtonSwitch, args=(fadeLed, lightButton, board, lightState, buzzButton, buzzSensor)).start()
+    threading.Thread(target=M.ButtonSwitch, args=(M.fadeLed, M.lightButton, board, M.lightState, M.buzzButton, M.buzzSensor)).start()
     print('')
     run(host='0.0.0.0', port=8080, reloader=False)
     print('\n \n### Exiting ###')
