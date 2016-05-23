@@ -120,13 +120,17 @@ def getLight(lightSensor, board, lsLight):
     print ('### Light Sensor Value = ' + str(value))
     return value, finValue
 ##########################################################################################################
-def ButtonSwitch(fadeLed, lightButton, board, lightState, buzzSensor, buzzButton, buzzState):
+def ButtonSwitch(fadeLed, lightButton, board, lightState):
     while True:
         time.sleep(0.05)
         if board.input(lightButton):
             l(fadeLed, board, 0).LedOff()
         else:
             l(fadeLed, board, 0).LedOn()
+
+def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
+    while True:
+        time.sleep(0.05)
         if board.input(buzzButton):
             b(buzzSensor, board).buzzOff()
         else:
