@@ -120,17 +120,16 @@ def getLight(lightSensor, board, lsLight):
     print ('### Light Sensor Value = ' + str(value))
     return value, finValue
 ##########################################################################################################
-def ButtonSwitch(fadeLed, lightButton, board, lightState):
+def ButtonSwitch(lightButton, board, lightState, vpwm):
     while True:
-        time.sleep(0.1)
+        time.sleep(0.15)
         if board.input(lightButton) == 0:
-            print('pressed')
             if lightState == 'on':
-                l(fadeLed, board, 0).LedOff()
+                vpwm.ChangeDutyCycle(0)
                 lightState = 'off'
                 print('off')
             elif lightState == 'off':
-                l(fadeLed, board, 0).LedOn()
+                vpwm.ChangeDutyCycle(100)
                 lightState = 'on'
                 print('on')
         else:
