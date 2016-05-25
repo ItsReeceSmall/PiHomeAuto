@@ -135,6 +135,7 @@ def ButtonSwitch(lightButton, board, lightState, vpwm):
 
 def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
     while True:
+        time.sleep(2)
         if board.input(buzzButton) == 0:
             print(board.input(buzzButton))
             print('buzz supposedly on')
@@ -202,14 +203,16 @@ dtSensor = 29
 deSensor = 31
 pirSensor = 32
 buzzSensor = 35
-fadeLed = 11
-lightButton = 22
 lightSensor = 18
+
+lightButton = 16
+buzzButton = 22
+
+fadeLed = 11
 pirLight = 10
 ledRed = 36
 ledGreen = 38
 ledBlue = 40
-buzzButton = 16
 lsLight = 12
 rgbR = 19
 rgbG = 21
