@@ -135,14 +135,9 @@ def ButtonSwitch(lightButton, board, lightState, vpwm):
 
 def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
     while True:
-        time.sleep(2)
         if board.input(buzzButton) == 0:
-            print(board.input(buzzButton))
-            print('buzz supposedly on')
             b(buzzSensor, board).buzzOn()
         else:
-            print(board.input(buzzButton))
-            print('buzz supposedly off')
             b(buzzSensor, board).buzzOff()
 
 ##########################################################################################################
