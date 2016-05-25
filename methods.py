@@ -135,10 +135,10 @@ def ButtonSwitch(lightButton, board, lightState, vpwm):
 
 def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
     while True:
-        if board.input(buzzButton) == 0:
-            b(buzzSensor, board).buzzOn()
-        else:
-            b(buzzSensor, board).buzzOff()
+        board.wait_for_edge(buzzButton, board.FALLING)
+        b(buzzSensor, board).buzzOn()
+        board.wait_for_edge(buzzButton, board.RISING)
+        b(buzzSensor, board).buzzOff()
 
 ##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
