@@ -169,7 +169,7 @@ try:
     M.pisetup()
     rpwm, gpwm, bpwm, vpwm = M.pwmpins()
     thread1 = threading.Thread(target=M.ButtonSwitch, args=(M.lightButton, board, M.lightState, vpwm)).start()
-    thread2 = threading.Thread(target=M.BuzzSwitch, args=(board, M.buzzButton, M.buzzSensor, M.buzzState)).start()
+    thread2 = threading.Thread(target=M.BuzzSwitch, args=(board, M.buzzSensor, M.buzzButton, M.buzzState)).start()
     print('')
     run(host='0.0.0.0', port=8080, reloader=False)
     print('\n \n### Exiting ###')
