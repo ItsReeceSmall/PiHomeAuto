@@ -1,3 +1,8 @@
+'''
+
+    UNIT 14 P2 Line 136
+
+'''
 import time, os, sys, glob, threading
 # FILES IMPORT BELOW
 
@@ -133,12 +138,12 @@ def ButtonSwitch(lightButton, board, lightState, vpwm):
         else:
             pass
 
-def BuzzSwitch(board, buzzSensor, buzzButton, buzzState):
-    while True:
-        board.wait_for_edge(buzzButton, board.FALLING)
-        b(buzzSensor, board).buzzOn()
-        board.wait_for_edge(buzzButton, board.RISING)
-        b(buzzSensor, board).buzzOff()
+def BuzzSwitch(board, buzzSensor, buzzButton, buzzState): # U14P2: The whole method is constantly running in a thread meaning it's always being checked.
+    while True: # Loops the entire method forever.
+        board.wait_for_edge(buzzButton, board.FALLING) # This waits for the button to be pressed before proceeding with the next line of code.
+        b(buzzSensor, board).buzzOn()                  # Turns the buzzer on
+        board.wait_for_edge(buzzButton, board.RISING)  # This waits for the button to be released from being pressed before it proceeds with the next line of code.
+        b(buzzSensor, board).buzzOff()                 # Turns the buzzer off
 
 ##########################################################################################################
 def tempLight(board, f, ledRed, ledGreen, ledBlue, highTemp, lowTemp):
