@@ -7,21 +7,25 @@ class Led:
     def LedOn(self):
         self.board.output(self.__ledPin, self.board.HIGH)
         time.sleep(0.1)
+        # Turns LED on
     
     def LedOff(self):
         self.board.output(self.__ledPin, self.board.LOW)
         time.sleep(0.1)
+        # Turns LED off
     
     def LedTest(self):
         self.board.output(self.__ledPin, self.board.HIGH)
         time.sleep(2)
         self.board.output(self.__ledPin, self.board.LOW)
+        # Turns LED on and off to test it works.
 
     def PWMLED(self):
         i = self.board.PWM(self.__ledPin, 100)
         i.start(0)
         time.sleep(0.1)
         i.ChangeDutyCycle(self.pwmval)
+        # Parses in pin and starts it, then changes the output of the power through the pwmval.
 
 import time, sys, os
 from board import Board
